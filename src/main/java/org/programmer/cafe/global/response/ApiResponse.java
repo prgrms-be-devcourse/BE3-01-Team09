@@ -1,12 +1,16 @@
-package org.programmer.cafe.global;
+package org.programmer.cafe.global.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.programmer.cafe.global.exception.ErrorCode;
+import org.programmer.cafe.global.constant.ResponseStatus;
 
+/**
+ * 데이터 공통 반환 형식 정의 클래스
+ * @param <T>
+ */
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ApiResponse<T> {
@@ -42,10 +46,10 @@ public class ApiResponse<T> {
     }
 
     // 에러 response
-    public static ApiResponse<Object> createError(ErrorCode errorCode) {
+    public static ApiResponse<Object> createError(String msg) {
         return ApiResponse.builder()
                 .status(ResponseStatus.ERROR.getMsg())
-                .message(errorCode.getMessage())
+                .message(msg)
                 .data(null)
                 .build();
     }
