@@ -1,9 +1,13 @@
 package org.programmer.cafe.exception;
 
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.programmer.cafe.global.response.ApiResponse;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
@@ -56,6 +60,16 @@ public class GlobalExceptionHandler {
         log.error("[NotFoundException] message: {}", e.getMessage());
         return ResponseEntity.status(e.getErrorCode().getStatus())
                 .body(ApiResponse.createError(e.getErrorCode().getMessage()));
+    }
+
+    // 유효성 검사 에러
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ApiResponse<Object>> handleValidationExceptions(
+        MethodArgumentNotValidException ex) {
+        final String errorMessage = ex.getBindingResult().getAllErrors().stream()
+            .map(DefaultMessageSourceResolvable::getDefaultMessage)
+            .collect(Collectors.joining("\n"));
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiResponse.createError(errorMessage));
     }
 
     // 위의 경우를 제외한 모든 에러 500
