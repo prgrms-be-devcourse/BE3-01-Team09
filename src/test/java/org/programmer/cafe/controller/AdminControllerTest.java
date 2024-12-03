@@ -9,7 +9,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.programmer.cafe.domain.item.entity.ItemStatus;
-import org.programmer.cafe.domain.item.entity.dto.ItemDto;
+import org.programmer.cafe.domain.item.entity.dto.CreateItemResponse;
 import org.programmer.cafe.domain.item.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -31,8 +31,8 @@ class AdminControllerTest {
 
     @Test
     void addItem() throws Exception {
-        final ItemDto createDto = ItemDto.builder().name("Coffee").price(10000).stock(15)
-            .status(ItemStatus.ON_SALE).image("/images/coffee.png").build();
+        final CreateItemResponse createDto = CreateItemResponse.builder().name("Coffee")
+            .price(10000).stock(15).status(ItemStatus.ON_SALE).image("/images/coffee.png").build();
 
         given(itemService.save(any())).willReturn(createDto);
         mockMvc.perform(post("/api/admin/items").contentType(MediaType.APPLICATION_JSON)

@@ -9,7 +9,7 @@ public interface ItemMapper {
 
     ItemMapper INSTANCE = Mappers.getMapper(ItemMapper.class);
 
-    Item toEntity(ItemDto itemDto);
+    Item toEntity(CreateItemRequest createItemRequest);
 
-    ItemDto toDto(Item item);
+    CreateItemResponse toCreateResponseDto(Item item);
 }
