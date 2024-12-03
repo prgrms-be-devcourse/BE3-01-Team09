@@ -8,6 +8,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.programmer.cafe.domain.item.entity.ItemStatus;
 import org.programmer.cafe.domain.item.entity.dto.CreateItemResponse;
 import org.programmer.cafe.domain.item.service.ItemService;
@@ -27,7 +28,7 @@ class AdminControllerTest {
     private ObjectMapper objectMapper;
 
     @MockitoBean
-    private ItemService itemService;
+    private final ItemService itemService = Mockito.mock(ItemService.class);
 
     @Test
     void addItem() throws Exception {
