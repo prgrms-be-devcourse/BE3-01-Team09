@@ -18,7 +18,7 @@ import org.programmer.cafe.domain.item.entity.ItemStatus;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class ItemDto {
+public class CreateItemRequest {
 
     @Schema(description = "상품명", requiredMode = RequiredMode.REQUIRED, defaultValue = "커피콩")
     @NotBlank(message = "상품명을 입력해주세요.")

@@ -6,7 +6,8 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.programmer.cafe.domain.item.entity.dto.ItemDto;
+import org.programmer.cafe.domain.item.entity.dto.CreateItemRequest;
+import org.programmer.cafe.domain.item.entity.dto.CreateItemResponse;
 import org.programmer.cafe.domain.item.service.ItemService;
 import org.programmer.cafe.global.response.ApiResponse;
 import org.springframework.http.HttpStatus;
@@ -29,8 +30,9 @@ public class AdminController {
     @Operation(summary = "관리자 상품 등록 API")
     @ApiResponses(value = {
         @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "201", description = "등록 성공")})
-    public ResponseEntity<ApiResponse<ItemDto>> addItem(@Validated @RequestBody ItemDto itemDto) {
-        final ItemDto saved = itemService.save(itemDto);
+    public ResponseEntity<ApiResponse<CreateItemResponse>> addItem(
+        @Validated @RequestBody CreateItemRequest createItemRequest) {
+        final CreateItemResponse saved = itemService.save(createItemRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(createSuccess(saved));
     }
 }

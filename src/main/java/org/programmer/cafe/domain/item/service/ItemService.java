@@ -3,7 +3,8 @@ package org.programmer.cafe.domain.item.service;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.programmer.cafe.domain.item.entity.Item;
-import org.programmer.cafe.domain.item.entity.dto.ItemDto;
+import org.programmer.cafe.domain.item.entity.dto.CreateItemRequest;
+import org.programmer.cafe.domain.item.entity.dto.CreateItemResponse;
 import org.programmer.cafe.domain.item.entity.dto.ItemMapper;
 import org.programmer.cafe.domain.item.repository.ItemRepository;
 import org.springframework.stereotype.Service;
@@ -26,9 +27,9 @@ public class ItemService {
         return itemRepository.findAll();
     }
 
-    public ItemDto save(ItemDto itemDto) {
-        final Item item = ItemMapper.INSTANCE.toEntity(itemDto);
+    public CreateItemResponse save(CreateItemRequest createItemRequest) {
+        final Item item = ItemMapper.INSTANCE.toEntity(createItemRequest);
         final Item saved = itemRepository.save(item);
-        return ItemMapper.INSTANCE.toDto(saved);
+        return ItemMapper.INSTANCE.toCreateResponseDto(saved);
     }
 }

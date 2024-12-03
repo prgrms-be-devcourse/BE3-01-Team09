@@ -10,8 +10,8 @@ class ItemMapperTest {
 
     @Test
     void testDtoToEntity() {
-        final ItemDto createDto = ItemDto.builder().name("커피콩").price(1000).image("/img/asdsad.png")
-            .stock(15).status(ItemStatus.ON_SALE).build();
+        final CreateItemRequest createDto = CreateItemRequest.builder().name("커피콩").price(1000)
+            .image("/img/asdsad.png").stock(15).status(ItemStatus.ON_SALE).build();
 
         final Item entity = ItemMapper.INSTANCE.toEntity(createDto);
 
@@ -27,11 +27,12 @@ class ItemMapperTest {
         final Item entity = Item.builder().name("커피콩").price(1000).image("/img/asdsad.png")
             .stock(15).status(ItemStatus.ON_SALE).build();
 
-        final ItemDto createDto = ItemMapper.INSTANCE.toDto(entity);
+        final CreateItemResponse createDto = ItemMapper.INSTANCE.toCreateResponseDto(entity);
+        assertEquals(0, createDto.getId());
         assertEquals(createDto.getName(), entity.getName());
         assertEquals(createDto.getPrice(), entity.getPrice());
         assertEquals(createDto.getImage(), entity.getImage());
         assertEquals(createDto.getStock(), entity.getStock());
-        assertEquals(createDto.getStatus(), entity.getStatus());
+
     }
 }
