@@ -30,7 +30,6 @@ public class Order {
 
     @Column(nullable = false)
     private String address;
-
     @Column(nullable = false)
     private String addressDetail;
 
