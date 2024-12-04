@@ -17,9 +17,6 @@ public interface ItemMapper {
 
     CreateItemResponse toCreateResponseDto(Item item);
 
-    // Item, UpdateItemRequest 두 객체에 id 필드가 동시에 존재.
-    // @Mapping source 속성을 사용해 어떤 객체의 필드인지 명확히 지정.
-    @Mapping(target = "id", source = "item.id")
     @Mapping(target = "updatedFields", expression = "java(mapUpdatedFields(item, request))")
     UpdateItemResponse toUpdateItemResponse(Item item, UpdateItemRequest request);
 

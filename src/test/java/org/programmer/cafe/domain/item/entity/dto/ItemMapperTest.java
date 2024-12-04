@@ -47,7 +47,7 @@ class ItemMapperTest {
         map.put("price", 100);
         map.put("stock", 20);
 
-        final UpdateItemRequest request = UpdateItemRequest.builder().id(1).image("/img/asdsad.png")
+        final UpdateItemRequest request = UpdateItemRequest.builder().image("/img/asdsad.png")
             .status(ItemStatus.ON_SALE).stock(20).price(100).build();
 
         final UpdateItemResponse updateItemResponse = ItemMapper.INSTANCE.toUpdateItemResponse(
