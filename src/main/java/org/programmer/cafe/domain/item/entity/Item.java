@@ -11,6 +11,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.programmer.cafe.domain.item.entity.dto.UpdateItemRequest;
 
 @Entity(name = "items")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -45,5 +46,23 @@ public class Item {
         this.price = price;
         this.stock = stock;
         this.status = status;
+    }
+
+    public void update(UpdateItemRequest updateItemRequest) {
+        if (updateItemRequest.getName() != null) {
+            this.name = updateItemRequest.getName();
+        }
+        if (updateItemRequest.getImage() != null) {
+            this.image = updateItemRequest.getImage();
+        }
+        if (updateItemRequest.getPrice() >= 0) {
+            this.price = updateItemRequest.getPrice();
+        }
+        if (updateItemRequest.getStock() >= 0) {
+            this.stock = updateItemRequest.getStock();
+        }
+        if (updateItemRequest.getStatus() != null) {
+            this.status = updateItemRequest.getStatus();
+        }
     }
 }
