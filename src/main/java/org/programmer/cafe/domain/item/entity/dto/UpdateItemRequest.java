@@ -41,4 +41,12 @@ public class UpdateItemRequest {
 
     @Schema(description = "상태", requiredMode = RequiredMode.NOT_REQUIRED)
     private ItemStatus status;
+
+    public void setStatusOutOfStock() {
+        this.status = ItemStatus.OUT_OF_STOCK;
+    }
+
+    public void setStatusOnSale() {
+        this.status = ItemStatus.ON_SALE;
+    }
 }

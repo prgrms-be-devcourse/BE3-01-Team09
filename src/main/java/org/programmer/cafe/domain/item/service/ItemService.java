@@ -59,6 +59,12 @@ public class ItemService {
 
         final Item item = itemRepository.findById(id)
             .orElseThrow(() -> new EntityNotFoundException("Not found item with id: " + id));
+        if (updateItemRequest.getStock() == 0) {
+            updateItemRequest.setStatusOutOfStock(); // 재고가 없을 경우 '품절'로 변경.
+        }
+        if (item.getStock() == 0 && updateItemRequest.getStock() > 0) {
+            updateItemRequest.setStatusOnSale(); // 품절상태에서 재고가 들어올 경우 '판매중'으로 변경
+        }
 
         return ItemMapper.INSTANCE.toUpdateItemResponse(item, updateItemRequest);
     }
