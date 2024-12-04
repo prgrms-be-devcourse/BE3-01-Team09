@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.media.Schema.RequiredMode;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -34,7 +35,9 @@ public class CreateItemRequest {
     @PositiveOrZero(message = "재고는 0 이상이어야 합니다.")
     private int stock;
 
-    @Schema(description = "상태", requiredMode = RequiredMode.REQUIRED)
+    @Schema(description = "상태", requiredMode = RequiredMode.REQUIRED, allowableValues = {"ON_SALE",
+        "OUT_OF_STOCK", "DISCONTINUED"})
     @NotNull(message = "상태를 입력해주세요.")
+    @Pattern(regexp = "ON_SALE|OUT_OF_STOCK|DISCONTINUED", message = "유효하지 않은 상태입니다.")
     private ItemStatus status;
 }

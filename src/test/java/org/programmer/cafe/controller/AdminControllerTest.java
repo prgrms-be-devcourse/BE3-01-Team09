@@ -1,6 +1,7 @@
 package org.programmer.cafe.controller;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -51,11 +52,11 @@ class AdminControllerTest {
     void updateItem() throws Exception {
         final UpdateItemResponse updateDto = UpdateItemResponse.builder().id(1)
             .updatedFields(Map.of("name", "Coffee")).build();
-        given(itemService.updateItem(any())).willReturn(updateDto);
+        given(itemService.updateItem(eq(1L), any())).willReturn(updateDto);
 
-        final UpdateItemRequest request = UpdateItemRequest.builder().id(1).name("Coffee").build();
+        final UpdateItemRequest request = UpdateItemRequest.builder().name("Coffee").build();
 
-        mockMvc.perform(put("/api/admins/items").contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(put("/api/admins/items/1").contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(request))).andExpect(status().isOk())
             .andExpect(jsonPath("$.data.updatedFields.name").value("Coffee"));
     }
