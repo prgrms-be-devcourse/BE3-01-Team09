@@ -2,6 +2,7 @@ package org.programmer.cafe.domain.cart.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.programmer.cafe.domain.item.entity.Item;
@@ -31,4 +32,17 @@ public class Cart {
     @JoinColumn(name = "item_id")
     private Item item;
 
+    public Cart addItem(Item item) {
+        this.count += 1;
+        this.totalPrice += item.getPrice();
+        return this;
+    }
+
+    @Builder
+    public Cart(int count, int totalPrice, User user, Item item) {
+        this.count = count;
+        this.totalPrice = totalPrice;
+        this.user = user;
+        this.item = item;
+    }
 }
