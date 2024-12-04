@@ -8,9 +8,10 @@ import lombok.Getter;
 @Getter
 public enum ErrorCode { // 예외 발생시, body에 실어 날려줄 상태, code, message 커스텀
     BAD_REQUEST(400, -1001, "유효하지 않은 요청입니다."),
+    INVALID_REQUEST_BODY(400, -1002, "전달된 데이터가 올바르지 않습니다."),
 
     //-1000: USER
-    USER_ALREADY_EXIST(400, -1006, "해당 아이디가 이미 존재합니다."),
+    USER_ALREADY_EXIST(400, -1006, "해당 이메일이 이미 존재합니다."),
     WRONG_SIGNUP(400, -1008, "올바르지 않은 회원가입입니다."),
 
     //-2000: JWT
