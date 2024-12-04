@@ -1,5 +1,6 @@
 package org.programmer.cafe.exception;
 
+import jakarta.persistence.EntityNotFoundException;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.programmer.cafe.global.response.ApiResponse;
@@ -65,11 +66,19 @@ public class GlobalExceptionHandler {
     // 유효성 검사 에러
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiResponse<Object>> handleValidationExceptions(
-        MethodArgumentNotValidException ex) {
-        final String errorMessage = ex.getBindingResult().getAllErrors().stream()
+        MethodArgumentNotValidException e) {
+        log.error("[MethodArgumentNotValidException] message: {}", e.getMessage());
+        final String errorMessage = e.getBindingResult().getAllErrors().stream()
             .map(DefaultMessageSourceResolvable::getDefaultMessage)
             .collect(Collectors.joining("\n"));
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiResponse.createError(errorMessage));
+    }
+
+    // Entity 조회 실패 시 에러
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<ApiResponse<Object>> handleEntityNotFoundException(EntityNotFoundException e) {
+        log.error("[EntityNotFoundException] message: {}", e.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ApiResponse.createError(e.getMessage()));
     }
 
     // 위의 경우를 제외한 모든 에러 500
