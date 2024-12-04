@@ -1,4 +1,4 @@
-package org.programmer.cafe.domain.order.dto;
+package org.programmer.cafe.domain.order.entity.dto;
 
 import lombok.Getter;
 import org.programmer.cafe.domain.user.entity.User;

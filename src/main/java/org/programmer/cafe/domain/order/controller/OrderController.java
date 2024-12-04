@@ -1,16 +1,16 @@
 package org.programmer.cafe.domain.order.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.programmer.cafe.domain.order.dto.OrderDTO;
-import org.programmer.cafe.domain.order.entity.Order;
+import lombok.extern.slf4j.Slf4j;
+import org.programmer.cafe.domain.order.entity.dto.OrderDTO;
 import org.programmer.cafe.domain.order.service.OrderService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Slf4j
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api")
