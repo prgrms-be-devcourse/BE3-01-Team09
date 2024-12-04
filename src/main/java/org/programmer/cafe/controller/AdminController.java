@@ -33,7 +33,7 @@ public class AdminController {
     @Operation(summary = "관리자 상품 등록 API")
     @ApiResponses(value = {
         @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "201", description = "상품 등록 성공")})
-    public ResponseEntity<ApiResponse<CreateItemResponse>> addItem(
+    public ResponseEntity<ApiResponse<CreateItemResponse>> createItem(
         @Validated @RequestBody CreateItemRequest createItemRequest) {
         final CreateItemResponse created = itemService.createItem(createItemRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(createSuccess(created));

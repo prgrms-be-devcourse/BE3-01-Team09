@@ -3,10 +3,9 @@ package org.programmer.cafe.domain.item.entity.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.media.Schema.RequiredMode;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,11 +27,11 @@ public class CreateItemRequest {
     private String image;
 
     @Schema(description = "가격", requiredMode = RequiredMode.REQUIRED, defaultValue = "10000")
-    @Positive(message = "가격은 양수여야 합니다.")
+    @PositiveOrZero(message = "가격은 0 이상이어야 합니다.")
     private int price;
 
     @Schema(description = "재고", requiredMode = RequiredMode.REQUIRED, defaultValue = "15")
-    @Min(value = 0, message = "재고는 0 이상이어야 합니다.")
+    @PositiveOrZero(message = "재고는 0 이상이어야 합니다.")
     private int stock;
 
     @Schema(description = "상태", requiredMode = RequiredMode.REQUIRED)
