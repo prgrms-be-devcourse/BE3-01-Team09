@@ -18,6 +18,7 @@ public class OrderDetailService {
 
     private final OrderDetailRepository orderDetailRepository;
 
+    // 주문 상세 가져오기
     public OrderDetailResponse findOrderDetail(Long orderId) {
         OrderDetail orderDetail = orderDetailRepository.findByOrder_Id(orderId);
         log.info("반환된 주문 상세 : {}",orderDetail.getId());

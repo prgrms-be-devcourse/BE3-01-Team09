@@ -1,15 +1,20 @@
 package org.programmer.cafe.domain.order.service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.programmer.cafe.domain.item.entity.Item;
+import org.programmer.cafe.domain.item.entity.dto.UpdateItemRequest;
+import org.programmer.cafe.domain.item.repository.ItemRepository;
 import org.programmer.cafe.domain.order.entity.Order;
 import org.programmer.cafe.domain.order.entity.OrderStatus;
 import org.programmer.cafe.domain.order.entity.dto.OrderMapper;
 import org.programmer.cafe.domain.order.entity.dto.OrderRequest;
 import org.programmer.cafe.domain.order.entity.dto.OrderResponse;
 import org.programmer.cafe.domain.order.repository.OrderRepository;
+import org.programmer.cafe.domain.orderdetail.repository.OrderDetailRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +23,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class OrderService {
     private final OrderRepository orderRepository;
+    private final OrderDetailRepository orderDetailRepository;
+    private final ItemRepository itemRepository;
 
     // 모든 주문 불러오기
     @Transactional(readOnly = true)
@@ -41,12 +48,35 @@ public class OrderService {
         return orderResponse;
     }
 
-     // 주문 상태 수정하기
+     // 주문 상태 취소 변경
     @Transactional
     public OrderResponse updateOrderStatus(Long orderId){
         Order order = orderRepository.findById(orderId).orElse(null);
         if(order == null){log.info("주문 호출 실패 : {}", orderId);}
         order.updateStatus(OrderStatus.CANCEL);
         return OrderMapper.INSTANCE.toCreateResponseDto(order);
+    }
+
+    // 주문 상태 취소 - 수량 변경
+    @Transactional
+    public void updateItemStock(Long orderId){
+
+        // 주문 상세에서 주문 수량 가져오기
+        int count = orderDetailRepository.findByOrder_Id(orderId).getCount();
+
+        // 상품 id로 재고 가져오기
+        Long itemId = orderDetailRepository.findByOrder_Id(orderId).getItem().getId();
+        Item item = itemRepository.findById(itemId)
+            .orElseThrow(() -> new NoSuchElementException("해당 상품이 존재하지 않습니다. ID: " + itemId));
+        int stock = item.getStock();
+        // 재고 +=주문수량
+        stock += count;
+
+        UpdateItemRequest updateItemRequest = UpdateItemRequest.builder()
+            .stock(stock)
+            .build();
+
+        item.update(updateItemRequest);
+        log.info("재고 업데이트 완료. itemId: {}, updatedStock: {}", itemId, item.getStock());
     }
 }
