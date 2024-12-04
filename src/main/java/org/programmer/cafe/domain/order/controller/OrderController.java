@@ -1,6 +1,7 @@
 package org.programmer.cafe.domain.order.controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,13 +22,14 @@ public class OrderController {
 
     private final OrderService orderService;
     // 주문 전체 조회
-    @GetMapping("/users/{id}/orders")
-    public List<OrderResponse> getAllOrdersByUser(@PathVariable long id) {
+    @GetMapping("/orders")
+    public List<OrderResponse> getAllOrdersByUser(HttpSession session) {
+        Long id = (Long)session.getAttribute("id");
         return orderService.findAllOrders(id);
     }
 
     // 주문 상태 변경
-    @PostMapping("users/orders/{orderId}/status")
+    @PostMapping("orders/status/{orderId}")
     public OrderResponse postOrderStatus(@PathVariable long orderId) {
         return orderService.updateOrderStatus(orderId);
     }
