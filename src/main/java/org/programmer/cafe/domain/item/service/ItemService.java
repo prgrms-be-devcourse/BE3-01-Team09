@@ -2,6 +2,7 @@ package org.programmer.cafe.domain.item.service;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.programmer.cafe.domain.item.sort.ItemSortType;
 import org.programmer.cafe.domain.item.entity.Item;
 import org.programmer.cafe.domain.item.entity.dto.CreateItemRequest;
 import org.programmer.cafe.domain.item.entity.dto.CreateItemResponse;
@@ -18,13 +19,8 @@ public class ItemService {
 
     private final ItemRepository itemRepository;
 
-    /**
-     * 상품 전체 목록 반환 메서드
-     *
-     * @return List<Item>
-     */
-    public List<Item> getItemList() {
-        return itemRepository.findAll();
+    public List<Item> getItems(ItemSortType sortType) {
+        return itemRepository.findAllOrderBy(sortType);
     }
 
     public CreateItemResponse save(CreateItemRequest createItemRequest) {

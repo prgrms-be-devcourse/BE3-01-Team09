@@ -8,6 +8,7 @@ import lombok.Getter;
 @Getter
 public enum ErrorCode { // 예외 발생시, body에 실어 날려줄 상태, code, message 커스텀
     BAD_REQUEST(400, -1001, "유효하지 않은 요청입니다."),
+    INVALID_SORT_TYPE(400, -1010, "올바르지 않은 정렬 타입입니다."),
 
     //-1000: USER
     USER_ALREADY_EXIST(400, -1006, "해당 아이디가 이미 존재합니다."),

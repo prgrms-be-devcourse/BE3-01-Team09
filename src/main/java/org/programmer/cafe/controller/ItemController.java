@@ -1,15 +1,17 @@
 package org.programmer.cafe.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
-import org.programmer.cafe.domain.item.entity.Item;
+import org.programmer.cafe.domain.item.sort.ItemSortType;
+import org.programmer.cafe.domain.item.entity.dto.GetItemsResponse;
 import org.programmer.cafe.domain.item.service.ItemService;
 import org.programmer.cafe.global.response.ApiResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 /**
  * 상품 컨트롤러 클래스<br>
@@ -17,18 +19,18 @@ import java.util.List;
  */
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/item")
+@RequestMapping("/api/items")
 public class ItemController {
 
     private final ItemService itemService;
 
-    /**
-     * 상품 전체 목록 호출 메서드<br>
-     * Response 테스트용 작성
-     */
+    @Operation(summary = "상품 목록 조회 API")
+    @ApiResponses(value = {
+        @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "상품 조회 성공")})
     @GetMapping()
-    public ResponseEntity<ApiResponse<Object>> getItems() {
-        List<Item> itemList = itemService.getItemList();
-        return ResponseEntity.ok().body(ApiResponse.createSuccess(itemList)); // dto만들어서 반환필요
+    public ResponseEntity<ApiResponse<Object>> getItems(
+        @RequestParam(defaultValue = "NEW") ItemSortType sortType) {
+        return ResponseEntity.ok()
+            .body(ApiResponse.createSuccess(new GetItemsResponse(itemService.getItems(sortType))));
     }
 }
