@@ -43,6 +43,8 @@ public interface ItemMapper {
         }
         item.update(request);
 
+        // null 값 제거
+        updatedFields.values().removeIf(Objects::isNull);
         return updatedFields;
     }
 }
