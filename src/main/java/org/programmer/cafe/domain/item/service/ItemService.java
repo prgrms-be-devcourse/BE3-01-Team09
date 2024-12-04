@@ -59,13 +59,22 @@ public class ItemService {
 
         final Item item = itemRepository.findById(id)
             .orElseThrow(() -> new EntityNotFoundException("Not found item with id: " + id));
-        if (updateItemRequest.getStock() == 0) {
-            updateItemRequest.setStatusOutOfStock(); // 재고가 없을 경우 '품절'로 변경.
-        }
-        if (item.getStock() == 0 && updateItemRequest.getStock() > 0) {
-            updateItemRequest.setStatusOnSale(); // 품절상태에서 재고가 들어올 경우 '판매중'으로 변경
-        }
+        updateItemStatus(updateItemRequest, item);
 
         return ItemMapper.INSTANCE.toUpdateItemResponse(item, updateItemRequest);
+    }
+
+    private void updateItemStatus(UpdateItemRequest updateItemRequest, Item item) {
+        if (updateItemRequest.getStatus() != null) {
+            return; // 상태가 이미 지정된 경우 아무 작업도 하지 않음
+        }
+        final int newStock = updateItemRequest.getStock();
+        final int currentStock = item.getStock();
+
+        if (newStock == 0) {
+            updateItemRequest.setStatusOutOfStock(); // 재고가 없을 경우 '품절'로 변경.
+        } else if (currentStock == 0 && newStock > 0) {
+            updateItemRequest.setStatusOnSale(); // 품절상태에서 재고가 들어올 경우 '판매중'으로 변경
+        }
     }
 }
