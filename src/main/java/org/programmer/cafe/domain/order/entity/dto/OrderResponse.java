@@ -1,12 +1,11 @@
 package org.programmer.cafe.domain.order.entity.dto;
 
 import lombok.Getter;
-import org.programmer.cafe.domain.user.entity.User;
 import org.programmer.cafe.domain.order.entity.Order;
 import org.programmer.cafe.domain.order.entity.OrderStatus;
 
 @Getter
-public class OrderDTO {
+public class OrderResponse {
     private Long id;
     private int totalPrice;
     private OrderStatus status;
@@ -19,7 +18,7 @@ public class OrderDTO {
     private Long user;
 
 
-    public OrderDTO(Order order) {
+    public OrderResponse(Order order) {
         this.id = order.getId();
         this.totalPrice = order.getTotalPrice();
         this.status = order.getStatus();

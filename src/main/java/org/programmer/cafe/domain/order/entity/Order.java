@@ -42,4 +42,9 @@ public class Order {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
+
+    // 상태 수정
+    public void updateStatus(OrderStatus status) {
+        this.status = status;
+    }
 }
