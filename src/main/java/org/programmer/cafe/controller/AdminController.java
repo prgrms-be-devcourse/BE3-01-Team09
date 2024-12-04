@@ -1,6 +1,7 @@
 package org.programmer.cafe.controller;
 
 import static org.programmer.cafe.global.response.ApiResponse.createSuccess;
+import static org.programmer.cafe.global.response.ApiResponse.createSuccessWithNoData;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -52,5 +53,15 @@ public class AdminController {
         }
         final UpdateItemResponse updated = itemService.updateItem(id, updateItemRequest);
         return ResponseEntity.status(HttpStatus.OK).body(createSuccess(updated));
+    }
+
+    @DeleteMapping("/items/{id}")
+    @Operation(summary = "관리자 상품 삭제 API", description = "상품 ID로 상품 삭제 진행하는 API<br>(리턴 값 없음)")
+    public ResponseEntity<ApiResponse<Object>> deleteItem(@PathVariable Long id) {
+        if (id == null || id <= 0) {
+            throw new IllegalArgumentException("ID를 다시 확인해주세요.");
+        }
+        itemService.deleteItem(id);
+        return ResponseEntity.status(HttpStatus.OK).body(createSuccessWithNoData());
     }
 }
