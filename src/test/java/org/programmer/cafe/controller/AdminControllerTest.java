@@ -35,7 +35,7 @@ class AdminControllerTest {
         final CreateItemResponse createDto = CreateItemResponse.builder().name("Coffee")
             .price(10000).stock(15).status(ItemStatus.ON_SALE).image("/images/coffee.png").build();
 
-        given(itemService.save(any())).willReturn(createDto);
+        given(itemService.createItem(any())).willReturn(createDto);
         mockMvc.perform(post("/api/admin/items").contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(createDto))).andExpect(status().isCreated())
             .andExpect(jsonPath("$.data.name").value("Coffee"))

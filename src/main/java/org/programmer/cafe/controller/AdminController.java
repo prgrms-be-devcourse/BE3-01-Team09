@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/admin")
+@RequestMapping("api/admins")
 @RequiredArgsConstructor
 @Tag(name = "Admin", description = "관리자 페이지")
 public class AdminController {
@@ -29,10 +29,10 @@ public class AdminController {
     @PostMapping("/items")
     @Operation(summary = "관리자 상품 등록 API")
     @ApiResponses(value = {
-        @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "201", description = "등록 성공")})
+        @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "201", description = "상품 등록 성공")})
     public ResponseEntity<ApiResponse<CreateItemResponse>> addItem(
         @Validated @RequestBody CreateItemRequest createItemRequest) {
-        final CreateItemResponse saved = itemService.save(createItemRequest);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createSuccess(saved));
+        final CreateItemResponse created = itemService.createItem(createItemRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createSuccess(created));
     }
 }

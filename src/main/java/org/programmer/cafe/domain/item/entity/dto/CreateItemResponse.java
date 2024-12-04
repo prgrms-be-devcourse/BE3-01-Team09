@@ -10,7 +10,7 @@ import org.programmer.cafe.domain.item.entity.ItemStatus;
 @Getter
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class CreateItemResponse {
 
     private long id;

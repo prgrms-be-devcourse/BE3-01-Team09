@@ -27,7 +27,12 @@ public class ItemService {
         return itemRepository.findAll();
     }
 
-    public CreateItemResponse save(CreateItemRequest createItemRequest) {
+    /**
+     *
+     * @param createItemRequest
+     * @return CreateItemResponse
+     */
+    public CreateItemResponse createItem(CreateItemRequest createItemRequest) {
         final Item item = ItemMapper.INSTANCE.toEntity(createItemRequest);
         final Item saved = itemRepository.save(item);
         return ItemMapper.INSTANCE.toCreateResponseDto(saved);
