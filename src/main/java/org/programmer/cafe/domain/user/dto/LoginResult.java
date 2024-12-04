@@ -7,11 +7,11 @@ import org.programmer.cafe.domain.user.entity.User;
 import java.util.Optional;
 
 @Getter
-public class LoginResultDto {
+public class LoginResult {
     private LoginStatus loginStatus;
-    private Optional<User> user;
+    private User user;
 
-    public LoginResultDto(LoginStatus loginStatus, Optional<User> user) {
+    public LoginResult(LoginStatus loginStatus, User user) {
         this.loginStatus = loginStatus;
         this.user = user;
     }
