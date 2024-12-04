@@ -45,6 +45,7 @@ public class OrderService {
     @Transactional
     public OrderResponse updateOrderStatus(Long orderId){
         Order order = orderRepository.findById(orderId).orElse(null);
+        if(order == null){log.info("주문 호출 실패 : {}", orderId);}
         order.updateStatus(OrderStatus.CANCEL);
         return OrderMapper.INSTANCE.toCreateResponseDto(order);
     }
