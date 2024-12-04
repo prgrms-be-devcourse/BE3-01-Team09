@@ -1,9 +1,8 @@
-package org.programmer.cafe.domain.user.dto;
+package org.programmer.cafe.domain.user.entity.dto;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.programmer.cafe.domain.user.entity.User;
 
 @Getter
 @NoArgsConstructor
