@@ -42,7 +42,7 @@ public class ItemService {
     /**
      * 상품을 수정하는 메서드
      *
-     * @param id 수정할 상품 ID
+     * @param id                수정할 상품 ID
      * @param updateItemRequest 수정할 상품의 세부 정보를 포함하는 요청 객체
      * @return 상품의 수정된 사항들만 포함한 응답 객체
      * @throws EntityNotFoundException 엔티티가 존재하지 않을 시 Exception 발생
@@ -54,6 +54,18 @@ public class ItemService {
         updateItemStatus(updateItemRequest, item);
 
         return ItemMapper.INSTANCE.toUpdateItemResponse(item, updateItemRequest);
+    }
+
+    /**
+     * 상품 삭제 메서드
+     *
+     * @param id 삭제할 상품 ID
+     */
+    @Transactional
+    public void deleteItem(Long id) {
+        final Item item = itemRepository.findById(id)
+            .orElseThrow(() -> new EntityNotFoundException("Not found item with id: " + id));
+        itemRepository.delete(item);
     }
 
     private void updateItemStatus(UpdateItemRequest updateItemRequest, Item item) {
