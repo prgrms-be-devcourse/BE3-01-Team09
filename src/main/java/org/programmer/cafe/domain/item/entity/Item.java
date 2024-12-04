@@ -14,7 +14,7 @@ import lombok.ToString;
 
 @Entity(name = "items")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 @ToString
 public class Item {
