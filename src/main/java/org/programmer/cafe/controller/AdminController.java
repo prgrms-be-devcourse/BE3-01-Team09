@@ -12,15 +12,20 @@ import java.io.IOException;
 import lombok.RequiredArgsConstructor;
 import org.programmer.cafe.domain.item.entity.dto.CreateItemRequest;
 import org.programmer.cafe.domain.item.entity.dto.CreateItemResponse;
+import org.programmer.cafe.domain.item.entity.dto.PageItemResponse;
 import org.programmer.cafe.domain.item.entity.dto.UpdateItemRequest;
 import org.programmer.cafe.domain.item.entity.dto.UpdateItemResponse;
 import org.programmer.cafe.domain.item.service.ItemService;
 import org.programmer.cafe.global.response.ApiResponse;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -83,6 +88,15 @@ public class AdminController {
         return ResponseEntity.status(HttpStatus.OK).body(createSuccessWithNoData());
     }
 
+    @GetMapping("/items")
+    @Operation(summary = "관리자 상품 전체 조회 API")
+    @ApiResponses(value = {
+        @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "상품 전체 조회 성공")})
+    public ResponseEntity<ApiResponse<Page<PageItemResponse>>> getItemsWithPagination(
+        @PageableDefault(page = 0, size = 5) Pageable pageable) {
+        final Page<PageItemResponse> pagination = itemService.getItemsWithPagination(pageable);
+        return ResponseEntity.status(HttpStatus.OK).body(createSuccess(pagination));
+    }
 
     private void validateId(Long id) {
         if (id == null || id <= 0) {
