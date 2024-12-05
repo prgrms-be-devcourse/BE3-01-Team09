@@ -69,4 +69,11 @@ public class CartService {
             throw new BadRequestException(ErrorCode.COUNT_BELOW_MINIMUM);
         }
     }
+
+    public void deleteCartItem(Long itemId, Long userId) {
+        final Cart cart = cartRepository.findByUserIdAndItemId(userId, itemId)
+            .orElseThrow(() -> new BadRequestException(ErrorCode.NONEXISTENT_CART));
+
+        cartRepository.delete(cart);
+    }
 }
