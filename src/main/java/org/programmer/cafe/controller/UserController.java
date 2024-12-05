@@ -1,6 +1,9 @@
 package org.programmer.cafe.controller;
 
-import org.programmer.cafe.domain.user.entity.dto.MypageResult;
+import lombok.extern.slf4j.Slf4j;
+import org.programmer.cafe.domain.user.entity.User;
+import org.programmer.cafe.domain.user.entity.dto.MyPageSearchRequest;
+import org.programmer.cafe.domain.user.entity.dto.MyPageUpdateResponse;
 import org.programmer.cafe.exception.MyPageException;
 import org.programmer.cafe.domain.user.service.UserService;
 import org.programmer.cafe.global.response.ApiResponse;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/users")
+@Slf4j
 public class UserController {
 
     private final UserService userService;
@@ -21,7 +25,21 @@ public class UserController {
     @GetMapping("/mypage/{id}")
     public ResponseEntity<ApiResponse<Object>> getUser(@PathVariable("id") Long id) {
         try {
-            MypageResult result = userService.getUserById(id);
+            MyPageSearchRequest result = userService.getUserById(id);
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(ApiResponse.createSuccess(result));
+        } catch (MyPageException e) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(ApiResponse.createErrorWithMsg(e.getMyPageLoadStatus().getMessage()));
+        }
+    }
+
+    @PatchMapping("/mypage/update")
+    public ResponseEntity<ApiResponse<Object>> updateUser(@RequestBody User user) {
+        try{
+            MyPageUpdateResponse result = userService.patchUser(user);
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body(ApiResponse.createSuccess(result));

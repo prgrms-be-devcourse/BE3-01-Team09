@@ -23,4 +23,5 @@ public class User extends BaseTimeEntity {
 
     @Column(nullable = false, length = 10)
     private String name;
+
 }
