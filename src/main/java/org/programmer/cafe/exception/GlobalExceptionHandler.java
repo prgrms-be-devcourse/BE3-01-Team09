@@ -1,6 +1,7 @@
 package org.programmer.cafe.exception;
 
 import jakarta.persistence.EntityNotFoundException;
+import java.io.IOException;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.programmer.cafe.global.response.ApiResponse;
@@ -79,6 +80,12 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiResponse<Object>> handleEntityNotFoundException(EntityNotFoundException e) {
         log.error("[EntityNotFoundException] message: {}", e.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ApiResponse.createError(e.getMessage()));
+    }
+
+    @ExceptionHandler(IOException.class)
+    public ResponseEntity<ApiResponse<Object>> handleIOException(IOException e) {
+        log.error("[IOException] message: {}", e.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ApiResponse.createError(e.getMessage()));
     }
 
     // 위의 경우를 제외한 모든 에러 500

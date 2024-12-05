@@ -18,11 +18,21 @@ spring:
       ddl-auto: update # 엔티티로 등록된 클래스와 매핑되는 테이블 자동 생성 주석해도 됩니다.
       naming:
         physical-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
-          # 자바에서 카멜로 필드 작성하면 DB에 스네이크로 기록
+        # 자바에서 카멜로 필드 작성하면 DB에 스네이크로 기록
     properties:
       hibernate:
         show_sql: true
-#        format_sql: true # 이쁘게 보기
+  #        format_sql: true # 이쁘게 보기
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 2MB
+      max-request-size: 10MB
+  web:
+    resources:
+      # 외부 디렉토리에 이미지 저장하고 정적 리소스로 제공하기 위해 설정
+      static-locations: classpath:/META-INF/resources/, classpath:/resources/, classpath:/static/, classpath:/public/, file:images/
+
 
 springdoc:
   swagger-ui:
@@ -38,5 +48,8 @@ springdoc:
   default-consumes-media-type: application/json
   default-produces-media-type: application/json
   writer-with-default-pretty-printer: true # JSON을 예쁘게 출력
-#  paths-to-match:
-#    - /api/v1/** # 특정 경로의 API만 매칭
+  #  paths-to-match:
+  #    - /api/v1/** # 특정 경로의 API만 매칭
+
+file:
+  upload-dir: images
