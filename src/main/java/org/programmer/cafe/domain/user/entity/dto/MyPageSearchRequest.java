@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class MypageResult {
+public class MyPageSearchRequest {
     private final Long id;
     private final String name;
     private final String email;
