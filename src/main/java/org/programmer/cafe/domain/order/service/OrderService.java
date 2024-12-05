@@ -49,6 +49,7 @@ public class OrderService {
     }
 
      // 주문 상태 취소 변경
+    /*
     @Transactional
     public OrderResponse updateOrderStatus(Long orderId){
         Order order = orderRepository.findById(orderId).orElse(null);
@@ -56,27 +57,26 @@ public class OrderService {
         order.updateStatus(OrderStatus.CANCEL);
         return OrderMapper.INSTANCE.toCreateResponseDto(order);
     }
+    */
 
+/*
     // 주문 상태 취소 - 수량 변경
     @Transactional
     public void updateItemStock(Long orderId){
 
-        // 주문 상세에서 주문 수량 가져오기
         int count = orderDetailRepository.findByOrder_Id(orderId).getCount();
 
-        // 상품 id로 재고 가져오기
         Long itemId = orderDetailRepository.findByOrder_Id(orderId).getItem().getId();
         Item item = itemRepository.findById(itemId)
             .orElseThrow(() -> new NoSuchElementException("해당 상품이 존재하지 않습니다. ID: " + itemId));
         int stock = item.getStock();
-        // 재고 +=주문수량
-        stock += count;
 
         UpdateItemRequest updateItemRequest = UpdateItemRequest.builder()
-            .stock(stock)
+            .stock(stock+count)
             .build();
 
         item.update(updateItemRequest);
         log.info("재고 업데이트 완료. itemId: {}, updatedStock: {}", itemId, item.getStock());
     }
+ */
 }
