@@ -16,10 +16,13 @@ import org.programmer.cafe.domain.item.entity.Item;
 import org.programmer.cafe.domain.item.entity.dto.CreateItemRequest;
 import org.programmer.cafe.domain.item.entity.dto.CreateItemResponse;
 import org.programmer.cafe.domain.item.entity.dto.ItemMapper;
+import org.programmer.cafe.domain.item.entity.dto.PageItemResponse;
 import org.programmer.cafe.domain.item.entity.dto.UpdateItemRequest;
 import org.programmer.cafe.domain.item.entity.dto.UpdateItemResponse;
 import org.programmer.cafe.domain.item.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -127,5 +130,9 @@ public class ItemService {
         } else if (currentStock == 0 && newStock > 0) {
             updateItemRequest.setStatusOnSale(); // 품절상태에서 재고가 들어올 경우 '판매중'으로 변경
         }
+    }
+
+    public Page<PageItemResponse> getItemsWithPagination(Pageable pageable) {
+        return itemRepository.findAllWithPaging(pageable);
     }
 }
