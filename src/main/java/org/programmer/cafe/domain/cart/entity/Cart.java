@@ -38,6 +38,11 @@ public class Cart {
         return this;
     }
 
+    public Cart updateCount(int count) {
+        this.count = count;
+        return this;
+    }
+
     @Builder
     public Cart(int count, int totalPrice, User user, Item item) {
         this.count = count;

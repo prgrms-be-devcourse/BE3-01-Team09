@@ -3,8 +3,8 @@ package org.programmer.cafe.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
-import org.programmer.cafe.domain.item.sort.ItemSortType;
 import org.programmer.cafe.domain.item.entity.dto.GetItemsResponse;
+import org.programmer.cafe.domain.item.sort.ItemSortType;
 import org.programmer.cafe.domain.item.service.ItemService;
 import org.programmer.cafe.global.response.ApiResponse;
 import org.springframework.http.ResponseEntity;
@@ -28,9 +28,9 @@ public class ItemController {
     @ApiResponses(value = {
         @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "상품 조회 성공")})
     @GetMapping()
-    public ResponseEntity<ApiResponse<Object>> getItems(
+    public ResponseEntity<ApiResponse<GetItemsResponse>> getItems(
         @RequestParam(defaultValue = "NEW") ItemSortType sortType) {
         return ResponseEntity.ok()
-            .body(ApiResponse.createSuccess(new GetItemsResponse(itemService.getItems(sortType))));
+            .body(ApiResponse.createSuccess(itemService.getItems(sortType)));
     }
 }

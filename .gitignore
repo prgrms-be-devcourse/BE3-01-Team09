@@ -38,3 +38,6 @@ out/
 
 ## MAC
 .DS_Store
+
+## 이미지 업로드 파일
+images/

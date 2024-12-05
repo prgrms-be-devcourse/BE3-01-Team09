@@ -1,9 +1,11 @@
 package org.programmer.cafe.domain.cart.service;
 
 import jakarta.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.programmer.cafe.domain.cart.dto.CreateCartItemRequest;
+import org.programmer.cafe.domain.cart.dto.GetCartItemsResponse;
 import org.programmer.cafe.domain.cart.entity.Cart;
 import org.programmer.cafe.domain.cart.repository.CartRepository;
 import org.programmer.cafe.domain.item.entity.Item;
@@ -43,5 +45,35 @@ public class CartService {
                 .item(item)
                 .build());
         });
+    }
+
+    public GetCartItemsResponse getCartItems(Long userId) {
+        final List<Cart> carts = cartRepository.findAllByUserId(userId);
+        return new GetCartItemsResponse(carts);
+    }
+
+    public void updateCartItemCount(Long itemId, int count, Long userId) {
+        throwIfInvalidCount(count);
+
+        final Cart cart = cartRepository.findByUserIdAndItemId(userId, itemId)
+            .orElseThrow(() -> new BadRequestException(ErrorCode.NONEXISTENT_CART));
+
+        cartRepository.save(cart.updateCount(count));
+    }
+
+    /**
+     * 장바구니에 담은 수량이 1보다 작은 경우 예외 처리
+     */
+    private void throwIfInvalidCount(int count) {
+        if (count < 1) {
+            throw new BadRequestException(ErrorCode.COUNT_BELOW_MINIMUM);
+        }
+    }
+
+    public void deleteCartItem(Long itemId, Long userId) {
+        final Cart cart = cartRepository.findByUserIdAndItemId(userId, itemId)
+            .orElseThrow(() -> new BadRequestException(ErrorCode.NONEXISTENT_CART));
+
+        cartRepository.delete(cart);
     }
 }
