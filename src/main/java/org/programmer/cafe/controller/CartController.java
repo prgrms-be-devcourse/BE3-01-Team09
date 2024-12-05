@@ -9,6 +9,7 @@ import org.programmer.cafe.domain.cart.dto.GetCartItemsResponse;
 import org.programmer.cafe.domain.cart.service.CartService;
 import org.programmer.cafe.global.response.ApiResponse;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,7 +49,7 @@ public class CartController {
             .body(ApiResponse.createSuccess(cartService.getCartItems(userId)));
     }
 
-    @Operation(summary = "장바구니 수량 변경 API")
+    @Operation(summary = "장바구니 상품 수량 변경 API")
     @ApiResponses(value = {
         @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "변경 성공")})
     @PatchMapping("/items/{itemId}")
@@ -57,6 +58,17 @@ public class CartController {
         // TODO: SecurityContextHolder에서 인증된 유저의 userId를 가져와야 함.
         Long userId = 1L;
         cartService.updateCartItemCount(itemId, count, userId);
+        return ResponseEntity.ok().body(ApiResponse.createSuccessWithNoData());
+    }
+
+    @Operation(summary = "장바구니 상품 삭제 API")
+    @ApiResponses(value = {
+        @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "삭제 성공")})
+    @DeleteMapping("/items/{itemId}")
+    public ResponseEntity<ApiResponse<?>> deleteCartItem(@PathVariable Long itemId) {
+        // TODO: SecurityContextHolder에서 인증된 유저의 userId를 가져와야 함.
+        Long userId = 1L;
+        cartService.deleteCartItem(itemId, userId);
         return ResponseEntity.ok().body(ApiResponse.createSuccessWithNoData());
     }
 }
