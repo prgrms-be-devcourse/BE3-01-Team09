@@ -1,9 +1,11 @@
 package org.programmer.cafe.domain.cart.service;
 
 import jakarta.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.programmer.cafe.domain.cart.dto.CreateCartItemRequest;
+import org.programmer.cafe.domain.cart.dto.GetCartItemsResponse;
 import org.programmer.cafe.domain.cart.entity.Cart;
 import org.programmer.cafe.domain.cart.repository.CartRepository;
 import org.programmer.cafe.domain.item.entity.Item;
@@ -43,5 +45,10 @@ public class CartService {
                 .item(item)
                 .build());
         });
+    }
+
+    public GetCartItemsResponse getCartItems(Long userId) {
+        final List<Cart> carts = cartRepository.findAllByUserId(userId);
+        return new GetCartItemsResponse(carts);
     }
 }
