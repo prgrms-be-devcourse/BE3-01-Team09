@@ -51,4 +51,22 @@ public class CartService {
         final List<Cart> carts = cartRepository.findAllByUserId(userId);
         return new GetCartItemsResponse(carts);
     }
+
+    public void updateCartItemCount(Long itemId, int count, Long userId) {
+        throwIfInvalidCount(count);
+
+        final Cart cart = cartRepository.findByUserIdAndItemId(userId, itemId)
+            .orElseThrow(() -> new BadRequestException(ErrorCode.NONEXISTENT_CART));
+
+        cartRepository.save(cart.updateCount(count));
+    }
+
+    /**
+     * 장바구니에 담은 수량이 1보다 작은 경우 예외 처리
+     */
+    private void throwIfInvalidCount(int count) {
+        if (count < 1) {
+            throw new BadRequestException(ErrorCode.COUNT_BELOW_MINIMUM);
+        }
+    }
 }
