@@ -3,6 +3,7 @@ package org.programmer.cafe.domain.item.service;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -10,17 +11,19 @@ import java.nio.file.StandardOpenOption;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.programmer.cafe.domain.item.entity.dto.GetItemsResponse;
-import org.programmer.cafe.domain.item.sort.ItemSortType;
 import org.programmer.cafe.domain.item.entity.Item;
 import org.programmer.cafe.domain.item.entity.dto.CreateItemRequest;
 import org.programmer.cafe.domain.item.entity.dto.CreateItemResponse;
+import org.programmer.cafe.domain.item.entity.dto.GetItemsResponse;
 import org.programmer.cafe.domain.item.entity.dto.ItemMapper;
 import org.programmer.cafe.domain.item.entity.dto.PageItemResponse;
 import org.programmer.cafe.domain.item.entity.dto.UpdateItemRequest;
 import org.programmer.cafe.domain.item.entity.dto.UpdateItemResponse;
 import org.programmer.cafe.domain.item.repository.ItemRepository;
+import org.programmer.cafe.domain.item.sort.ItemSortType;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -134,5 +137,13 @@ public class ItemService {
 
     public Page<PageItemResponse> getItemsWithPagination(Pageable pageable) {
         return itemRepository.findAllWithPaging(pageable);
+    }
+
+    public Resource getImage(String filename) throws MalformedURLException {
+        final Path path = Paths.get(filePath).resolve(filename);
+        if(Files.notExists(path)) {
+            return new UrlResource("https://via.placeholder.com/50");
+        }
+        return new UrlResource(path.toUri());
     }
 }

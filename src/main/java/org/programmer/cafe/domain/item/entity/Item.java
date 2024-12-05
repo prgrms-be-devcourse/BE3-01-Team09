@@ -13,6 +13,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.programmer.cafe.domain.basetime.entity.BaseTimeEntity;
 import org.programmer.cafe.domain.item.entity.dto.UpdateItemRequest;
 
 @Entity(name = "items")
@@ -20,7 +21,7 @@ import org.programmer.cafe.domain.item.entity.dto.UpdateItemRequest;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 @ToString
-public class Item {
+public class Item extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

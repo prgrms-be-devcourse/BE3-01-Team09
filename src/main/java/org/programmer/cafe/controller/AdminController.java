@@ -9,17 +9,16 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.programmer.cafe.domain.item.entity.dto.CreateItemRequest;
 import org.programmer.cafe.domain.item.entity.dto.CreateItemResponse;
-import org.programmer.cafe.domain.item.entity.dto.PageItemResponse;
 import org.programmer.cafe.domain.item.entity.dto.UpdateItemRequest;
 import org.programmer.cafe.domain.item.entity.dto.UpdateItemResponse;
 import org.programmer.cafe.domain.item.service.ItemService;
 import org.programmer.cafe.global.response.ApiResponse;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +34,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+@Slf4j
 @RestController
 @RequestMapping("api/admins")
 @RequiredArgsConstructor
@@ -88,14 +88,15 @@ public class AdminController {
         return ResponseEntity.status(HttpStatus.OK).body(createSuccessWithNoData());
     }
 
-    @GetMapping("/items")
-    @Operation(summary = "관리자 상품 전체 조회 API")
+    @GetMapping("/{filename}")
+    @Operation(summary = "이미지 조회 API", description = "페이지에서 이미지를 조회할 수 있는 API")
     @ApiResponses(value = {
-        @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "상품 전체 조회 성공")})
-    public ResponseEntity<ApiResponse<Page<PageItemResponse>>> getItemsWithPagination(
-        @PageableDefault(page = 0, size = 5) Pageable pageable) {
-        final Page<PageItemResponse> pagination = itemService.getItemsWithPagination(pageable);
-        return ResponseEntity.status(HttpStatus.OK).body(createSuccess(pagination));
+        @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "이미지 파일 리턴")})
+    public ResponseEntity<Resource> getImage(@PathVariable String filename)
+        // ApiResponse 로 이미지를 어떻게 리턴받을지 몰라서 이것만 안 감싸고 하겠습니다...!
+        throws MalformedURLException {
+        final Resource image = itemService.getImage(filename);
+        return ResponseEntity.status(HttpStatus.OK).body(image);
     }
 
     private void validateId(Long id) {

@@ -6,6 +6,7 @@ import com.querydsl.core.types.Order;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.QBean;
+import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -27,9 +28,21 @@ public class ItemRepositoryImpl implements ItemRepositoryCustom {
         item.id,
         item.price,
         item.stock,
-        item.status,
+        Expressions.stringTemplate(
+            "CASE {0} " +
+            "WHEN 'ON_SALE' THEN '판매중' " +
+            "WHEN 'OUT_OF_STOCK' THEN '품절' " +
+            "WHEN 'DISCONTINUED' THEN '판매중단' " +
+            "END", item.status.stringValue()
+        ).as("status"), // Enum을 한글로 변환
         item.image,
-        item.name
+        item.name,
+        Expressions.stringTemplate(
+            "DATE_FORMAT({0}, '%Y-%m-%d')", item.createdAt
+        ).as("createdAt"),
+        Expressions.stringTemplate(
+            "DATE_FORMAT({0}, '%Y-%m-%d')", item.updatedAt
+        ).as("updatedAt")
     );
 
     private final JPAQueryFactory queryFactory;
