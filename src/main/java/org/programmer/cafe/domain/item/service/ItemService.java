@@ -10,6 +10,8 @@ import java.nio.file.StandardOpenOption;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.programmer.cafe.domain.item.entity.dto.GetItemsResponse;
+import org.programmer.cafe.domain.item.sort.ItemSortType;
 import org.programmer.cafe.domain.item.entity.Item;
 import org.programmer.cafe.domain.item.entity.dto.CreateItemRequest;
 import org.programmer.cafe.domain.item.entity.dto.CreateItemResponse;
@@ -17,7 +19,6 @@ import org.programmer.cafe.domain.item.entity.dto.ItemMapper;
 import org.programmer.cafe.domain.item.entity.dto.UpdateItemRequest;
 import org.programmer.cafe.domain.item.entity.dto.UpdateItemResponse;
 import org.programmer.cafe.domain.item.repository.ItemRepository;
-import org.programmer.cafe.domain.item.sort.ItemSortType;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,8 +36,9 @@ public class ItemService {
     @Value("${file.upload-dir}")
     private String filePath;
 
-    public List<Item> getItems(ItemSortType sortType) {
-        return itemRepository.findAllOrderBy(sortType);
+    public GetItemsResponse getItems(ItemSortType sortType) {
+        final List<Item> items = itemRepository.findAllOrderBy(sortType);
+        return new GetItemsResponse(items);
     }
 
     /**

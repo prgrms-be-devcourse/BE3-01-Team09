@@ -4,7 +4,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.programmer.cafe.domain.item.sort.ItemSortType;
-import org.programmer.cafe.domain.item.entity.dto.GetItemsResponse;
 import org.programmer.cafe.domain.item.service.ItemService;
 import org.programmer.cafe.global.response.ApiResponse;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +30,6 @@ public class ItemController {
     public ResponseEntity<ApiResponse<Object>> getItems(
         @RequestParam(defaultValue = "NEW") ItemSortType sortType) {
         return ResponseEntity.ok()
-            .body(ApiResponse.createSuccess(new GetItemsResponse(itemService.getItems(sortType))));
+            .body(ApiResponse.createSuccess(itemService.getItems(sortType)));
     }
 }
