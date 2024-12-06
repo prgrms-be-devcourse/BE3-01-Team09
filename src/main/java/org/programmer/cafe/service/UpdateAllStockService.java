@@ -1,6 +1,5 @@
-package org.programmer.cafe.facade.changestatus;
+package org.programmer.cafe.service;
 
-import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.programmer.cafe.domain.item.entity.Item;
@@ -16,13 +15,13 @@ import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
-public class UpdateStockService {
+public class UpdateAllStockService {
 
     private final OrderRepository orderRepository;
     private final OrderDetailRepository orderDetailRepository;
     private final ItemRepository itemRepository;
 
-    public void updateOrderStatus(Long orderId){
+    public void updateOrderStock(Long orderId){
         Order order = orderRepository.findById(orderId)
             .orElseThrow(() -> new BadRequestException(ErrorCode.NONEXISTENT_ITEM));
 

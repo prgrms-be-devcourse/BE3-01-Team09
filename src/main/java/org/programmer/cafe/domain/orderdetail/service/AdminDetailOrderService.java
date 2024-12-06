@@ -1,4 +1,4 @@
-package org.programmer.cafe.domain.orderdetail.service2;
+package org.programmer.cafe.domain.orderdetail.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,8 +8,7 @@ import org.programmer.cafe.domain.item.repository.ItemRepository;
 import org.programmer.cafe.domain.order.entity.Order;
 import org.programmer.cafe.domain.order.repository.OrderRepository;
 import org.programmer.cafe.domain.orderdetail.entity.OrderDetail;
-import org.programmer.cafe.domain.orderdetail.entity.dto2.AdminDetailViewResponse;
-import org.programmer.cafe.domain.orderdetail.entity.dto2.UserDetailViewResponse;
+import org.programmer.cafe.domain.orderdetail.entity.dto.AdminOrderDetailResponse;
 import org.programmer.cafe.domain.orderdetail.repository.OrderDetailRepository;
 import org.springframework.stereotype.Service;
 
@@ -21,9 +20,9 @@ public class AdminDetailOrderService {
     private final ItemRepository itemRepository;
     private final OrderRepository orderRepository;
 
-    public List<AdminDetailViewResponse> findAllOrderDetails(Long orderId) {
+    public List<AdminOrderDetailResponse> findAllOrderDetails(Long orderId) {
         List<OrderDetail> orderDetails = orderDetailRepository.findAllByOrder_Id(orderId);
-        List<AdminDetailViewResponse> adminDetailViewResponses = new ArrayList<>();
+        List<AdminOrderDetailResponse> adminOrderDetailRespons = new ArrayList<>();
 
         for(OrderDetail list : orderDetails) {
             // 아이템 가져오기
@@ -38,7 +37,7 @@ public class AdminDetailOrderService {
             String addressDetail = order.getAddressDetail();
             String zipcode = order.getZipcode();
 
-            AdminDetailViewResponse adminDetailViewResponse = AdminDetailViewResponse.builder()
+            AdminOrderDetailResponse adminOrderDetailResponse = AdminOrderDetailResponse.builder()
                 .itemId(itemId)
                 .itemName(itemName)
                 .itemImage(itemImage)
@@ -48,8 +47,8 @@ public class AdminDetailOrderService {
                 .zipcode(zipcode)
                 .orderId(orderId)
                 .build();
-            adminDetailViewResponses.add( adminDetailViewResponse);
+            adminOrderDetailRespons.add(adminOrderDetailResponse);
         }
-        return adminDetailViewResponses;
+        return adminOrderDetailRespons;
     }
 }

@@ -1,11 +1,11 @@
-package org.programmer.cafe.domain.orderdetail.entity.dto2;
+package org.programmer.cafe.domain.orderdetail.entity.dto;
 
 import lombok.Builder;
 import lombok.Getter;
 
 @Builder
 @Getter
-public class AdminDetailViewResponse {
+public class AdminOrderDetailResponse {
     private Long id;
     private int count;
     private int totalPrice;

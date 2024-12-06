@@ -1,4 +1,4 @@
-package org.programmer.cafe.domain.order.dto2;
+package org.programmer.cafe.domain.order.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;

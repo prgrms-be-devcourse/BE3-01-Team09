@@ -19,15 +19,15 @@ import org.programmer.cafe.domain.item.entity.dto.UpdateItemRequest;
 import org.programmer.cafe.domain.item.entity.dto.UpdateItemResponse;
 import org.programmer.cafe.domain.item.service.ItemService;
 import org.programmer.cafe.domain.order.dto.OrderMapper;
-import org.programmer.cafe.domain.order.dto2.AdminOrderResponse;
-import org.programmer.cafe.domain.order.dto2.UserOrderRequest;
+import org.programmer.cafe.domain.order.dto.AdminOrderResponse;
+import org.programmer.cafe.domain.order.dto.UserOrderRequest;
 import org.programmer.cafe.domain.order.entity.Order;
 import org.programmer.cafe.domain.order.entity.OrderStatus;
 import org.programmer.cafe.domain.order.service.AdminOrderService;
-import org.programmer.cafe.domain.orderdetail.entity.dto2.AdminDetailViewResponse;
-import org.programmer.cafe.domain.orderdetail.service2.AdminDetailOrderService;
-import org.programmer.cafe.facade.changestatus.UpdateStatusService;
-import org.programmer.cafe.facade.changestatus.UpdateStockService;
+import org.programmer.cafe.domain.orderdetail.entity.dto.AdminOrderDetailResponse;
+import org.programmer.cafe.domain.orderdetail.service.AdminDetailOrderService;
+import org.programmer.cafe.service.UpdateStatusService;
+import org.programmer.cafe.service.UpdateAllStockService;
 import org.programmer.cafe.global.response.ApiResponse;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
@@ -58,7 +58,7 @@ public class AdminController {
     private final AdminOrderService adminOrderService;
     private final AdminDetailOrderService adminDetailOrderService;
     private final UpdateStatusService updateStatusService;
-    private final UpdateStockService updateStockService;
+    private final UpdateAllStockService updateAllStockService;
 
     @PostMapping("/items")
     @Operation(summary = "관리자 상품 등록 API")
@@ -137,10 +137,10 @@ public class AdminController {
         @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "주문 조회 성공")
     })
     @GetMapping("/order-details/{id}")
-    public ResponseEntity<ApiResponse< List<AdminDetailViewResponse>>> getAllOrderDetails(@PathVariable Long id) {
-        List<AdminDetailViewResponse> adminDetailViewResponses = adminDetailOrderService.findAllOrderDetails(id);
+    public ResponseEntity<ApiResponse< List<AdminOrderDetailResponse>>> getAllOrderDetails(@PathVariable Long id) {
+        List<AdminOrderDetailResponse> adminOrderDetailRespons = adminDetailOrderService.findAllOrderDetails(id);
         return ResponseEntity.ok()
-            .body(ApiResponse.createSuccess(adminDetailViewResponses));
+            .body(ApiResponse.createSuccess(adminOrderDetailRespons));
     }
 
     @Operation(summary = "관리자 주문 상태 변경 API")
@@ -154,7 +154,7 @@ public class AdminController {
 
         updateStatusService.updateStatus(id, updateStatus);
         if (updateStatus.equals(OrderStatus.CANCEL)) {
-            updateStockService.updateOrderStatus(id);
+            updateAllStockService.updateOrderStock(id);
         }
         return ResponseEntity.ok()
             .body(ApiResponse.createSuccessWithNoData());

@@ -1,9 +1,7 @@
-package org.programmer.cafe.domain.order.dto2;
+package org.programmer.cafe.domain.order.dto;
 
-import java.awt.image.PixelGrabber;
 import lombok.Builder;
 import lombok.Getter;
-import org.programmer.cafe.domain.order.entity.Order;
 import org.programmer.cafe.domain.order.entity.OrderStatus;
 
 @Builder(toBuilder = true)

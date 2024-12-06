@@ -1,14 +1,10 @@
-package org.programmer.cafe.facade.changestatus;
+package org.programmer.cafe.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.programmer.cafe.domain.order.dto.OrderMapper;
-import org.programmer.cafe.domain.order.dto2.UserOrderRequest;
-import org.programmer.cafe.domain.order.dto2.UserOrderResponse;
 import org.programmer.cafe.domain.order.entity.Order;
 import org.programmer.cafe.domain.order.entity.OrderStatus;
 import org.programmer.cafe.domain.order.repository.OrderRepository;
-import org.programmer.cafe.domain.user.entity.User;
 import org.programmer.cafe.exception.BadRequestException;
 import org.programmer.cafe.exception.ErrorCode;
 import org.springframework.stereotype.Service;

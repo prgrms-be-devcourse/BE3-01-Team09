@@ -7,13 +7,13 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.programmer.cafe.domain.order.dto.OrderMapper;
-import org.programmer.cafe.domain.order.dto2.UserOrderRequest;
-import org.programmer.cafe.domain.order.dto2.UserOrderResponse;
+import org.programmer.cafe.domain.order.dto.UserOrderRequest;
+import org.programmer.cafe.domain.order.dto.UserOrderResponse;
 import org.programmer.cafe.domain.order.entity.Order;
 import org.programmer.cafe.domain.order.entity.OrderStatus;
 import org.programmer.cafe.domain.order.service.UserOrderService;
-import org.programmer.cafe.facade.changestatus.UpdateStatusService;
-import org.programmer.cafe.facade.changestatus.UpdateStockService;
+import org.programmer.cafe.service.UpdateStatusService;
+import org.programmer.cafe.service.UpdateAllStockService;
 import org.programmer.cafe.global.response.ApiResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,7 +33,7 @@ public class OrderController {
 
     private final UserOrderService userorderService;
     private final UpdateStatusService updateStatusService;
-    private final UpdateStockService updateStockService;
+    private final UpdateAllStockService updateAllStockService;
 
 
     @Operation(summary = "전체 주문 조회 API")
@@ -60,7 +60,7 @@ public class OrderController {
 
             updateStatusService.updateStatus(id, updateStatus);
             if (updateStatus.equals(OrderStatus.CANCEL)) {
-                updateStockService.updateOrderStatus(id);
+                updateAllStockService.updateOrderStock(id);
             }
 
         return ResponseEntity.ok()

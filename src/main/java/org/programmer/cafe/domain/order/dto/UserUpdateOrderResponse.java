@@ -1,11 +1,7 @@
-package org.programmer.cafe.domain.orderdetail.entity.dto2;
+package org.programmer.cafe.domain.order.dto;
 
-import lombok.Builder;
-import lombok.Getter;
 
-@Builder
-@Getter
-public class UserDetailViewResponse {
+public class UserUpdateOrderResponse {
     private Long id;
     private int count;
     private int totalPrice;
@@ -15,5 +11,6 @@ public class UserDetailViewResponse {
     private String address;
     private String address_detail;
     private String zipcode;
+    private String status;
     private Long orderId;
 }
