@@ -5,7 +5,7 @@
   <link href="/globals.css" rel="stylesheet"/>
   <link href="/styleguide.css" rel="stylesheet"/>
   <link href="/user/edit.css" rel="stylesheet"/>
-  <title>내 정보</title>
+  <title>내 정보 - 수정</title>
 </head>
 <body>
 <div class="PAGE">
@@ -48,12 +48,12 @@
     </div>
     <div class="text-wrapper-3">내 정보 관리</div>
     <div class="frame-5">
-      <a class="text-wrapper-5" href="/admins/items">내 정보</a>
-      <a class="text-wrapper-6" href="/admins/items">배송지 관리</a>
+      <a class="text-wrapper-5" th:href="@{/users/{id}(id=${id})}">내 정보</a>
+      <a class="text-wrapper-6" th:href="@{/deliveries/{id}(id=${id})}">배송지 관리</a>
     </div>
     <div class="text-wrapper-4">내 주문</div>
     <div class="frame-6">
-      <a class="text-wrapper-6" href="/admins/users">주문목록</a>
+      <a class="text-wrapper-6" href="#">주문목록</a>
     </div>
     <div class="frame-8">
       <div class="group">

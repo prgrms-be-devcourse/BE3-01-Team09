@@ -48,12 +48,12 @@
     </div>
     <div class="text-wrapper-3">내 정보 관리</div>
     <div class="frame-5">
-      <a class="text-wrapper-5" href="/admins/items">내 정보</a>
-      <a class="text-wrapper-6" href="/admins/items">배송지 관리</a>
+      <a class="text-wrapper-5" href="#">내 정보</a>
+      <a class="text-wrapper-6" th:href="@{/deliveries/{id}(id=${id})}">배송지 관리</a>
     </div>
     <div class="text-wrapper-4">내 주문</div>
     <div class="frame-6">
-      <a class="text-wrapper-6" href="/admins/users">주문목록</a>
+      <a class="text-wrapper-6" href="#">주문목록</a>
     </div>
     <div class="frame-8">
       <div class="group">
@@ -65,8 +65,6 @@
               <input class="text-wrapper-10" id="name" placeholder="Name" type="text">
             </label>
           </div>
-        </div>
-        <div class="frame-10">
           <div class="frame-9">
             <div class="text-wrapper-9">Email</div>
             <label class="placebox-info">
