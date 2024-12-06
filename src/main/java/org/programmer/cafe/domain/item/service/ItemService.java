@@ -25,6 +25,7 @@ import org.programmer.cafe.domain.item.sort.ItemSortType;
 import org.programmer.cafe.exception.BadRequestException;
 import org.programmer.cafe.exception.ErrorCode;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.data.domain.Page;
@@ -144,7 +145,7 @@ public class ItemService {
     public Resource getImage(String filename) throws MalformedURLException {
         final Path path = Paths.get(filePath).resolve(filename);
         if (Files.notExists(path)) {
-            return new UrlResource("https://via.placeholder.com/50");
+            return new ClassPathResource("static/noimage.png");
         }
         return new UrlResource(path.toUri());
     }
