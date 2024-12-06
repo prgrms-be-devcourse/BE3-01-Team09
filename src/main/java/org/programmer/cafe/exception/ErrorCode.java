@@ -28,7 +28,10 @@ public enum ErrorCode { // 예외 발생시, body에 실어 날려줄 상태, co
     //-3000: 비즈니스 1
 
     //-4000: 비즈니스 2
-
+    ADDRESS_SAVE_FAILED(500, -4001, "주소 저장 실패"),
+    ADDRESS_UPDATE_FAILED(500, -4002, "주소 변경 실패"),
+    ADDRESS_NOT_EXIST(400, -4003, "주소 없음"),
+    ADDRESS_DELETE_FAILED(400, -4004, "삭제 실패"),
     //-5000: 비즈니스 3
 
     //-6000: 상품

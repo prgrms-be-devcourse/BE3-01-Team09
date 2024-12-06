@@ -1,8 +1,6 @@
 package org.programmer.cafe.domain.user.service;
 
-import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.EntityTransaction;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.programmer.cafe.domain.user.entity.dto.MyPageSearchRequest;
@@ -36,7 +34,7 @@ public class UserService {
             throw new MyPageException(MyPageStatus.INVALID_ID);
         }
         UserProjection user = userRepository.findProjectionById(id).orElseThrow(() -> new MyPageException(MyPageStatus.USER_NOT_FOUND));
-        return new MyPageSearchRequest( user.getId(), user.getName(), user.getEmail());
+        return new MyPageSearchRequest(user.getId(), user.getName(), user.getEmail());
     }
 
     //patchUser 사용자 입력 검증
@@ -52,7 +50,7 @@ public class UserService {
 
     // 웹앱에서 에서 비밀번호 및 아이디 미입력시
     private void validateInput(User user) {
-        if (user.getPassword() == null||user.getName().isEmpty()) {
+        if (user.getPassword() == null || user.getName().isEmpty()) {
             throw new MyPageException(MyPageStatus.EMPTY_INPUT);
         }
     }
