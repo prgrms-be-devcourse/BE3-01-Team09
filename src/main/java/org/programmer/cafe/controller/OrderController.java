@@ -9,9 +9,9 @@ import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.programmer.cafe.domain.order.entity.dto.OrderRequest;
-import org.programmer.cafe.domain.order.entity.dto.OrderResponse;
-import org.programmer.cafe.domain.order.service.OrderService;
+import org.programmer.cafe.domain.order.dto.OrderRequest;
+import org.programmer.cafe.domain.order.dto.OrderResponse;
+import org.programmer.cafe.domain.order.service.UserOrderService;
 import org.programmer.cafe.facade.facadeservice.CancelOrderService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class OrderController {
 
-    private final OrderService orderService;
+    private final UserOrderService orderService;
     private final CancelOrderService cancelOrderService;
 
     // 주문 전체 조회
@@ -39,12 +39,12 @@ public class OrderController {
     }
 
     // 주문 상태 변경
-    @PutMapping("orders/status/{orderId}")
     @Operation(summary = "주문 취소 API", description = "주문을 취소하고 재고를 수정하는 API")
     @ApiResponses(value = {
         @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "주문 상태 수정 성공"),
         @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "400", description = "주문 상태 수정 불가")
     })
+    @PutMapping("orders/status/{orderId}")
     public ResponseEntity< ApiResponse<Object>> updateOrderStatus(@PathVariable("orderId") Long orderId,
         @RequestBody OrderRequest orderRequest) {
 

@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.programmer.cafe.domain.item.entity.dto.CreateItemRequest;
@@ -17,6 +18,14 @@ import org.programmer.cafe.domain.item.entity.dto.CreateItemResponse;
 import org.programmer.cafe.domain.item.entity.dto.UpdateItemRequest;
 import org.programmer.cafe.domain.item.entity.dto.UpdateItemResponse;
 import org.programmer.cafe.domain.item.service.ItemService;
+import org.programmer.cafe.domain.order.dto.AdminOrderRequest;
+import org.programmer.cafe.domain.order.dto.AdminOrderResponse;
+import org.programmer.cafe.domain.order.dto.OrderMapper;
+import org.programmer.cafe.domain.order.dto.OrderRequest;
+import org.programmer.cafe.domain.order.dto.OrderResponse;
+import org.programmer.cafe.domain.order.service.AdminOrderService;
+import org.programmer.cafe.domain.order.service.UserOrderService;
+import org.programmer.cafe.facade.subservice.UpdateOrderStatusService;
 import org.programmer.cafe.global.response.ApiResponse;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
@@ -28,6 +37,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,6 +52,8 @@ import org.springframework.web.multipart.MultipartFile;
 public class AdminController {
 
     private final ItemService itemService;
+    private final AdminOrderService adminOrderService;
+    private final UpdateOrderStatusService updateOrderStatusService;
 
     @PostMapping("/items")
     @Operation(summary = "관리자 상품 등록 API")
@@ -104,4 +116,29 @@ public class AdminController {
             throw new IllegalArgumentException("ID를 다시 확인해주세요.");
         }
     }
+
+    @Operation(summary = "주문 전체 조회 API", description = "주문 전체 조회 하는 API")
+    @ApiResponses(value = {
+        @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "주문 전체 반환")
+    })
+    @GetMapping("/orders")
+    public ResponseEntity<ApiResponse<List<AdminOrderResponse>>> getAllOrders(){
+            return ResponseEntity.ok()
+                .body(ApiResponse.createSuccess(adminOrderService.findAllOrders()));
+    }
+
+    // 관리자 주문 상태 변경
+
+    @Operation(summary = "주문 상태 변경 API", description = "주문 상태 변경 하는 API")
+    @ApiResponses(value = {
+        @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "상태 변경 성공")
+    })
+    @PutMapping("/status/{orderId}")
+    public ResponseEntity<ApiResponse<AdminOrderResponse>> updateOrderStatus(@PathVariable("orderId") Long orderId,
+        @RequestBody OrderRequest orderRequest, @RequestParam int flag){
+        OrderResponse updated = updateOrderStatusService.updateOrderStatus(orderId, orderRequest, flag);
+        AdminOrderResponse adminOrderResponse= OrderMapper.INSTANCE.toAdminResponseDto(updated);
+        return ResponseEntity.status(HttpStatus.OK).body(createSuccess(adminOrderResponse));
+    }
+
 }

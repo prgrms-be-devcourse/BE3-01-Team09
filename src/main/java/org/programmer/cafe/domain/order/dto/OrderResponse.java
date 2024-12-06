@@ -1,4 +1,4 @@
-package org.programmer.cafe.domain.order.entity.dto;
+package org.programmer.cafe.domain.order.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -2,7 +2,6 @@ package org.programmer.cafe.facade.subservice;
 
 // 아이템 개별 수량 변경 서비스
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.programmer.cafe.domain.item.entity.Item;
@@ -10,7 +9,6 @@ import org.programmer.cafe.domain.item.entity.dto.ItemMapper;
 import org.programmer.cafe.domain.item.entity.dto.UpdateItemRequest;
 import org.programmer.cafe.domain.item.entity.dto.UpdateItemResponse;
 import org.programmer.cafe.domain.item.repository.ItemRepository;
-import org.programmer.cafe.domain.order.entity.dto.OrderRequest;
 import org.programmer.cafe.domain.orderdetail.entity.OrderDetail;
 import org.programmer.cafe.domain.orderdetail.entity.dto.OrderDetailRequest;
 import org.programmer.cafe.domain.orderdetail.repository.OrderDetailRepository;
