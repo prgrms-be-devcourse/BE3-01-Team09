@@ -81,7 +81,7 @@
               <div class="text-wrapper-19" th:text="${item.updatedAt}">24.11.29</div>
             </div>
             <div class="actions">
-              <a class="button-edit" th:href="@{/items/edit/{id}(id=${item.id})}"><label
+              <a class="button-edit" th:href="@{/admins/items/{id}/update(id=${item.id})}"><label
                   class="view-all-products">수정</label></a>
               <button class="button-delete" th:onclick="'deleteItem(' + ${item.id} + ')'"><label
                   class="view-all-products">삭제</label>
@@ -101,7 +101,7 @@
          th:text="${i}"></a>
       </span>
     </div>
-    <a class="item-add" href="create">
+    <a class="item-add" href="items/create">
       <label class="view-all-products-2">상품 추가</label>
     </a>
   </div>
