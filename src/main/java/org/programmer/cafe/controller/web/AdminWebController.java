@@ -1,4 +1,4 @@
-package org.programmer.cafe.controller;
+package org.programmer.cafe.controller.web;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +26,7 @@ public class AdminWebController {
     private final ItemService itemService;
     private final UserService userService;
 
+    // http://localhost:8080/admins/items
     @GetMapping("/items")
     public ModelAndView getItemsWithPagination(
         @PageableDefault(page = 0, size = 5) Pageable pageable, ModelAndView mv) {
@@ -35,12 +36,14 @@ public class AdminWebController {
         return mv;
     }
 
+    // http://localhost:8080/admins/items/create
     @GetMapping("/items/create")
     public ModelAndView createPage(ModelAndView mav) {
         mav.setViewName("admin/item-create");
         return mav;
     }
 
+    // http://localhost:8080/admins/items/?/update
     @GetMapping("/items/{id}/update")
     public ModelAndView updatePage(ModelAndView mv, @PathVariable long id) {
         mv.setViewName("admin/item-update");
@@ -51,6 +54,7 @@ public class AdminWebController {
         return mv;
     }
 
+    // http://localhost:8080/admins/users
     @GetMapping("/users")
     public ModelAndView getUsersWithPagination(
         @PageableDefault(page = 0, size = 5) Pageable pageable, ModelAndView mv) {
@@ -58,6 +62,13 @@ public class AdminWebController {
         final Page<PageUserResponse> pagination = userService.getUsersWithPagination(pageable);
         mv.addObject("pagination", pagination);
         mv.setViewName("admin/user-list");
+        return mv;
+    }
+
+    // http://localhost:8080/admins/sign-in
+    @GetMapping("/sign-in")
+    public ModelAndView signIn(ModelAndView mv) {
+        mv.setViewName("admin/sign-in");
         return mv;
     }
 }
