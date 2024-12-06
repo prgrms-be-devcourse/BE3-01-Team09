@@ -8,7 +8,7 @@ import lombok.Getter;
 @Getter
 public enum ErrorCode { // 예외 발생시, body에 실어 날려줄 상태, code, message 커스텀
     BAD_REQUEST(400, -1001, "유효하지 않은 요청입니다."),
-    INVALID_SORT_TYPE(400, -1010, "올바르지 않은 정렬 타입입니다."),
+    INVALID_SORT_TYPE(400, -1002, "올바르지 않은 정렬 타입입니다."),
 
     //-1000: USER
     USER_ALREADY_EXIST(400, -1006, "해당 아이디가 이미 존재합니다."),
@@ -36,7 +36,15 @@ public enum ErrorCode { // 예외 발생시, body에 실어 날려줄 상태, co
 
     //-7000: 장바구니
     NONEXISTENT_CART(400, -7000, "장바구니에 상품이 존재하지 않습니다."),
-    COUNT_BELOW_MINIMUM(400, -7001, "담은 수량이 1보다 작을 수 없습니다.");
+    COUNT_BELOW_MINIMUM(400, -7001, "담은 수량이 1보다 작을 수 없습니다."),
+
+    //-8000: 결제
+    INVALID_PAYMENT_AMOUNT(400, -8000, "잘못된 결제 금액입니다."),
+    INVALID_ORDER_FOR_PAYMENT(400, -8001, "결제할 수 없는 상태의 주문입니다."),
+    TOSS_PAYMENT_CONFIRM_REQUEST_ERROR(500, -8002, "토스페이먼츠 통신 에러 발생 (결제 승인 요청)"),
+    INVALID_PAYMENT_REQUEST_JSON(400, -8003, "결제 승인 컨트롤러에서 Request Body 파싱 에러 발생"),
+    INVALID_PAYMENT_RESPONSE_JSON(500, -8004, "결제 승인 응답 값 파싱 에러 발생"),
+    TOSS_PAYMENT_CANCEL_REQUEST_ERROR(500, -8005, "토스페이먼츠 통신 에러 발생 (결제 취소 요청)");
 
     // 1. status = 날려줄 상태코드
     // 2. code = 해당 오류가 어느부분과 관련있는지 카테고리화 해주는 코드. 예외 원인 식별하기 편하기에 추가
