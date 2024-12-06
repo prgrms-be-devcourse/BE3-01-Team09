@@ -21,6 +21,8 @@ import org.programmer.cafe.domain.item.entity.dto.UpdateItemRequest;
 import org.programmer.cafe.domain.item.entity.dto.UpdateItemResponse;
 import org.programmer.cafe.domain.item.repository.ItemRepository;
 import org.programmer.cafe.domain.item.sort.ItemSortType;
+import org.programmer.cafe.exception.BadRequestException;
+import org.programmer.cafe.exception.ErrorCode;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -70,9 +72,8 @@ public class ItemService {
     @Transactional
     public UpdateItemResponse updateItem(Long id, UpdateItemRequest updateItemRequest) {
         final Item item = itemRepository.findById(id)
-            .orElseThrow(() -> new EntityNotFoundException("Not found item with id: " + id));
+            .orElseThrow(() -> new BadRequestException(ErrorCode.NONEXISTENT_ITEM));
         updateItemStatus(updateItemRequest, item);
-
         return ItemMapper.INSTANCE.toUpdateItemResponse(item, updateItemRequest);
     }
 
@@ -84,7 +85,7 @@ public class ItemService {
     @Transactional
     public void deleteItem(Long id) throws IOException {
         final Item item = itemRepository.findById(id)
-            .orElseThrow(() -> new EntityNotFoundException("Not found item with id: " + id));
+            .orElseThrow(() -> new BadRequestException(ErrorCode.NONEXISTENT_ITEM));
 
         // 저장된 이미지 삭제
         Files.deleteIfExists(Paths.get(item.getImage()));
@@ -141,7 +142,7 @@ public class ItemService {
 
     public Resource getImage(String filename) throws MalformedURLException {
         final Path path = Paths.get(filePath).resolve(filename);
-        if(Files.notExists(path)) {
+        if (Files.notExists(path)) {
             return new UrlResource("https://via.placeholder.com/50");
         }
         return new UrlResource(path.toUri());

@@ -102,45 +102,6 @@
   </div>
 </div>
 <script>
-  //   const createItem = async () => {
-  //     const url = "http://localhost:8080/api/admins/items";
-  //
-  //     const itemName = document.querySelector("#itemName").value;
-  //     const itemPrice = document.querySelector("#itemPrice").value;
-  //     const itemStock = document.querySelector("#itemStock").value;
-  //     const fileEl = document.querySelector("#itemImage");
-  //     const image = fileEl.files[0];
-  //
-  //     if (!image) {
-  //       alert("이미지를 선택해주세요.");
-  //       return;
-  //     }
-  //
-  // // FormData 객체 생성
-  //     const formData = new FormData();
-  //     formData.append("name", itemName);
-  //     formData.append("price", itemPrice);
-  //     formData.append("stock", itemStock);
-  //     formData.append("status", itemStock === 0 ? "OUT_OF_STOCK" : "ON_SALE");
-  //     formData.append("image", image); // 파일 추가
-  //
-  //     try {
-  //       const response = await fetch(url, {
-  //         method: "POST",
-  //         body: formData, // FormData 객체 전송
-  //       });
-  //
-  //       if (!response.ok) {
-  //         throw new Error(`HTTP error! status: ${response.status}`);
-  //       }
-  //
-  //       const data = await response.json();
-  //       console.log("응답 데이터:", data);
-  //     } catch (error) {
-  //       console.error("에러 발생:", error);
-  //     }
-  //   };
-
   async function uploadFile(image) {
     const formData = new FormData();
     formData.append("image", image);
@@ -198,12 +159,14 @@
         name: itemName,
         price: itemPrice,
         stock: itemStock,
-        status: itemStock === 0 ? "OUT_OF_STOCK" : "ON_SALE",
+        status: itemStock === "0" ? "OUT_OF_STOCK" : "ON_SALE",
         image: imageUrl, // 업로드된 파일 경로 포함
       };
 
       const createdItem = await createItem(itemData);
       console.log("상품 등록 성공:", createdItem);
+      alert("상품 등록 성공")
+      window.location.href = '/admins/items';
     } catch (error) {
       console.error("에러 발생:", error);
     }
