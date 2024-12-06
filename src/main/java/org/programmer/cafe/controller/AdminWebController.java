@@ -2,6 +2,7 @@ package org.programmer.cafe.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.programmer.cafe.domain.item.entity.dto.GetItemResponse;
 import org.programmer.cafe.domain.item.entity.dto.PageItemResponse;
 import org.programmer.cafe.domain.item.service.ItemService;
 import org.springframework.data.domain.Page;
@@ -34,5 +35,14 @@ public class AdminWebController {
     public ModelAndView index(ModelAndView mav) {
         mav.setViewName("admin/item-create");
         return mav;
+    }
+
+    @GetMapping("/items/{id}/update")
+    public ModelAndView updatePage(ModelAndView mv, @PathVariable long id) {
+        mv.setViewName("admin/item-update");
+        final GetItemResponse item = itemService.getItem(id);
+        mv.addObject("item", item);
+        mv.addObject("id", id);
+        return mv;
     }
 }

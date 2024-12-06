@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8"/>
+  <link href="/globals.css" rel="stylesheet"/>
+  <link href="/styleguide.css" rel="stylesheet"/>
+  <link href="/item/create.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="PAGE">
+  <div class="div">
+    <div class="header">
+      <div class="frame">
+        <div class="logo">
+          <a class="text-wrapper" href="/">Grids & Circles</a>
+        </div>
+        <div class="frame-2">
+          <div class="div-wrapper">
+            <a class="text-wrapper-2" href="/">Home</a>
+          </div>
+          <div class="header-2">
+            <a class="text-wrapper-2"
+               href="https://github.com/prgrms-be-devcourse/NBE3-01-Team09"
+               target="_blank">Contact</a>
+          </div>
+          <div class="div-wrapper">
+            <div class="text-wrapper-2">About</div>
+          </div>
+          <div class="header-3">
+            <div class="text-wrapper-2">Sign Up</div>
+          </div>
+        </div>
+      </div>
+      <div class="frame-3">
+        <div class="frame-4">
+          <img class="img" src="https://c.animaapp.com/QemcTLqk/img/wishlist.svg"/>
+          <div class="with-buy"></div>
+          <img class="img" src="https://c.animaapp.com/QemcTLqk/img/user.svg"/>
+        </div>
+      </div>
+    </div>
+    <div class="line"></div>
+    <div class="roadmap">
+      <div class="account">Home</div>
+      <img class="line-2" src="https://c.animaapp.com/QemcTLqk/img/line-13.svg"/>
+      <div class="nothing">My Account</div>
+    </div>
+    <div class="text-wrapper-3">상품관리</div>
+    <div class="text-wrapper-4">회원관리</div>
+    <div class="frame-5">
+      <div class="text-wrapper-5">상품목록</div>
+    </div>
+    <div class="frame-6">
+      <div class="text-wrapper-6">회원목록</div>
+    </div>
+    <div class="text-wrapper-7">주문관리</div>
+    <div class="frame-7">
+      <div class="text-wrapper-6">주문목록</div>
+    </div>
+    <div class="frame-8">
+      <div class="group">
+        <div class="text-wrapper-8">상품 수정</div>
+        <div class="frame-wrapper">
+          <div class="frame-9">
+            <div class="text-wrapper-9">상품명</div>
+            <label class="placebox-info">
+              <input class="text-wrapper-10" id="itemName" th:value="${item.name}" type="text">
+            </label>
+          </div>
+        </div>
+        <div class="frame-10">
+          <div class="frame-9">
+            <div class="text-wrapper-9">가격</div>
+            <label class="placebox-info">
+              <input class="text-wrapper-10" id="itemPrice" th:value="${item.price}" type="text">
+            </label>
+          </div>
+        </div>
+        <div class="frame-11">
+          <div class="frame-9">
+            <div class="text-wrapper-9">상품이미지</div>
+            <label class="placebox-info">
+              <input class="text-wrapper-10" id="itemImage" th:value="${item.image}" type="file">
+            </label>
+          </div>
+        </div>
+        <div class="frame-12">
+          <div class="frame-9">
+            <div class="text-wrapper-9">재고</div>
+            <label class="placebox-info">
+              <input class="text-wrapper-10" id="itemStock" th:value="${item.stock}" type="text">
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="button-wrapper">
+        <button class="button" th:onclick="'submit(' + ${id} +')'">
+          <label class="view-all-products">상품 수정</label>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  async function uploadFile(image) {
+    const formData = new FormData();
+    formData.append("image", image);
+
+    const response = await fetch("http://localhost:8080/api/admins/items/upload", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!response.ok) {
+      throw new Error("파일 업로드 실패");
+    }
+
+    const data = await response.json();
+    console.log("File path : ", data.data);
+    return data.data; // 업로드된 파일 경로 반환
+  }
+
+  async function updateItem(itemData, id) {
+
+    const response = await fetch(`http://localhost:8080/api/admins/items/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(itemData),
+    });
+
+    if (!response.ok) {
+      throw new Error("상품 수정 실패");
+    }
+
+    return await response.json();
+  }
+
+  async function submit(id) {
+    const fileInput = document.querySelector("#itemImage");
+    const file = fileInput.files[0];
+
+    const itemName = document.querySelector("#itemName").value;
+    const itemPrice = document.querySelector("#itemPrice").value;
+    const itemStock = document.querySelector("#itemStock").value;
+
+    console.log("STOCK : ", itemStock)
+    try {
+      // 상품 수정
+      const itemData = {
+        name: itemName,
+        price: itemPrice,
+        stock: itemStock,
+      };
+      if (file) {
+        itemData.image = await uploadFile(file)
+      }
+
+      const updateItem = await updateItem(itemData, id);
+      console.log("상품 수정 성공:", updateItem());
+      alert("상품 수정 성공")
+      window.location.href = '/admins/items';
+    } catch (error) {
+      console.error("에러 발생:", error);
+    }
+  }
+
+</script>
+</body>
+</html>

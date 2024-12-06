@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.programmer.cafe.domain.item.entity.Item;
 import org.programmer.cafe.domain.item.entity.dto.CreateItemRequest;
 import org.programmer.cafe.domain.item.entity.dto.CreateItemResponse;
+import org.programmer.cafe.domain.item.entity.dto.GetItemResponse;
 import org.programmer.cafe.domain.item.entity.dto.GetItemsResponse;
 import org.programmer.cafe.domain.item.entity.dto.ItemMapper;
 import org.programmer.cafe.domain.item.entity.dto.PageItemResponse;
@@ -146,5 +147,11 @@ public class ItemService {
             return new UrlResource("https://via.placeholder.com/50");
         }
         return new UrlResource(path.toUri());
+    }
+
+    public GetItemResponse getItem(long id) {
+        final Item item = itemRepository.findById(id)
+            .orElseThrow(() -> new BadRequestException(ErrorCode.NONEXISTENT_ITEM));
+        return ItemMapper.INSTANCE.toGetItemResponse(item);
     }
 }
