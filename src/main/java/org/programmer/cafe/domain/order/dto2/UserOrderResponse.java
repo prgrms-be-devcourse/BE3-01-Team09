@@ -1,12 +1,14 @@
 package org.programmer.cafe.domain.order.dto2;
 
+import java.awt.image.PixelGrabber;
 import lombok.Builder;
 import lombok.Getter;
+import org.programmer.cafe.domain.order.entity.Order;
 import org.programmer.cafe.domain.order.entity.OrderStatus;
 
-@Builder
+@Builder(toBuilder = true)
 @Getter
-public class UserViewOrderResponse {
+public class UserOrderResponse {
 
     private Long id;
     private int totalPrice;
@@ -15,4 +17,6 @@ public class UserViewOrderResponse {
     private String itemName; // 대표 상품명
     private String itemImage; // 대표 상품 이미지
     private Long user_id;
+
+
 }

@@ -1,4 +1,4 @@
-package org.programmer.cafe.domain.order.service2;
+package org.programmer.cafe.domain.order.service;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;

@@ -6,7 +6,7 @@ import org.programmer.cafe.domain.order.entity.OrderStatus;
 
 @Builder
 @Getter
-public class AdminViewOrderResponse {
+public class AdminOrderResponse {
     private Long id;
     private OrderStatus status;
     private String name; // 받는 사람
