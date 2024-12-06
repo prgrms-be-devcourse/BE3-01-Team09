@@ -6,6 +6,12 @@
   --secondary: rgba(245, 245, 245, 1);
   --button-2: rgba(219, 68, 68, 1);
   --primary: rgba(255, 255, 255, 1);
+  --heading-36px-medium-font-family: "Poppins", Helvetica;
+  --heading-36px-medium-font-weight: 400;
+  --heading-36px-medium-font-size: 36px;
+  --heading-36px-medium-letter-spacing: 0.72px;
+  --heading-36px-medium-line-height: 36px;
+  --heading-36px-medium-font-style: normal;
   --heading-24px-bold-font-family: "Inter", Helvetica;
   --heading-24px-bold-font-weight: 700;
   --heading-24px-bold-font-size: 24px;
