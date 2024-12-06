@@ -10,7 +10,7 @@ import org.programmer.cafe.domain.orderdetail.repository.OrderDetailRepository;
 import org.springframework.stereotype.Service;
 
 @Slf4j
-@Service
+@Service("OrderDetailService V1")
 @RequiredArgsConstructor
 public class OrderDetailService {
 

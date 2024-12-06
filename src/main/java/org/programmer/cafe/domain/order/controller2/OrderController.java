@@ -7,7 +7,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.programmer.cafe.domain.order.dto.OrderMapper;
-import org.programmer.cafe.domain.order.dto2.UserOrderViewResponse;
+import org.programmer.cafe.domain.order.dto2.UserViewOrderResponse;
 import org.programmer.cafe.domain.order.entity.Order;
 import org.programmer.cafe.domain.order.service2.UserOrderService;
 import org.programmer.cafe.global.response.ApiResponse;
@@ -30,7 +30,7 @@ public class OrderController {
         @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "주문 조회 성공")
     })
     @GetMapping("/orders/{id}")
-    public ResponseEntity<ApiResponse<List<UserOrderViewResponse>>> getAllOrdersByUser(
+    public ResponseEntity<ApiResponse<List<UserViewOrderResponse>>> getAllOrdersByUser(
         HttpSession session) {
         Long id = (Long) session.getAttribute("id");
         List<Order> orders = userorderService.findAllOrders(id);

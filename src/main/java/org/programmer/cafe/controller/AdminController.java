@@ -22,9 +22,11 @@ import org.programmer.cafe.domain.order.dto.AdminOrderResponse;
 import org.programmer.cafe.domain.order.dto.OrderMapper;
 import org.programmer.cafe.domain.order.dto.OrderRequest;
 import org.programmer.cafe.domain.order.dto.OrderResponse;
-import org.programmer.cafe.domain.order.dto2.AdminOrderViewResponse;
+import org.programmer.cafe.domain.order.dto2.AdminViewOrderResponse;
 import org.programmer.cafe.domain.order.entity.Order;
 import org.programmer.cafe.domain.order.service2.AdminOrderService;
+import org.programmer.cafe.domain.orderdetail.entity.dto2.AdminDetailViewResponse;
+import org.programmer.cafe.domain.orderdetail.service2.AdminDetailOrderService;
 import org.programmer.cafe.facade.subservice.UpdateOrderStatusService;
 import org.programmer.cafe.global.response.ApiResponse;
 import org.springframework.core.io.Resource;
@@ -54,6 +56,7 @@ public class AdminController {
     private final ItemService itemService;
     private final UpdateOrderStatusService updateOrderStatusService;
     private final AdminOrderService adminOrderService;
+    private final AdminDetailOrderService adminDetailOrderService;
 
     @PostMapping("/items")
     @Operation(summary = "관리자 상품 등록 API")
@@ -122,10 +125,20 @@ public class AdminController {
         @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "주문 조회 성공")
     })
     @GetMapping("/orders")
-    public ResponseEntity<ApiResponse<List<AdminOrderViewResponse>>> getAllOrders(){
+    public ResponseEntity<ApiResponse<List<AdminViewOrderResponse>>> getAllOrders(){
         List<Order> lists = adminOrderService.findAllOrders();
             return ResponseEntity.ok()
                 .body(ApiResponse.createSuccess(OrderMapper.INSTANCE.toAdminOrderViewDtoList(lists)));
+    }
+    @Operation(summary = "관리자 주문 상세 조회 API")
+    @ApiResponses(value = {
+        @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "주문 조회 성공")
+    })
+    @GetMapping("/order-details/{id}")
+    public ResponseEntity<ApiResponse< List<AdminDetailViewResponse>>> getAllOrderDetails(@PathVariable Long id) {
+        List<AdminDetailViewResponse> adminDetailViewResponses = adminDetailOrderService.findAllOrderDetails(id);
+        return ResponseEntity.ok()
+            .body(ApiResponse.createSuccess(adminDetailViewResponses));
     }
 
     // 관리자 주문 상태 변경

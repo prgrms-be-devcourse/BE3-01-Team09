@@ -6,7 +6,7 @@ import org.programmer.cafe.domain.order.entity.Order;
 import org.programmer.cafe.domain.order.repository.OrderRepository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
-@Primary
+
 @RequiredArgsConstructor
 @Service
 public class UserOrderService {

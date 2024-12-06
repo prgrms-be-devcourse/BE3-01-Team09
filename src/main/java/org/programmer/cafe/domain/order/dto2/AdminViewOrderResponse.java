@@ -6,13 +6,11 @@ import org.programmer.cafe.domain.order.entity.OrderStatus;
 
 @Builder
 @Getter
-public class UserOrderViewResponse {
-
+public class AdminViewOrderResponse {
     private Long id;
-    private int totalPrice;
     private OrderStatus status;
-    private String name;
-    private String itemName; // 대표 상품명
-    private String itemImage; // 대표 상품 이미지
-    private Long user_id;
+    private String name; // 받는 사람
+    private String zipcode;
+    private String address;
+    private Long userId;// id만 필요
 }
