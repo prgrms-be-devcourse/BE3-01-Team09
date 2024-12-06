@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8"/>
+  <link href="/globals.css" rel="stylesheet"/>
+  <link href="/styleguide.css" rel="stylesheet"/>
+  <link href="/admin/user/list.css" rel="stylesheet"/>
+  <title>관리자 - 유저 목록</title>
+</head>
+<body>
+<div class="PAGE">
+  <div class="div">
+    <div class="header">
+      <div class="frame">
+        <div class="logo">
+          <a class="text-wrapper" href="/">Grids & Circles</a>
+        </div>
+        <div class="frame-2">
+          <div class="div-wrapper">
+            <a class="text-wrapper-2" href="/">Home</a>
+          </div>
+          <div class="header-2">
+            <a class="text-wrapper-2"
+               href="https://github.com/prgrms-be-devcourse/NBE3-01-Team09"
+               target="_blank">Contact</a>
+          </div>
+          <div class="div-wrapper">
+            <div class="text-wrapper-2">About</div>
+          </div>
+          <div class="header-3">
+            <div class="text-wrapper-2">Sign Up</div>
+          </div>
+        </div>
+      </div>
+      <div class="frame-3">
+        <div class="frame-4">
+          <img class="img" src="https://c.animaapp.com/QemcTLqk/img/wishlist.svg"/>
+          <div class="with-buy"></div>
+          <img class="img" src="https://c.animaapp.com/QemcTLqk/img/user.svg"/>
+        </div>
+      </div>
+    </div>
+    <div class="line"></div>
+    <div class="roadmap">
+      <div class="account">Home</div>
+      <img class="line-2" src="https://c.animaapp.com/QemcTLqk/img/line-13.svg"/>
+      <div class="nothing">My Account</div>
+    </div>
+    <div class="text-wrapper-3">상품관리</div>
+    <div class="frame-5">
+      <a class="text-wrapper-5" href="/admins/items">상품목록</a>
+    </div>
+    <div class="text-wrapper-4">회원관리</div>
+    <div class="frame-6">
+      <div class="text-wrapper-6">회원목록</div>
+    </div>
+    <div class="text-wrapper-7">주문관리</div>
+    <div class="frame-7">
+      <div class="text-wrapper-6-1">주문목록</div>
+    </div>
+    <div class="group">
+      <div class="text-wrapper-8">이메일</div>
+      <div class="text-wrapper-9">이름</div>
+      <div class="text-wrapper-10">배송지</div>
+      <div class="text-wrapper-12">등록일</div>
+      <div class="text-wrapper-13">수정일</div>
+    </div>
+    <div class="list-container">
+      <div class="overlap">
+        <div class="navbar-wrapper" th:each="user : ${pagination}">
+          <div class="navbar">
+            <div class="item-info">
+              <div class="text-wrapper-14" th:text="${user.email}">이메일</div>
+              <div class="text-wrapper-15" th:text="${user.name}">이름</div>
+              <div class="text-wrapper-16" th:text="${user.address}">배송지</div>
+              <div class="text-wrapper-18" th:text="${user.createdAt}">24.11.29</div>
+              <div class="text-wrapper-19" th:text="${user.updatedAt}">24.11.29</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 페이지네이션 -->
+    <div class="pagination">
+      <!-- 페이지 번호 -->
+      <span th:each="i : ${#numbers.sequence(1, pagination.totalPages)}">
+      <a th:classappend="${pagination.number + 1 == i ? 'active' : ''}"
+         th:href="@{/admins/users(page=${i - 1}, size=${pagination.size})}"
+         th:text="${i}"></a>
+      </span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

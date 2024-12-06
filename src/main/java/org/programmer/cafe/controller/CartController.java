@@ -52,8 +52,8 @@ public class CartController {
     @Operation(summary = "장바구니 상품 수량 변경 API")
     @ApiResponses(value = {
         @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "변경 성공")})
-    @PatchMapping("/items/{itemId}")
-    public ResponseEntity<ApiResponse<?>> updateCartItemCount(@PathVariable Long itemId,
+    @PatchMapping("/items/{id}")
+    public ResponseEntity<ApiResponse<?>> updateCartItemCount(@PathVariable("id") Long itemId,
         @RequestParam int count) {
         // TODO: SecurityContextHolder에서 인증된 유저의 userId를 가져와야 함.
         Long userId = 1L;
@@ -64,8 +64,8 @@ public class CartController {
     @Operation(summary = "장바구니 상품 삭제 API")
     @ApiResponses(value = {
         @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "삭제 성공")})
-    @DeleteMapping("/items/{itemId}")
-    public ResponseEntity<ApiResponse<?>> deleteCartItem(@PathVariable Long itemId) {
+    @DeleteMapping("/items/{id}")
+    public ResponseEntity<ApiResponse<?>> deleteCartItem(@PathVariable("id") Long itemId) {
         // TODO: SecurityContextHolder에서 인증된 유저의 userId를 가져와야 함.
         Long userId = 1L;
         cartService.deleteCartItem(itemId, userId);

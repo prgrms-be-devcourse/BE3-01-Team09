@@ -3,6 +3,7 @@ package org.programmer.cafe.domain.item.service;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -10,16 +11,26 @@ import java.nio.file.StandardOpenOption;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.programmer.cafe.domain.item.entity.dto.GetItemsResponse;
-import org.programmer.cafe.domain.item.sort.ItemSortType;
 import org.programmer.cafe.domain.item.entity.Item;
+import org.programmer.cafe.domain.item.entity.ItemStatus;
 import org.programmer.cafe.domain.item.entity.dto.CreateItemRequest;
 import org.programmer.cafe.domain.item.entity.dto.CreateItemResponse;
+import org.programmer.cafe.domain.item.entity.dto.GetItemResponse;
+import org.programmer.cafe.domain.item.entity.dto.GetItemsResponse;
 import org.programmer.cafe.domain.item.entity.dto.ItemMapper;
+import org.programmer.cafe.domain.item.entity.dto.PageItemResponse;
 import org.programmer.cafe.domain.item.entity.dto.UpdateItemRequest;
 import org.programmer.cafe.domain.item.entity.dto.UpdateItemResponse;
 import org.programmer.cafe.domain.item.repository.ItemRepository;
+import org.programmer.cafe.domain.item.sort.ItemSortType;
+import org.programmer.cafe.exception.BadRequestException;
+import org.programmer.cafe.exception.ErrorCode;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -64,9 +75,8 @@ public class ItemService {
     @Transactional
     public UpdateItemResponse updateItem(Long id, UpdateItemRequest updateItemRequest) {
         final Item item = itemRepository.findById(id)
-            .orElseThrow(() -> new EntityNotFoundException("Not found item with id: " + id));
+            .orElseThrow(() -> new BadRequestException(ErrorCode.NONEXISTENT_ITEM));
         updateItemStatus(updateItemRequest, item);
-
         return ItemMapper.INSTANCE.toUpdateItemResponse(item, updateItemRequest);
     }
 
@@ -78,7 +88,7 @@ public class ItemService {
     @Transactional
     public void deleteItem(Long id) throws IOException {
         final Item item = itemRepository.findById(id)
-            .orElseThrow(() -> new EntityNotFoundException("Not found item with id: " + id));
+            .orElseThrow(() -> new BadRequestException(ErrorCode.NONEXISTENT_ITEM));
 
         // 저장된 이미지 삭제
         Files.deleteIfExists(Paths.get(item.getImage()));
@@ -116,8 +126,8 @@ public class ItemService {
     }
 
     private void updateItemStatus(UpdateItemRequest updateItemRequest, Item item) {
-        if (updateItemRequest.getStatus() != null) {
-            return; // 상태가 이미 지정된 경우 아무 작업도 하지 않음
+        if (updateItemRequest.getStatus() == ItemStatus.DISCONTINUED) {
+            return; // 판매 중단이면 재고에 따라 상태를 바꾸지 않음.
         }
         final int newStock = updateItemRequest.getStock();
         final int currentStock = item.getStock();
@@ -127,5 +137,23 @@ public class ItemService {
         } else if (currentStock == 0 && newStock > 0) {
             updateItemRequest.setStatusOnSale(); // 품절상태에서 재고가 들어올 경우 '판매중'으로 변경
         }
+    }
+
+    public Page<PageItemResponse> getItemsWithPagination(Pageable pageable) {
+        return itemRepository.findAllWithPaging(pageable);
+    }
+
+    public Resource getImage(String filename) throws MalformedURLException {
+        final Path path = Paths.get(filePath).resolve(filename);
+        if (Files.notExists(path)) {
+            return new ClassPathResource("static/noimage.png");
+        }
+        return new UrlResource(path.toUri());
+    }
+
+    public GetItemResponse getItem(long id) {
+        final Item item = itemRepository.findById(id)
+            .orElseThrow(() -> new BadRequestException(ErrorCode.NONEXISTENT_ITEM));
+        return ItemMapper.INSTANCE.toGetItemResponse(item);
     }
 }

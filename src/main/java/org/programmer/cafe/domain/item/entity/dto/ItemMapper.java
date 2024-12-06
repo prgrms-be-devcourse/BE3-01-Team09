@@ -20,6 +20,8 @@ public interface ItemMapper {
     @Mapping(target = "updatedFields", expression = "java(mapUpdatedFields(item, request))")
     UpdateItemResponse toUpdateItemResponse(Item item, UpdateItemRequest request);
 
+    GetItemResponse toGetItemResponse(Item item);
+
     default Map<String, Object> mapUpdatedFields(Item item, UpdateItemRequest request) {
         final Map<String, Object> updatedFields = new HashMap<>();
 
