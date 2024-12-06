@@ -75,7 +75,7 @@
                    th:src="${item.image != null ? '/api/admins/' + item.image.split('/')[1] : '/noimage.png'}">
               <div class="text-wrapper-14" th:text="${item.name}">상품명</div>
               <div class="text-wrapper-15" th:text="${item.stock}">재고</div>
-              <div class="text-wrapper-16" th:text="${item.status}">상태</div>
+              <div class="text-wrapper-16" th:text="${item.status.getStatus()}">상태</div>
               <div class="text-wrapper-17" th:text="${item.price + '원'}">가격</div>
               <div class="text-wrapper-18" th:text="${item.createdAt}">24.11.29</div>
               <div class="text-wrapper-19" th:text="${item.updatedAt}">24.11.29</div>

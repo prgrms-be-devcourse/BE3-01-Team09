@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.programmer.cafe.domain.item.entity.ItemStatus;
 
 @Getter
 @Builder
@@ -24,7 +25,7 @@ public class PageItemResponse {
 
     private int stock;
 
-    private String status;
+    private ItemStatus status;
 
     private String createdAt;
 

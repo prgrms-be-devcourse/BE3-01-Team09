@@ -281,7 +281,7 @@
 .PAGE .frame-8 {
   position: absolute;
   width: 479px;
-  height: 630px;
+  height: 730px;
   top: 212px;
   left: 559px;
   background-color: var(--primary);
@@ -367,6 +367,22 @@
   font-style: var(--title-16px-regular-font-style);
 }
 
+.PAGE .item-status {
+  position: absolute;
+  width: 90%;
+  top: 12px;
+  left: 16px;
+  opacity: 0.5;
+  font-family: var(--title-16px-regular-font-family);
+  font-weight: var(--title-16px-regular-font-weight);
+  color: var(--text-2);
+  font-size: var(--title-16px-regular-font-size);
+  letter-spacing: var(--title-16px-regular-letter-spacing);
+  line-height: var(--title-16px-regular-line-height);
+  white-space: nowrap;
+  font-style: var(--title-16px-regular-font-style);
+}
+
 .PAGE .frame-10 {
   display: inline-flex;
   align-items: flex-start;
@@ -395,7 +411,7 @@
   align-items: flex-start;
   gap: 50px;
   position: absolute;
-  top: 354px;
+  top: 252px;
   left: 0;
 }
 
@@ -404,7 +420,16 @@
   align-items: flex-start;
   gap: 50px;
   position: absolute;
-  top: 252px;
+  top: 354px;
+  left: 0;
+}
+
+.PAGE .frame-13 {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 50px;
+  position: absolute;
+  top: 460px;
   left: 0;
 }
 
@@ -413,7 +438,7 @@
   align-items: center;
   gap: 32px;
   position: absolute;
-  top: 534px;
+  top: 634px;
   left: 289px;
 }
 

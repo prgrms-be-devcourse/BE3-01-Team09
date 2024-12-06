@@ -2,6 +2,7 @@ package org.programmer.cafe.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.programmer.cafe.domain.item.entity.ItemStatus;
 import org.programmer.cafe.domain.item.entity.dto.GetItemResponse;
 import org.programmer.cafe.domain.item.entity.dto.PageItemResponse;
 import org.programmer.cafe.domain.item.service.ItemService;
@@ -41,6 +42,7 @@ public class AdminWebController {
     public ModelAndView updatePage(ModelAndView mv, @PathVariable long id) {
         mv.setViewName("admin/item-update");
         final GetItemResponse item = itemService.getItem(id);
+        mv.addObject("statusList", ItemStatus.values());
         mv.addObject("item", item);
         mv.addObject("id", id);
         return mv;
