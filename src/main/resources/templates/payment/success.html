@@ -90,12 +90,10 @@
 
     if (!response.ok) {
       // TODO: 결제 실패 비즈니스 로직을 구현하세요.
-      console.log("this?" + json);
-      window.location.href = `/fail?message=${json.message}&code=${json.code}`;
+      window.location.href = `/payments/toss/fail?message=${json.message}&code=${json.code}`;
     }
 
     // TODO: 결제 성공 비즈니스 로직을 구현하세요.
-    // console.log(json);
     return json;
   }
 
