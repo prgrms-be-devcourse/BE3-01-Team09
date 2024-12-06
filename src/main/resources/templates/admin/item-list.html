@@ -72,7 +72,7 @@
           <div class="navbar">
             <div class="item-info">
               <img alt="상품 이미지" class="element"
-                   th:src="${item.image != null ? '/api/admins/' + item.image.split('/')[1] : 'https://via.placeholder.com/50'}">
+                   th:src="${item.image != null ? '/api/admins/' + item.image.split('/')[1] : '/noimage.png'}">
               <div class="text-wrapper-14" th:text="${item.name}">상품명</div>
               <div class="text-wrapper-15" th:text="${item.stock}">재고</div>
               <div class="text-wrapper-16" th:text="${item.status}">상태</div>
@@ -83,7 +83,8 @@
             <div class="actions">
               <a class="button-edit" th:href="@{/admins/items/{id}/update(id=${item.id})}"><label
                   class="view-all-products">수정</label></a>
-              <button class="button-delete" th:onclick="'deleteItem(' + ${item.id} + ')'"><label
+              <button class="button-delete"
+                      th:onclick="'deleteItem(' + ${item.id} +')'"><label
                   class="view-all-products">삭제</label>
               </button>
             </div>
@@ -106,8 +107,24 @@
     </a>
   </div>
 </div>
-<script th:inline="javascript">
-  console.log([[${pagination}]])
+<script>
+  const deleteItem = async (id) => {
+    const check = confirm(`삭제 하시겠습니까?`)
+    if (!check) {
+      return;
+    }
+    const response = await fetch(`http://localhost:8080/api/admins/items/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("상품 삭제 실패");
+    }
+    location.reload();
+  }
 </script>
 </body>
 </html>
