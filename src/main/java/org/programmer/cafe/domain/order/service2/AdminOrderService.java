@@ -12,7 +12,7 @@ public class AdminOrderService {
 
     private final OrderRepository orderRepository;
 
-    public List<Order> findAllOrders(Long id) {
+    public List<Order> findAllOrders() {
         return orderRepository.findAll();
     }
 }

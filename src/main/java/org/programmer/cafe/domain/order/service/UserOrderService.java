@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @RequiredArgsConstructor
-@Service
+@Service("userOrderServiceV1")
 public class UserOrderService {
     private final OrderRepository orderRepository;
     private final OrderDetailRepository orderDetailRepository;
