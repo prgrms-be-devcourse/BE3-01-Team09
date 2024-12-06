@@ -12,6 +12,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.programmer.cafe.domain.item.entity.Item;
+import org.programmer.cafe.domain.item.entity.ItemStatus;
 import org.programmer.cafe.domain.item.entity.dto.CreateItemRequest;
 import org.programmer.cafe.domain.item.entity.dto.CreateItemResponse;
 import org.programmer.cafe.domain.item.entity.dto.GetItemResponse;
@@ -125,8 +126,8 @@ public class ItemService {
     }
 
     private void updateItemStatus(UpdateItemRequest updateItemRequest, Item item) {
-        if (updateItemRequest.getStatus() != null) {
-            return; // 상태가 이미 지정된 경우 아무 작업도 하지 않음
+        if (updateItemRequest.getStatus() == ItemStatus.DISCONTINUED) {
+            return; // 판매 중단이면 재고에 따라 상태를 바꾸지 않음.
         }
         final int newStock = updateItemRequest.getStock();
         final int currentStock = item.getStock();

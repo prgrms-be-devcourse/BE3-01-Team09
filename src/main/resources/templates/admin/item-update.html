@@ -78,17 +78,31 @@
         </div>
         <div class="frame-11">
           <div class="frame-9">
-            <div class="text-wrapper-9">상품이미지</div>
+            <div class="text-wrapper-9">재고</div>
             <label class="placebox-info">
-              <input class="text-wrapper-10" id="itemImage" th:value="${item.image}" type="file">
+              <input class="text-wrapper-10" id="itemStock" th:value="${item.stock}" type="text">
             </label>
           </div>
         </div>
         <div class="frame-12">
           <div class="frame-9">
-            <div class="text-wrapper-9">재고</div>
+            <div class="text-wrapper-9">상태</div>
             <label class="placebox-info">
-              <input class="text-wrapper-10" id="itemStock" th:value="${item.stock}" type="text">
+              <select class="item-status" id="itemStatus" name="item-status">
+                <option th:each="status : ${statusList}"
+                        th:selected="${status == item.status}"
+                        th:text="${status.getStatus()}"
+                        th:value="${status.name()}">
+                </option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <div class="frame-13">
+          <div class="frame-9">
+            <div class="text-wrapper-9">상품이미지</div>
+            <label class="placebox-info">
+              <input class="text-wrapper-10" id="itemImage" th:value="${item.image}" type="file">
             </label>
           </div>
         </div>
@@ -144,21 +158,22 @@
     const itemName = document.querySelector("#itemName").value;
     const itemPrice = document.querySelector("#itemPrice").value;
     const itemStock = document.querySelector("#itemStock").value;
+    const itemStatus = document.querySelector(".item-status").value;
 
-    console.log("STOCK : ", itemStock)
     try {
       // 상품 수정
       const itemData = {
         name: itemName,
         price: itemPrice,
         stock: itemStock,
+        status: itemStatus
       };
       if (file) {
         itemData.image = await uploadFile(file)
       }
 
-      const updateItem = await updateItem(itemData, id);
-      console.log("상품 수정 성공:", updateItem());
+      const updated = await updateItem(itemData, id);
+      console.log("상품 수정 성공:", updated);
       alert("상품 수정 성공")
       window.location.href = '/admins/items';
     } catch (error) {

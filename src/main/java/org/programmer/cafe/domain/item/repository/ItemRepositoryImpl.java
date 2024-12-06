@@ -28,13 +28,7 @@ public class ItemRepositoryImpl implements ItemRepositoryCustom {
         item.id,
         item.price,
         item.stock,
-        Expressions.stringTemplate(
-            "CASE {0} " +
-            "WHEN 'ON_SALE' THEN '판매중' " +
-            "WHEN 'OUT_OF_STOCK' THEN '품절' " +
-            "WHEN 'DISCONTINUED' THEN '판매중단' " +
-            "END", item.status.stringValue()
-        ).as("status"), // Enum을 한글로 변환
+        item.status,
         item.image,
         item.name,
         Expressions.stringTemplate(
