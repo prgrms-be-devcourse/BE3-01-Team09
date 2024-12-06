@@ -17,4 +17,12 @@ public class DeliveryWebController {
         mv.setViewName("/delivery/list");
         return mv;
     }
+
+    @GetMapping("/{id}/create")
+    public ModelAndView deliveryCreate(ModelAndView mv, @PathVariable long id) {
+        // TODO : 1 -> id 로 바꿔야 함.
+        mv.addObject("id", 1);
+        mv.setViewName("/delivery/create");
+        return mv;
+    }
 }

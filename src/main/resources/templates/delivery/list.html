@@ -4,7 +4,7 @@
   <meta charset="utf-8"/>
   <link href="/globals.css" rel="stylesheet"/>
   <link href="/styleguide.css" rel="stylesheet"/>
-  <link href="/delivery/info.css" rel="stylesheet"/>
+  <link href="/delivery/list.css" rel="stylesheet"/>
   <title>배송지 관리</title>
 </head>
 <body>
@@ -134,9 +134,9 @@
         </div>
       </div>
       <div class="button-wrapper-2">
-        <button class="button-add">
+        <a class="button-add" th:href="@{/deliveries/{id}/create(id=${id})}">
           <label class="view-all-products">배송지 등록</label>
-        </button>
+        </a>
       </div>
     </div>
   </div>
