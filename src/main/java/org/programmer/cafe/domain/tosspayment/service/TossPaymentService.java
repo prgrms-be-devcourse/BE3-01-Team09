@@ -97,10 +97,12 @@ public class TossPaymentService {
             createPaymentAndUpdateOrderStatus(order, paymentResponse);
             return ResponseEntity.ok(confirmPaymentResponse);
         } catch (TossPaymentException e) {
+            // TODO: 로그 메시지 변경
             log.error("1");
             // 결제 요청이나 파싱 중 오류 발생
             return buildErrorResponse(e.getErrorCode(), e.getMessage());
         } catch (Exception e) {
+            // TODO: 로그 메시지 변경
             log.error("2");
             // 결제 성공 후 비즈니스 로직 오류 발생 시 결제 취소
             return handlePaymentCancellation(jsonBody);
