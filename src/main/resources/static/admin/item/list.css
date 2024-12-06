@@ -313,7 +313,7 @@
 .PAGE .text-wrapper-9 {
   width: 30px;
   top: 26px;
-  left: 257px;
+  left: 235px;
   position: absolute;
   font-family: var(--title-16px-regular-font-family);
   font-weight: var(--title-16px-regular-font-weight);
@@ -419,7 +419,7 @@
 
 .PAGE .text-wrapper-15 {
   top: 24px;
-  left: 407px;
+  left: 235px;
   white-space: nowrap;
   position: absolute;
   font-family: var(--title-16px-regular-font-family);
@@ -433,7 +433,7 @@
 
 .PAGE .text-wrapper-16 {
   top: 24px;
-  left: 235px;
+  left: 388px;
   white-space: nowrap;
   position: absolute;
   font-family: var(--title-16px-regular-font-family);
@@ -500,8 +500,8 @@
   display: flex;
 }
 
-.PAGE .button-edit,
-.PAGE .button-delete {
+.PAGE .button-add,
+.PAGE .button-cancel {
   all: unset;
   box-sizing: border-box;
   width: 57px;
@@ -650,7 +650,7 @@
   gap: 5px;
 }
 
-.PAGE .button-edit:hover,
-.PAGE .button-delete:hover {
+.PAGE .button-add:hover,
+.PAGE .button-cancel:hover {
   background-color: #e84d4d; /* 호버 시 버튼 배경색 */
 }
