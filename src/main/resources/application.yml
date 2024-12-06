@@ -65,3 +65,6 @@ springdoc:
 
 file:
   upload-dir: images
+
+toss-payment:
+  secret-key: ${TOSS_PAYMENT_SECRET_KEY}

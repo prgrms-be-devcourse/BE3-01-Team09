@@ -57,12 +57,16 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+
+    // JSON
+    implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+
 }
 
 // gradle clean 시에 QClass 디렉토리 삭제
 clean {
     delete
-    
+
 }
 
 tasks.named('test') {
