@@ -4,8 +4,8 @@
   <meta charset="utf-8"/>
   <link href="/globals.css" rel="stylesheet"/>
   <link href="/styleguide.css" rel="stylesheet"/>
-  <link href="/admin/item/list.css" rel="stylesheet"/>
-  <title>관리자 - 상품 목록</title>
+  <link href="/admin/user/list.css" rel="stylesheet"/>
+  <title>관리자 - 유저 목록</title>
 </head>
 <body>
 <div class="PAGE">
@@ -48,45 +48,33 @@
     </div>
     <div class="text-wrapper-3">상품관리</div>
     <div class="frame-5">
-      <div class="text-wrapper-5">상품목록</div>
+      <a class="text-wrapper-5" href="/admins/items">상품목록</a>
     </div>
     <div class="text-wrapper-4">회원관리</div>
     <div class="frame-6">
-      <a class="text-wrapper-6" href="/admins/users">회원목록</a>
+      <div class="text-wrapper-6">회원목록</div>
     </div>
     <div class="text-wrapper-7">주문관리</div>
     <div class="frame-7">
-      <div class="text-wrapper-6">주문목록</div>
+      <div class="text-wrapper-6-1">주문목록</div>
     </div>
     <div class="group">
-      <div class="text-wrapper-8">제품명</div>
-      <div class="text-wrapper-9">상태</div>
-      <div class="text-wrapper-10">재고</div>
-      <div class="text-wrapper-11">가격</div>
+      <div class="text-wrapper-8">이메일</div>
+      <div class="text-wrapper-9">이름</div>
+      <div class="text-wrapper-10">배송지</div>
       <div class="text-wrapper-12">등록일</div>
       <div class="text-wrapper-13">수정일</div>
     </div>
     <div class="list-container">
       <div class="overlap">
-        <div class="navbar-wrapper" th:each="item : ${pagination}">
+        <div class="navbar-wrapper" th:each="user : ${pagination}">
           <div class="navbar">
             <div class="item-info">
-              <img alt="상품 이미지" class="element"
-                   th:src="${item.image != null ? '/api/admins/' + item.image.split('/')[1] : '/noimage.png'}">
-              <div class="text-wrapper-14" th:text="${item.name}">상품명</div>
-              <div class="text-wrapper-15" th:text="${item.stock}">재고</div>
-              <div class="text-wrapper-16" th:text="${item.status.getStatus()}">상태</div>
-              <div class="text-wrapper-17" th:text="${item.price + '원'}">가격</div>
-              <div class="text-wrapper-18" th:text="${item.createdAt}">24.11.29</div>
-              <div class="text-wrapper-19" th:text="${item.updatedAt}">24.11.29</div>
-            </div>
-            <div class="actions">
-              <a class="button-edit" th:href="@{/admins/items/{id}/update(id=${item.id})}"><label
-                  class="view-all-products">수정</label></a>
-              <button class="button-delete"
-                      th:onclick="'deleteItem(' + ${item.id} +')'"><label
-                  class="view-all-products">삭제</label>
-              </button>
+              <div class="text-wrapper-14" th:text="${user.email}">이메일</div>
+              <div class="text-wrapper-15" th:text="${user.name}">이름</div>
+              <div class="text-wrapper-16" th:text="${user.address}">배송지</div>
+              <div class="text-wrapper-18" th:text="${user.createdAt}">24.11.29</div>
+              <div class="text-wrapper-19" th:text="${user.updatedAt}">24.11.29</div>
             </div>
           </div>
         </div>
@@ -98,33 +86,11 @@
       <!-- 페이지 번호 -->
       <span th:each="i : ${#numbers.sequence(1, pagination.totalPages)}">
       <a th:classappend="${pagination.number + 1 == i ? 'active' : ''}"
-         th:href="@{/admins/items(page=${i - 1}, size=${pagination.size})}"
+         th:href="@{/admins/users(page=${i - 1}, size=${pagination.size})}"
          th:text="${i}"></a>
       </span>
     </div>
-    <a class="item-add" href="items/create">
-      <label class="view-all-products-2">상품 추가</label>
-    </a>
   </div>
 </div>
-<script>
-  const deleteItem = async (id) => {
-    const check = confirm(`삭제 하시겠습니까?`)
-    if (!check) {
-      return;
-    }
-    const response = await fetch(`http://localhost:8080/api/admins/items/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error("상품 삭제 실패");
-    }
-    location.reload();
-  }
-</script>
 </body>
 </html>
