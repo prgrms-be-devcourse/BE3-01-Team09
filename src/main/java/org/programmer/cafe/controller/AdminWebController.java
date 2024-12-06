@@ -6,6 +6,8 @@ import org.programmer.cafe.domain.item.entity.ItemStatus;
 import org.programmer.cafe.domain.item.entity.dto.GetItemResponse;
 import org.programmer.cafe.domain.item.entity.dto.PageItemResponse;
 import org.programmer.cafe.domain.item.service.ItemService;
+import org.programmer.cafe.domain.user.entity.dto.PageUserResponse;
+import org.programmer.cafe.domain.user.service.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -22,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class AdminWebController {
 
     private final ItemService itemService;
+    private final UserService userService;
 
     @GetMapping("/items")
     public ModelAndView getItemsWithPagination(
@@ -33,7 +36,7 @@ public class AdminWebController {
     }
 
     @GetMapping("/items/create")
-    public ModelAndView index(ModelAndView mav) {
+    public ModelAndView createPage(ModelAndView mav) {
         mav.setViewName("admin/item-create");
         return mav;
     }
@@ -45,6 +48,16 @@ public class AdminWebController {
         mv.addObject("statusList", ItemStatus.values());
         mv.addObject("item", item);
         mv.addObject("id", id);
+        return mv;
+    }
+
+    @GetMapping("/users")
+    public ModelAndView getUsersWithPagination(
+        @PageableDefault(page = 0, size = 5) Pageable pageable, ModelAndView mv) {
+        log.info("PAGEBLE : {}", pageable);
+        final Page<PageUserResponse> pagination = userService.getUsersWithPagination(pageable);
+        mv.addObject("pagination", pagination);
+        mv.setViewName("admin/user-list");
         return mv;
     }
 }

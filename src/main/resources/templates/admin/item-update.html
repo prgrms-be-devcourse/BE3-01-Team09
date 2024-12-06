@@ -4,7 +4,8 @@
   <meta charset="utf-8"/>
   <link href="/globals.css" rel="stylesheet"/>
   <link href="/styleguide.css" rel="stylesheet"/>
-  <link href="/item/create.css" rel="stylesheet"/>
+  <link href="/admin/item/create.css" rel="stylesheet"/>
+  <title>관리자 - 상품 수정</title>
 </head>
 <body>
 <div class="PAGE">
@@ -137,7 +138,7 @@
   async function updateItem(itemData, id) {
 
     const response = await fetch(`http://localhost:8080/api/admins/items/${id}`, {
-      method: "PUT",
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
