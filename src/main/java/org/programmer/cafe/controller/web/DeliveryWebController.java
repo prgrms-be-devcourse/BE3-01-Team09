@@ -25,4 +25,12 @@ public class DeliveryWebController {
         mv.setViewName("/delivery/create");
         return mv;
     }
+
+    @GetMapping("/{id}/edit")
+    public ModelAndView deliveryEdit(ModelAndView mv, @PathVariable long id) {
+        // TODO : 1 -> id 로 바꿔야 함.
+        mv.addObject("id", 1);
+        mv.setViewName("/delivery/edit");
+        return mv;
+    }
 }
