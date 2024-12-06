@@ -47,4 +47,9 @@ public class Order {
     public void updateStatus(OrderStatus status) {
         this.status = status;
     }
+    // 가격 수정
+    public void updateTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
 }

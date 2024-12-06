@@ -1,6 +1,7 @@
 package org.programmer.cafe.domain.order.repository;
 
 import java.util.List;
+import org.programmer.cafe.domain.item.entity.Item;
 import org.programmer.cafe.domain.order.entity.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 

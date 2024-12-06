@@ -1,10 +1,18 @@
 package org.programmer.cafe.domain.order.entity.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.programmer.cafe.domain.order.entity.Order;
 import org.programmer.cafe.domain.order.entity.OrderStatus;
 
 @Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class OrderResponse {
     private Long id;
     private int totalPrice;
@@ -15,7 +23,6 @@ public class OrderResponse {
     private String addressDetail;
     private String itemName;
     private String itemImage;
-    private Long user;
 
 
     public OrderResponse(Order order) {
@@ -28,6 +35,5 @@ public class OrderResponse {
         this.addressDetail = order.getAddressDetail();
         this.itemName = order.getItemName();
         this.itemImage = order.getItemImage();
-        this.user = order.getUser().getId();
     }
 }

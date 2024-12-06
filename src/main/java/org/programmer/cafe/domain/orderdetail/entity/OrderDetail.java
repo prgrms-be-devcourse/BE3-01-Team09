@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.programmer.cafe.domain.item.entity.Item;
 import org.programmer.cafe.domain.order.entity.Order;
+import org.programmer.cafe.domain.order.entity.OrderStatus;
 
 @Entity(name = "order_details")
 @NoArgsConstructor
@@ -30,4 +31,13 @@ public class OrderDetail {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     private Order order;
+
+    // 수량 수정
+    public void updateCount(int count) {
+        this.count = count;
+    }
+    // 총액 수정
+    public void updateTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 }

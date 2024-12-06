@@ -10,4 +10,8 @@ public interface OrderMapper {
             org.programmer.cafe.domain.order.entity.dto.OrderMapper.class);
         Order toEntity(OrderResponse orderResponse);
         OrderResponse toCreateResponseDto(Order order);
+        OrderResponse toResponseDto(OrderRequest orderRequest);
+
+
+
 }

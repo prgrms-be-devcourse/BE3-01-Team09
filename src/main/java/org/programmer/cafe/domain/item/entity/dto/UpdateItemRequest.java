@@ -45,5 +45,4 @@ public class UpdateItemRequest {
     public void setStatusOnSale() {
         this.status = ItemStatus.ON_SALE;
     }
-    public void setStock(int stock){this.stock = stock;}
 }
