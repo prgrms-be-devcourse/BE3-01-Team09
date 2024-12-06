@@ -1,8 +1,11 @@
 package org.programmer.cafe.domain.user.service;
 
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
+import org.programmer.cafe.domain.user.entity.dto.MyPageSearchRequest;
 import org.programmer.cafe.domain.user.entity.MyPageStatus;
 import org.programmer.cafe.domain.user.entity.User;
 import org.programmer.cafe.domain.user.entity.dto.MyPageSearchRequest;
@@ -11,10 +14,13 @@ import org.programmer.cafe.domain.user.entity.dto.PageUserResponse;
 import org.programmer.cafe.domain.user.repository.UserProjection;
 import org.programmer.cafe.domain.user.repository.UserRepository;
 import org.programmer.cafe.exception.MyPageException;
+import org.programmer.cafe.domain.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Slf4j
 @Service

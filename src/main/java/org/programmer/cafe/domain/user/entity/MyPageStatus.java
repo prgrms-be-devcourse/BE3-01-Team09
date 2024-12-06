@@ -13,6 +13,7 @@ public enum MyPageStatus {
     private MyPageStatus(String message) {
         this.message = message;
     }
+
     public String getMessage() {
         return message;
     }
