@@ -59,7 +59,7 @@ public class OrderController {
         @RequestBody UserOrderRequest userOrderRequest, @RequestParam OrderStatus updateStatus) {
 
             updateStatusService.updateStatus(id, updateStatus);
-            if (updateStatus.equals(OrderStatus.COMPLETED)) {
+            if (updateStatus.equals(OrderStatus.CANCEL)) {
                 updateStockService.updateOrderStatus(id);
             }
 
