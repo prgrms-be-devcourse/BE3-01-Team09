@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8"/>
+  <link href="/globals.css" rel="stylesheet"/>
+  <link href="/styleguide.css" rel="stylesheet"/>
+  <link href="/admin/order/list.css" rel="stylesheet"/>
+  <title>관리자 - 유저 목록</title>
+</head>
+<body>
+<div class="PAGE">
+  <div class="div">
+    <div class="header">
+      <div class="frame">
+        <div class="logo">
+          <a class="text-wrapper" href="/">Grids & Circles</a>
+        </div>
+        <div class="frame-2">
+          <div class="div-wrapper">
+            <a class="text-wrapper-2" href="/">Home</a>
+          </div>
+          <div class="header-2">
+            <a class="text-wrapper-2"
+               href="https://github.com/prgrms-be-devcourse/NBE3-01-Team09"
+               target="_blank">Contact</a>
+          </div>
+          <div class="div-wrapper">
+            <div class="text-wrapper-2">About</div>
+          </div>
+          <div class="header-3">
+            <div class="text-wrapper-2">Sign Up</div>
+          </div>
+        </div>
+      </div>
+      <div class="frame-3">
+        <div class="frame-4">
+          <img class="img" src="https://c.animaapp.com/QemcTLqk/img/wishlist.svg"/>
+          <div class="with-buy"></div>
+          <img class="img" src="https://c.animaapp.com/QemcTLqk/img/user.svg"/>
+        </div>
+      </div>
+    </div>
+    <div class="line"></div>
+    <div class="roadmap">
+      <div class="account">Home</div>
+      <img class="line-2" src="https://c.animaapp.com/QemcTLqk/img/line-13.svg"/>
+      <div class="nothing">My Account</div>
+    </div>
+    <div class="text-wrapper-3">상품관리</div>
+    <div class="frame-5">
+      <a class="text-wrapper-5" href="/admins/items">상품목록</a>
+    </div>
+    <div class="text-wrapper-4">회원관리</div>
+    <div class="frame-6">
+      <a class="text-wrapper-6" href="/admins/users">회원목록</a>
+    </div>
+    <div class="text-wrapper-7">주문관리</div>
+    <div class="frame-7">
+      <a class="text-wrapper-6-1" href="#">주문목록</a>
+    </div>
+    <div class="group">
+      <div class="text-wrapper-8">주문번호</div>
+      <div class="text-wrapper-9">거래상태</div>
+      <div class="text-wrapper-10">배송지</div>
+      <div class="text-wrapper-11">주문일자</div>
+      <div class="text-wrapper-12">배송일자</div>
+      <div class="text-wrapper-13">등록일</div>
+      <div class="text-wrapper-14">수정일</div>
+    </div>
+    <div class="list-container">
+      <div class="overlap">
+<!--        <div class="navbar-wrapper" th:each="user : ${pagination}">-->
+        <div class="navbar-wrapper">
+          <div class="navbar">
+            <a class="item-info" href="/admins/orders/1">
+              <div class="text-wrapper-15">123</div>
+              <div class="text-wrapper-16">취소</div>
+              <div class="text-wrapper-17">경기 용인</div>
+              <div class="text-wrapper-18">2024-11-29</div>
+              <div class="text-wrapper-19">2024-11-29</div>
+              <div class="text-wrapper-20">2024-11-29</div>
+              <div class="text-wrapper-21">2024-11-29</div>
+            </a>
+          </div>
+        </div>
+        <div class="navbar-wrapper">
+          <div class="navbar">
+            <div class="item-info">
+              <div class="text-wrapper-15">123</div>
+              <div class="text-wrapper-16">주문 완료</div>
+              <div class="text-wrapper-17">경기 하남</div>
+              <div class="text-wrapper-18">2024-11-29</div>
+              <div class="text-wrapper-19">2024-11-29</div>
+              <div class="text-wrapper-20">2024-11-29</div>
+              <div class="text-wrapper-21">2024-11-29</div>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-wrapper">
+          <div class="navbar">
+            <div class="item-info">
+              <div class="text-wrapper-15">123</div>
+              <div class="text-wrapper-16">배송 완료</div>
+              <div class="text-wrapper-17">서울 은평</div>
+              <div class="text-wrapper-18">2024-11-29</div>
+              <div class="text-wrapper-19">2024-11-29</div>
+              <div class="text-wrapper-20">2024-11-29</div>
+              <div class="text-wrapper-21">2024-11-29</div>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-wrapper">
+          <div class="navbar">
+            <div class="item-info">
+              <div class="text-wrapper-15">123</div>
+              <div class="text-wrapper-16">취소</div>
+              <div class="text-wrapper-17">청주 사과</div>
+              <div class="text-wrapper-18">2024-11-29</div>
+              <div class="text-wrapper-19">2024-11-29</div>
+              <div class="text-wrapper-20">2024-11-29</div>
+              <div class="text-wrapper-21">2024-11-29</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 페이지네이션 -->
+    <div class="pagination">
+      <!-- 페이지 번호 -->
+<!--      <span th:each="i : ${#numbers.sequence(1, pagination.totalPages)}">-->
+<!--      <a th:classappend="${pagination.number + 1 == i ? 'active' : ''}"-->
+<!--         th:href="@{/admins/users(page=${i - 1}, size=${pagination.size})}"-->
+<!--         th:text="${i}"></a>-->
+<!--      </span>-->
+      <div>1 2 3 4 5</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
