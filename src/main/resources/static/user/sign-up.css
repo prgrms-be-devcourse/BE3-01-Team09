@@ -31,7 +31,7 @@
 .PAGE .frame {
   display: inline-flex;
   align-items: flex-start;
-  gap: 232px;
+  gap: 160px;
   position: relative;
   flex: 0 0 auto;
 }
