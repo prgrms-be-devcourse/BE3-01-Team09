@@ -1,4 +1,5 @@
 package org.programmer.cafe.controller;
+/*
 import static org.programmer.cafe.global.response.ApiResponse.createError;
 import static org.programmer.cafe.global.response.ApiResponse.createSuccess;
 
@@ -22,10 +23,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Slf4j
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api")
+
 public class OrderController {
 
     private final UserOrderService orderService;
@@ -60,3 +61,4 @@ public class OrderController {
         return ResponseEntity.status(HttpStatus.OK).body(createSuccess(updated));
     }
 }
+*/
