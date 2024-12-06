@@ -458,7 +458,7 @@
   margin-bottom: 22px;
 }
 
-.PAGE .button-cancel {
+.PAGE .button-add {
   height: 46px;
   all: unset;
   box-sizing: border-box;
@@ -466,23 +466,7 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 12px 48px;
-  position: relative;
-  flex: 0 0 auto;
-  background-color: rgba(43, 43, 43, 0.49);
-  border-radius: 4px;
-  cursor: pointer
-}
-
-.PAGE .button-edit {
-  height: 46px;
-  all: unset;
-  box-sizing: border-box;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 12px 48px;
+  padding: 16px 48px;
   position: relative;
   flex: 0 0 auto;
   background-color: var(--button-2);
@@ -498,7 +482,7 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 12px 140px;
+  padding: 16px 48px;
   position: relative;
   flex: 0 0 auto;
   background-color: var(--button-2);
@@ -506,7 +490,7 @@
   cursor: pointer
 }
 
-.PAGE .button-delete {
+.PAGE .button-cancel {
   all: unset;
   box-sizing: border-box;
   display: inline-flex;
@@ -542,7 +526,7 @@
   background-color: #F5F5F5;
 }
 
-.PAGE .button-edit:hover,
+.PAGE .button-add:hover,
 .PAGE .button-add:hover {
   background-color: #e84d4d; /* 호버 시 버튼 배경색 */
 }
