@@ -53,10 +53,9 @@ dependencies {
 
 // gradle clean 시에 QClass 디렉토리 삭제
 clean {
-    delete file('src/main/generated')
+    delete
+    
 }
-
-
 
 tasks.named('test') {
     useJUnitPlatform()

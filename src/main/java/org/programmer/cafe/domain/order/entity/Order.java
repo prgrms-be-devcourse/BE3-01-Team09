@@ -30,7 +30,6 @@ public class Order {
 
     @Column(nullable = false)
     private String address;
-
     @Column(nullable = false)
     private String addressDetail;
 
@@ -43,4 +42,14 @@ public class Order {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
+
+    // 상태 수정
+    public void updateStatus(OrderStatus status) {
+        this.status = status;
+    }
+    // 가격 수정
+    public void updateTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
 }
