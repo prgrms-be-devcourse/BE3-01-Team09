@@ -12,6 +12,7 @@ import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.net.http.HttpResponse.BodyHandlers;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -307,7 +308,7 @@ public class TossPaymentService {
         return obj;
     }
 
-    private HttpResponse<String> requestPaymentCancel(String paymentKey, String cancelReason)
+    private void requestPaymentCancel(String paymentKey, String cancelReason)
         throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
             .uri(URI.create("https://api.tosspayments.com/v1/payments/" + paymentKey + "/cancel"))
@@ -317,7 +318,10 @@ public class TossPaymentService {
                 HttpRequest.BodyPublishers.ofString("{\"cancelReason\":\"" + cancelReason + "\"}"))
             .build();
 
-        return HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> response = HttpClient.newHttpClient()
+            .send(request, BodyHandlers.ofString());
+
+        log.info("결제 취소 paymentKey: {}, response: {}", paymentKey, response.body());
     }
 
     public UserOrderInfo getUserOrderInfo(Long userId) {
