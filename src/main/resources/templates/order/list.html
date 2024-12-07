@@ -66,7 +66,7 @@
       <div class="overlap">
         <!--        <div class="navbar-wrapper" th:each="item : ${pagination}">-->
         <div class="navbar-wrapper">
-          <div class="navbar">
+          <a class="navbar" th:href="@{/orders/{id}/detail/1(id=${id})}"> <!-- detail 다음엔 주문번호를 넣어주시면 됩니다 -->
             <div class="item-info">
               <!--              <img alt="상품 이미지" class="element"-->
               <!--                   th:src="${item.image != null ? '/api/admins/' + item.image.split('/')[1] : '/noimage.png'}">-->
@@ -87,10 +87,10 @@
                 <label class="view-all-products">주문 취소</label>
               </button>
             </div>
-          </div>
+          </a>
         </div>
         <div class="navbar-wrapper">
-          <div class="navbar">
+          <a class="navbar" th:href="@{/orders/{id}/detail/1(id=${id})}">
             <div class="item-info">
               <img alt="상품 이미지" class="element" src="/banner.jpg">
               <div class="text-wrapper-14">커피콩</div>
@@ -104,10 +104,10 @@
                 <label class="view-all-products">주문 취소</label>
               </button>
             </div>
-          </div>
+          </a>
         </div>
         <div class="navbar-wrapper">
-          <div class="navbar">
+          <a class="navbar" th:href="@{/orders/{id}/detail/1(id=${id})}">
             <div class="item-info">
               <img alt="상품 이미지" class="element" src="/banner.jpg">
               <div class="text-wrapper-14">커피콩</div>
@@ -121,10 +121,10 @@
                 <label class="view-all-products">주문 취소</label>
               </button>
             </div>
-          </div>
+          </a>
         </div>
         <div class="navbar-wrapper">
-          <div class="navbar">
+          <a class="navbar" th:href="@{/orders/{id}/detail/1(id=${id})}">
             <div class="item-info">
               <img alt="상품 이미지" class="element" src="/banner.jpg">
               <div class="text-wrapper-14">커피콩</div>
@@ -138,10 +138,10 @@
                 <label class="view-all-products">주문 취소</label>
               </button>
             </div>
-          </div>
+          </a>
         </div>
         <div class="navbar-wrapper">
-          <div class="navbar">
+          <a class="navbar" th:href="@{/orders/{id}/detail/1(id=${id})}">
             <div class="item-info">
               <img alt="상품 이미지" class="element" src="/banner.jpg">
               <div class="text-wrapper-14">커피콩</div>
@@ -155,7 +155,7 @@
                 <label class="view-all-products">주문 취소</label>
               </button>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>
