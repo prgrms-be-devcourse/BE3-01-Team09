@@ -1,8 +1,10 @@
 package org.programmer.cafe.exception;
 
+import javax.security.sasl.AuthenticationException;
 import lombok.extern.slf4j.Slf4j;
 import org.programmer.cafe.global.response.ApiResponse;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -28,6 +30,24 @@ public class GlobalExceptionHandler {
             errorMap.put(fe.getField(), fe.getDefaultMessage());
         }
         return errorMap.toString();
+    }
+
+    // 토큰이 없는 경우 401
+    @ExceptionHandler(AuthenticationException.class)
+    public ResponseEntity<ApiResponse<Object>> handleIllegalArgumentException(AuthenticationException e) {
+        log.error("[AuthenticationException] message: {}", e.getMessage());
+        ErrorCode errorCode = ErrorCode.BAD_REQUEST;
+        return ResponseEntity.status(errorCode.getStatus())
+            .body(ApiResponse.createErrorWithMsg(e.getMessage()));
+    }
+
+    // 권한 없는 경로 접근한 경우 403
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<ApiResponse<Object>> handleIllegalArgumentException(AccessDeniedException e) {
+        log.error("[AccessDeniedException] message: {}", e.getMessage());
+        ErrorCode errorCode = ErrorCode.BAD_REQUEST;
+        return ResponseEntity.status(errorCode.getStatus())
+            .body(ApiResponse.createErrorWithMsg(e.getMessage()));
     }
 
     // 잘못된 경로 에러 404
@@ -66,6 +86,14 @@ public class GlobalExceptionHandler {
         ErrorCode errorCode = ErrorCode.BAD_REQUEST;
         return ResponseEntity.status(errorCode.getStatus())
                 .body(ApiResponse.createErrorWithMsg(e.getMessage()));
+    }
+
+    // Jwt 400 에러
+    @ExceptionHandler(AuthException.class)
+    public ResponseEntity<ApiResponse<Object>> handleBadRequestException(AuthException e) {
+        log.error("[AuthException] message: {}", e.getMessage());
+        return ResponseEntity.status(e.getErrorCode().getStatus())
+                .body(ApiResponse.createError(e.getErrorCode().getMessage()));
     }
 
     // 각종 400 에러

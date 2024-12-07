@@ -24,6 +24,8 @@ spring:
       hibernate:
         show_sql: true
 #        format_sql: true # 이쁘게 보기
+  profiles:
+    include: jwt
 
 springdoc:
   swagger-ui:
