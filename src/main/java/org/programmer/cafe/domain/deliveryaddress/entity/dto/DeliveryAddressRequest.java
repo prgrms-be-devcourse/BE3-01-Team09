@@ -12,6 +12,6 @@ public class DeliveryAddressRequest {
     private String zipcode;
     private String address;
     private String addressDetail;
-    private String defaultYn;
-    private User user;
+    private Boolean defaultYn;
+    private Long userId;
 }
