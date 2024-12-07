@@ -302,6 +302,7 @@
 }
 
 .PAGE .navbar {
+  display: flex;
   position: relative;
   width: 983px;
   height: 76px;

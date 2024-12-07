@@ -522,7 +522,7 @@
   display: flex;
 }
 
-.PAGE .button-add {
+.PAGE .button {
   all: unset;
   box-sizing: border-box;
   width: 103px;
@@ -636,7 +636,7 @@
   gap: 5px;
 }
 
-.PAGE .button-add:hover {
+.PAGE .button:hover {
   background-color: #e84d4d; /* 호버 시 버튼 배경색 */
 }
 
@@ -785,8 +785,8 @@
 }
 
 .PAGE .button-wrapper-2 {
-  left: 363px;
-  top: 206px;
+  left: 370px;
+  top: 70px;
   display: flex;
   align-items: center;
   gap: 5px;
