@@ -41,7 +41,8 @@ public class OrderService {
     }
 
     public void updateOrderStatus(Order order, OrderStatus status) {
-        orderRepository.save(order.updateStatus(status));
+        order.updateStatus(status);
+        orderRepository.save(order);
     }
 
     @Transactional

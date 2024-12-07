@@ -53,9 +53,8 @@ public class Order extends BaseTimeEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Order updateStatus(OrderStatus status) {
+    public void updateStatus(OrderStatus status) {
         this.status = status;
-        return this;
     }
 
     @Builder
