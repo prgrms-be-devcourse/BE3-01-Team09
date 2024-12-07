@@ -105,10 +105,6 @@ public class CartService {
         }
     }
 
-    public void deleteCarts(List<Cart> carts) {
-        cartRepository.deleteAllInBatch(carts);
-    }
-
     public void updateCartsStatusToPendingPayment(List<Cart> carts) {
         for (Cart cart : carts) {
             cart.updateStatus(CartStatus.PENDING_PAYMENT);

@@ -30,12 +30,17 @@ import org.programmer.cafe.domain.item.entity.Item;
 import org.programmer.cafe.domain.item.repository.ItemRepository;
 import org.programmer.cafe.domain.order.entity.Order;
 import org.programmer.cafe.domain.order.entity.OrderStatus;
+import org.programmer.cafe.domain.order.repository.OrderRepository;
 import org.programmer.cafe.domain.order.service.OrderService;
 import org.programmer.cafe.domain.tosspayment.dto.CreateTempPaymentAmountRequest;
+import org.programmer.cafe.domain.tosspayment.dto.TossPaymentMapper;
 import org.programmer.cafe.domain.tosspayment.dto.TossPaymentResponse;
+import org.programmer.cafe.domain.tosspayment.dto.UserOrderInfo;
 import org.programmer.cafe.domain.tosspayment.dto.VerifyPaymentAmountRequest;
 import org.programmer.cafe.domain.tosspayment.entity.TossPayment;
 import org.programmer.cafe.domain.tosspayment.repository.TossPaymentRepository;
+import org.programmer.cafe.domain.user.entity.User;
+import org.programmer.cafe.domain.user.repository.UserRepository;
 import org.programmer.cafe.exception.BadRequestException;
 import org.programmer.cafe.exception.ErrorCode;
 import org.programmer.cafe.exception.TossPaymentException;
@@ -57,6 +62,8 @@ public class TossPaymentService {
     private final TossPaymentRepository tossPaymentRepository;
     private final CartRepository cartRepository;
     private final ItemRepository itemRepository;
+    private final UserRepository userRepository;
+    private final OrderRepository orderRepository;
 
     /**
      * 결제 전 금액 세션에 저장
@@ -89,6 +96,7 @@ public class TossPaymentService {
     public ResponseEntity<?> confirmPayment(String jsonBody) {
         // TODO: SecurityContextHolder에서 인증된 유저의 userId를 가져와야 함.
         Long userId = 1L;
+        Order order = null;
 
         try {
             // 클라이언트 요청 파싱 및 토스 결제 요청 승인
@@ -97,21 +105,32 @@ public class TossPaymentService {
             // 현재 이러한 조회를 통한 방식은 불완전한 결제 방식임.
             // orderId를 파라미터로 전달하는 것이 더 안전하다면 그 방식을 택해야 하고,
             // 그렇지 않다면, 유저가 결제 대기 상태의 주문을 하나만 가질 수 있도록 보장해야 함.
-            Order order = getPendingOrder(userId);
+            order = getPendingOrder(userId);
 
             // 결제 성공 처리
             TossPaymentResponse paymentResponse = parseTossPaymentResponse(confirmPaymentResponse);
             createPaymentAndUpdateOrderStatus(order, paymentResponse);
+            deleteCartAfterPayment(userId);
             return ResponseEntity.ok(confirmPaymentResponse);
         } catch (TossPaymentException e) {
             log.error("결제 요청이나 파싱 중 오류 발생");
-            rollbackPendingPaymentCarts(userId);
+            if (Objects.nonNull(order)) {
+                rollbackPendingPaymentCarts(userId);
+                updateOrderStatusToFailedPayment(order);
+            }
             return buildErrorResponse(e.getErrorCode(), e.getMessage());
         } catch (Exception e) {
             log.error("결제 성공 후 비즈니스 로직 오류 발생. 결제 취소.");
-            rollbackPendingPaymentCarts(userId);
+            if (Objects.nonNull(order)) {
+                rollbackPendingPaymentCarts(userId);
+                updateOrderStatusToFailedPayment(order);
+            }
             return handlePaymentCancellation(jsonBody);
         }
+    }
+
+    private void deleteCartAfterPayment(Long userId) {
+        cartRepository.deleteAllInBatchByUserIdAndStatus(userId, CartStatus.PENDING_PAYMENT);
     }
 
     private void rollbackPendingPaymentCarts(Long userId) {
@@ -132,6 +151,11 @@ public class TossPaymentService {
 
         // TODO: 배치 처리 필요
         cartRepository.saveAll(updateCarts);
+    }
+
+    private void updateOrderStatusToFailedPayment(Order order) {
+        order.updateStatus(OrderStatus.FAILED_PAYMENT);
+        orderRepository.save(order);
     }
 
     private ResponseEntity<?> handlePaymentCancellation(String jsonBody) {
@@ -294,5 +318,17 @@ public class TossPaymentService {
             .build();
 
         return HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+    }
+
+    public UserOrderInfo getUserOrderInfo(Long userId) {
+        final User user = userRepository.findById(userId)
+            .orElseThrow(() -> new BadRequestException(ErrorCode.NONEXISTENT_USER));
+
+        final Order order = orderRepository.findByUserIdAndStatusIs(userId,
+                OrderStatus.PENDING_PAYMENT)
+            .orElseThrow(
+                () -> new BadRequestException(ErrorCode.NONEXISTENT_PENDING_PAYMENT_ORDER));
+
+        return TossPaymentMapper.INSTANCE.toUserOrderInfo(user, order);
     }
 }
