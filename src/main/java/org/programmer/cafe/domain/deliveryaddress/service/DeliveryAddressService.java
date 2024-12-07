@@ -29,19 +29,24 @@ public class DeliveryAddressService {
     /**
      * 주어진 사용자 이메일을 기반으로 배송 주소 목록을 조회하고 변환하여 반환
      *
-     * @param request 사용자 이메일 정보를 포함하는 DeliveryAddressRequest 객체
+     * @param email 사용자 이메일 정보를 포함하는 DeliveryAddressRequest 객체
      * @return 사용자의 이메일로 조회된 배송 주소 목록의 DeliveryAddressResponse 객체 리스트
      * @throws BadRequestException 요청 객체가 null이거나 유효하지 않은 경우 발생
      */
-    public List<DeliveryAddressResponse> getAddressByEmail(DeliveryAddressRequest request) {
-        validateRequest(request);
+    public List<DeliveryAddressResponse> getAddressByEmail(String email) {
 
         return deliveryAddressRepository
-                .findByUserEmail(request.getUser().getEmail())
+                .findByUserEmail(email)
                 .stream()
                 .map(address -> {
                     DeliveryAddressResponse response = new DeliveryAddressResponse();
                     response.setId(address.getId());
+                    response.setAddress(address.getAddress());
+                    response.setAddressDetail(address.getAddressDetail());
+                    response.setName(address.getName());
+                    response.setZipcode(address.getZipcode());
+                    response.setUserId(address.getUser().getId());
+                    response.setDefaultYn(address.isDefaultYn());
                     return response;
                 })
                 .toList();
@@ -65,16 +70,16 @@ public class DeliveryAddressService {
     /**
      * 주어진 배송 주소 요청 정보를 기반으로 주소 삭제 처리
      *
-     * @param request 삭제할 배송 주소의 ID를 포함하는 DeliveryAddressRequest 객체
+     * @param id 삭제할 배송 주소의 ID를 포함하는 DeliveryAddressRequest 객체
      * @return 삭제 성공 시 true를 반환
      * @throws BadRequestException 요청 유효성 검증 실패 또는 삭제 실패 시 발생
      */
     @Transactional
-    public Boolean deleteAddress(DeliveryAddressRequest request) {
-
-        validateRequest(request);
-
-        return attemptDelete(request);
+    public Boolean deleteAddress(Long id) {
+        if (id == null) {
+            throw new BadRequestException(ErrorCode.ADDRESS_NOT_EXIST);
+        }
+        return attemptDelete(id);
     }
 
     /**
@@ -112,9 +117,9 @@ public class DeliveryAddressService {
      */
     @Transactional
     protected Boolean attemptSave(DeliveryAddressRequest request) {
-        boolean isSaved = deliveryRepository.saveDeliveryAddress(request);
+        int isSaved = deliveryRepository.saveDeliveryAddress(request);
 
-        if (isSaved) {
+        if (isSaved > 0) {
             return true;
         } else {
             throw new BadRequestException(ErrorCode.ADDRESS_SAVE_FAILED);
@@ -133,8 +138,8 @@ public class DeliveryAddressService {
     protected Boolean attemptUpdate(DeliveryAddressRequest request) {
 
         DeliveryAddress existingAddress = deliveryRepository.findById(request.getId()).orElseThrow(() -> new BadRequestException(ErrorCode.ADDRESS_NOT_EXIST));
-        boolean isUpdated = deliveryRepository.updateDeliveryAddress(request);
-        if (isUpdated) {
+        int isUpdated = deliveryRepository.updateDeliveryAddress(request);
+        if (isUpdated > 0) {
             return true;
         } else {
             throw new BadRequestException(ErrorCode.ADDRESS_UPDATE_FAILED);
@@ -144,15 +149,14 @@ public class DeliveryAddressService {
     /**
      * 주어진 배송 주소 요청 정보를 기반으로 해당 주소를 삭제
      *
-     * @param request 삭제할 배송 주소의 ID를 포함하는 DeliveryAddressRequest 객체
+     * @param id 삭제할 배송 주소의 ID를 포함하는 DeliveryAddressRequest 객체
      * @return 삭제 성공 시 true를 반환
      * @throws BadRequestException 요청된 주소가 존재하지 않거나 삭제에 실패한 경우 발생
      */
     @Transactional
-    protected Boolean attemptDelete(DeliveryAddressRequest request) {
-        DeliveryAddress deleteAddress = deliveryRepository.findById(request.getId()).orElseThrow(() -> new BadRequestException(ErrorCode.ADDRESS_NOT_EXIST));
-        boolean isDeleted = deliveryRepository.deleteDeliveryAddressById(request.getId());
-        if (isDeleted) {
+    protected Boolean attemptDelete(Long id) {
+        int isDeleted = deliveryRepository.deleteDeliveryAddressById(id);
+        if (isDeleted > 0) {
             return true;
         } else {
             throw new BadRequestException(ErrorCode.ADDRESS_DELETE_FAILED);
