@@ -1,6 +1,7 @@
 package org.programmer.cafe.domain.cart.service;
 
 import jakarta.transaction.Transactional;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
@@ -48,7 +49,7 @@ public class CartService {
     }
 
     public GetCartItemsResponse getCartItems(Long userId) {
-        final List<Cart> carts = cartRepository.findAllByUserId(userId);
+        final List<Cart> carts = getCartsByUserId(userId);
         return new GetCartItemsResponse(carts);
     }
 
@@ -75,5 +76,35 @@ public class CartService {
             .orElseThrow(() -> new BadRequestException(ErrorCode.NONEXISTENT_CART));
 
         cartRepository.delete(cart);
+    }
+
+    public List<Cart> getCartsByUserId(Long userId) {
+        return cartRepository.findAllByUserId(userId);
+    }
+
+    public int calculateTotalPrice(List<Cart> carts) {
+        validateCartsNotEmpty(carts);
+
+        return carts.stream()
+            .mapToInt(Cart::getTotalPrice)
+            .sum();
+    }
+
+    public Cart getMaxCountCart(List<Cart> carts) {
+        validateCartsNotEmpty(carts);
+
+        return carts.stream()
+            .max(Comparator.comparingInt(Cart::getCount))
+            .orElseThrow(() -> new BadRequestException(ErrorCode.NONEXISTENT_CART));
+    }
+
+    private void validateCartsNotEmpty(List<Cart> carts) {
+        if (carts == null || carts.isEmpty()) {
+            throw new BadRequestException(ErrorCode.NONEXISTENT_CART);
+        }
+    }
+
+    public void deleteCarts(List<Cart> carts) {
+        cartRepository.deleteAllInBatch(carts);
     }
 }
