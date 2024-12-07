@@ -32,21 +32,21 @@ public class AdminWebController {
         @PageableDefault(page = 0, size = 5) Pageable pageable, ModelAndView mv) {
         final Page<PageItemResponse> pagination = itemService.getItemsWithPagination(pageable);
         mv.addObject("pagination", pagination);
-        mv.setViewName("admin/item-list");
+        mv.setViewName("admin/item/item-list");
         return mv;
     }
 
     // http://localhost:8080/admins/items/create
     @GetMapping("/items/create")
     public ModelAndView createPage(ModelAndView mav) {
-        mav.setViewName("admin/item-create");
+        mav.setViewName("admin/item/item-create");
         return mav;
     }
 
     // http://localhost:8080/admins/items/?/update
     @GetMapping("/items/{id}/update")
     public ModelAndView updatePage(ModelAndView mv, @PathVariable long id) {
-        mv.setViewName("admin/item-update");
+        mv.setViewName("admin/item/item-update");
         final GetItemResponse item = itemService.getItem(id);
         mv.addObject("statusList", ItemStatus.values());
         mv.addObject("item", item);
@@ -61,7 +61,7 @@ public class AdminWebController {
         log.info("PAGEBLE : {}", pageable);
         final Page<PageUserResponse> pagination = userService.getUsersWithPagination(pageable);
         mv.addObject("pagination", pagination);
-        mv.setViewName("admin/user-list");
+        mv.setViewName("admin/user/user-list");
         return mv;
     }
 
@@ -69,6 +69,20 @@ public class AdminWebController {
     @GetMapping("/sign-in")
     public ModelAndView signIn(ModelAndView mv) {
         mv.setViewName("admin/sign-in");
+        return mv;
+    }
+
+    @GetMapping("/orders")
+    public ModelAndView orders(ModelAndView mv) {
+        mv.setViewName("admin/order/order-list");
+        return mv;
+    }
+
+    @GetMapping("/orders/{id}")
+    public ModelAndView orderInfo(ModelAndView mv, @PathVariable long id) {
+        // TODO : 1 -> id 로 바꿔야 함.
+        mv.addObject("id", 1);
+        mv.setViewName("admin/order/order-detail");
         return mv;
     }
 }

@@ -216,11 +216,12 @@
 }
 
 .PAGE .text-wrapper-5 {
+  opacity: 0.5;
   position: relative;
   width: fit-content;
   margin-top: -1.00px;
   font-weight: var(--title-16px-regular-font-weight);
-  color: #db4444;
+  color: #000000;
   font-size: var(--title-16px-regular-font-size);
   line-height: var(--title-16px-regular-line-height);
   font-family: var(--title-16px-regular-font-family);
@@ -255,17 +256,17 @@
 }
 
 .PAGE .text-wrapper-7 {
-  position: absolute;
-  top: 626px;
-  left: 135px;
-  font-weight: var(--title-16px-medium-font-weight);
-  color: var(--text-2);
-  font-size: var(--title-16px-medium-font-size);
-  line-height: var(--title-16px-medium-line-height);
-  font-family: var(--title-16px-medium-font-family);
-  letter-spacing: var(--title-16px-medium-letter-spacing);
+  position: relative;
+  width: fit-content;
+  margin-top: -1.00px;
+  font-weight: var(--title-16px-regular-font-weight);
+  color: #e84d4d;
+  font-size: var(--title-16px-regular-font-size);
+  line-height: var(--title-16px-regular-line-height);
+  font-family: var(--title-16px-regular-font-family);
+  letter-spacing: var(--title-16px-regular-letter-spacing);
   white-space: nowrap;
-  font-style: var(--title-16px-medium-font-style);
+  font-style: var(--title-16px-regular-font-style);
 }
 
 .PAGE .frame-7 {
@@ -313,7 +314,7 @@
 .PAGE .text-wrapper-9 {
   width: 30px;
   top: 26px;
-  left: 235px;
+  left: 257px;
   position: absolute;
   font-family: var(--title-16px-regular-font-family);
   font-weight: var(--title-16px-regular-font-weight);
@@ -433,7 +434,7 @@
 
 .PAGE .text-wrapper-16 {
   top: 24px;
-  left: 388px;
+  left: 407px;
   white-space: nowrap;
   position: absolute;
   font-family: var(--title-16px-regular-font-family);
@@ -500,10 +501,10 @@
   display: flex;
 }
 
-.PAGE .button-edit {
+.PAGE .button-cancel {
   all: unset;
   box-sizing: border-box;
-  width: 57px;
+  width: 138px;
   top: 21px;
   display: flex;
   height: 29px;
@@ -517,22 +518,40 @@
   cursor: pointer;
 }
 
-.PAGE .button-delete {
-  all: unset;
-  box-sizing: border-box;
-  width: 57px;
-  top: 21px;
-  display: flex;
-  height: 29px;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 16px;
-  position: relative;
-  background-color: rgba(43, 43, 43, 0.49);
-  border-radius: 4px;
-  cursor: pointer;
-}
+
+/*.PAGE .button-delete {*/
+/*  all: unset;*/
+/*  box-sizing: border-box;*/
+/*  width: 57px;*/
+/*  top: 21px;*/
+/*  left: 917px;*/
+/*  display: flex;*/
+/*  height: 29px;*/
+/*  align-items: center;*/
+/*  justify-content: center;*/
+/*  gap: 10px;*/
+/*  padding: 16px;*/
+/*  position: absolute;*/
+/*  background-color: var(--button-2);*/
+/*  border-radius: 4px;*/
+/*}*/
+
+/*.PAGE .button-edit {*/
+/*  all: unset;*/
+/*  box-sizing: border-box;*/
+/*  display: flex;*/
+/*  width: 57px;*/
+/*  height: 29px;*/
+/*  align-items: center;*/
+/*  justify-content: center;*/
+/*  gap: 10px;*/
+/*  top: 21px;*/
+/*  left: 848px;*/
+/*  padding: 16px;*/
+/*  position: absolute;*/
+/*  background-color: var(--button-2);*/
+/*  border-radius: 4px;*/
+/*}*/
 
 .PAGE .view-all-products {
   position: relative;
@@ -631,10 +650,6 @@
   gap: 5px;
 }
 
-.PAGE .button-edit:hover{
+.PAGE .button-cancel:hover {
   background-color: #e84d4d; /* 호버 시 버튼 배경색 */
-}
-
-.PAGE .button-delete:hover {
-  background-color: rgba(43, 43, 43, 0.47) /* 호버 시 버튼 배경색 */
 }

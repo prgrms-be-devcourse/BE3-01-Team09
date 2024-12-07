@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8"/>
+  <link href="/globals.css" rel="stylesheet"/>
+  <link href="/styleguide.css" rel="stylesheet"/>
+  <link href="/user/edit.css" rel="stylesheet"/>
+  <title>내 정보 - 수정</title>
+</head>
+<body>
+<div class="PAGE">
+  <div class="div">
+    <div class="header">
+      <div class="frame">
+        <div class="logo">
+          <a class="text-wrapper" href="/">Grids & Circles</a>
+        </div>
+        <div class="frame-2">
+          <div class="div-wrapper">
+            <a class="text-wrapper-2" href="/">Home</a>
+          </div>
+          <div class="header-2">
+            <a class="text-wrapper-2"
+               href="https://github.com/prgrms-be-devcourse/NBE3-01-Team09"
+               target="_blank">Contact</a>
+          </div>
+          <div class="div-wrapper">
+            <div class="text-wrapper-2">About</div>
+          </div>
+          <div class="header-3">
+            <div class="text-wrapper-2">Sign Up</div>
+          </div>
+        </div>
+      </div>
+      <div class="frame-3">
+        <div class="frame-4">
+          <img class="img" src="https://c.animaapp.com/QemcTLqk/img/wishlist.svg"/>
+          <div class="with-buy"></div>
+          <img class="img" src="https://c.animaapp.com/QemcTLqk/img/user.svg"/>
+        </div>
+      </div>
+    </div>
+    <div class="line"></div>
+    <div class="roadmap">
+      <div class="account">Home</div>
+      <img class="line-2" src="https://c.animaapp.com/QemcTLqk/img/line-13.svg"/>
+      <div class="nothing">My Account</div>
+    </div>
+    <div class="text-wrapper-3">내 정보 관리</div>
+    <div class="frame-5">
+      <a class="text-wrapper-5" th:href="@{/users/{id}(id=${id})}">내 정보</a>
+      <a class="text-wrapper-6" th:href="@{/deliveries/{id}(id=${id})}">배송지 관리</a>
+    </div>
+    <div class="text-wrapper-4">내 주문</div>
+    <div class="frame-6">
+      <a class="text-wrapper-6" th:href="@{/orders/{id}(id=${id})}">주문목록</a>
+    </div>
+    <div class="frame-8">
+      <div class="group">
+        <div class="text-wrapper-8">Profile</div>
+        <div class="frame-wrapper">
+          <div class="frame-9">
+            <div class="text-wrapper-9">Name</div>
+            <label class="placebox-info">
+              <input class="text-wrapper-10" id="name" placeholder="Name" type="text">
+            </label>
+          </div>
+          <div class="frame-9">
+            <div class="text-wrapper-9">Email</div>
+            <label class="placebox-info">
+              <input class="text-wrapper-10" id="email" placeholder="Email" type="text">
+            </label>
+          </div>
+          <div class="frame-10">
+            <div class="text-wrapper-9">Password Changes</div>
+            <label class="placebox-info-2">
+              <input class="text-wrapper-10" id="currentPassword" placeholder="Current Password" type="text">
+            </label>
+            <label class="placebox-info-2">
+              <input class="text-wrapper-10" id="newPassword" placeholder="New Password" type="text">
+            </label>
+            <label class="placebox-info-2">
+              <input class="text-wrapper-10" id="confirmNewPassword" placeholder="Confirm New Password" type="text">
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="button-wrapper">
+        <a class="button-cancel" style="width: 150px;" th:href="@{/users/{id}(id=${id})}">
+          <label class="view-all-products">취소</label>
+        </a>
+        <button class="button-edit" style="width: 150px;">
+          <label class="view-all-products">저장</label>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

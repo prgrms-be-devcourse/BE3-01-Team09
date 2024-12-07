@@ -514,8 +514,8 @@
   display: flex;
 }
 
-.PAGE .button-edit,
-.PAGE .button-delete {
+.PAGE .button-add,
+.PAGE .button-cancel {
   all: unset;
   box-sizing: border-box;
   width: 57px;
@@ -664,7 +664,7 @@
   gap: 5px;
 }
 
-.PAGE .button-edit:hover,
-.PAGE .button-delete:hover {
+.PAGE .button-add:hover,
+.PAGE .button-cancel:hover {
   background-color: #e84d4d; /* 호버 시 버튼 배경색 */
 }
