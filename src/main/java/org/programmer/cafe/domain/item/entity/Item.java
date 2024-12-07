@@ -77,4 +77,12 @@ public class Item extends BaseTimeEntity {
             this.status = ItemStatus.OUT_OF_STOCK;
         }
     }
+
+    public void increaseStock(int orderCount) {
+        if (stock == 0) {
+            this.status = ItemStatus.ON_SALE;
+        }
+
+        this.stock += orderCount;
+    }
 }

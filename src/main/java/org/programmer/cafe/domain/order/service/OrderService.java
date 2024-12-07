@@ -83,13 +83,15 @@ public class OrderService {
         // TODO: 배치 처리 필요
         orderDetailRepository.saveAll(orderDetails);
 
-        cartService.deleteCarts(carts);
+        // 장바구니 상태 변경 (바로 삭제하지 않음. 결제 도중 에러 발생시 차감시킨 재고를 복원하기 위함)
+        cartService.updateCartsStatusToPendingPayment(carts);
 
         List<Item> items = carts.stream()
             .peek(cart -> cart.getItem().decreaseStock(cart.getCount()))
             .map(Cart::getItem)
             .toList();
 
+        // TODO: 배치 처리 필요
         itemRepository.saveAll(items);
     }
 }
