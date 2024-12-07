@@ -38,11 +38,6 @@
   </div>
 </div>
 
-<div class="box_section" style="width: 600px; text-align: left">
-  <b>Response Data :</b>
-  <div id="response" style="white-space: initial"></div>
-</div>
-
 <script>
   // 세션에서 서버로부터 데이터를 받아옴
   async function checkSessionData() {
@@ -97,9 +92,7 @@
     return json;
   }
 
-  confirm().then(function (data) {
-    document.getElementById("response").innerHTML = `<pre>${JSON.stringify(data, null, 4)}</pre>`;
-  });
+  confirm();
 
   const paymentKeyElement = document.getElementById("paymentKey");
   const orderIdElement = document.getElementById("orderId");

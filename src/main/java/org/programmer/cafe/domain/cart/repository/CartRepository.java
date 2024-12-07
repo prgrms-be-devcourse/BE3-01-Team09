@@ -16,4 +16,6 @@ public interface CartRepository extends JpaRepository<Cart, Long> {
 
     @EntityGraph(attributePaths = {"item"})
     List<Cart> findAllByUserIdAndStatus(Long userId, CartStatus cartStatus);
+
+    void deleteAllInBatchByUserIdAndStatus(Long userId, CartStatus cartStatus);
 }

@@ -3,13 +3,14 @@ package org.programmer.cafe.controller;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.programmer.cafe.domain.tosspayment.dto.UserOrderInfo;
 import org.programmer.cafe.domain.tosspayment.service.TossPaymentService;
-import org.springframework.stereotype.Controller;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -30,15 +31,15 @@ public class TossPaymentWebController {
      */
     @GetMapping("/success")
     public String paymentRequest(Model model) {
-        // TODO: OrderService를 통해 데이터 가져오도록 수정.
-        Long backendOrderId = 1L;
-
-        model.addAttribute("backendOrderId", backendOrderId);
         return "/payment/success";
     }
 
     @GetMapping()
-    public String index() {
+    public String index(Model model) {
+        // TODO: SecurityContextHolder에서 인증된 유저의 userId를 가져와야 함.
+        Long userId = 1L;
+        UserOrderInfo userOrderInfo = tossPaymentService.getUserOrderInfo(userId);
+        model.addAttribute("userOrderInfo", userOrderInfo);
         return "/payment/checkout";
     }
 
