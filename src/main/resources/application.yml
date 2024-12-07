@@ -32,6 +32,18 @@ spring:
         # 외부 디렉토리에 이미지 저장하고 정적 리소스로 제공하기 위해 설정
         static-locations: classpath:/META-INF/resources/, classpath:/resources/, classpath:/static/, classpath:/public/, file:images/
 
+  mail:
+    host: smtp.gmail.com # 1
+    port: 587 # 2
+    username: ${MAIL_USERNAME} # 3
+    password: ${MAIL_PASSWORD} # 4
+    properties:
+      mail:
+        smtp:
+          auth: true # 5
+          timeout: 5000 # 6
+          starttls:
+            enable: true # 7
 springdoc:
   swagger-ui:
     groups-order: DESC # 그룹 순서를 내림차순으로 설정
@@ -48,6 +60,8 @@ springdoc:
   writer-with-default-pretty-printer: true # JSON을 예쁘게 출력
 #  paths-to-match:
 #    - /api/v1/** # 특정 경로의 API만 매칭
+
+
 
 file:
   upload-dir: images
