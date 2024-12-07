@@ -51,6 +51,7 @@ public enum ErrorCode { // 예외 발생시, body에 실어 날려줄 상태, co
     INVALID_PAYMENT_REQUEST_JSON(400, -8003, "결제 승인 컨트롤러에서 Request Body 파싱 에러 발생"),
     INVALID_PAYMENT_RESPONSE_JSON(500, -8004, "결제 승인 응답 값 파싱 에러 발생"),
     TOSS_PAYMENT_CANCEL_REQUEST_ERROR(500, -8005, "토스페이먼츠 통신 에러 발생 (결제 취소 요청)"),
+    NONEXISTENT_PENDING_PAYMENT_ORDER(400, -8006, "결제 대기 중인 주문이 존재하지 않습니다."),
 
     //-9000: 주문
     INSUFFICIENT_STOCK(400, -9000, "재고가 충분하지 않습니다."),
