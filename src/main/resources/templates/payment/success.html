@@ -52,6 +52,7 @@
       }),
     });
 
+    // TODO: 재고 복원 로직 호출해야 하지만, 시간 관계상 생략
     if (!response.ok) {
       console.log("error: 결제 금액 검증에 실패했습니다. 주문 정보를 다시 확인해 주세요.");
       window.location.href = `/payments/toss/fail?message=${"결제 금액 검증에 실패했습니다. 주문 정보를 다시 확인해 주세요."}&code=${"400"}`;
