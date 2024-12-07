@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.programmer.cafe.domain.cart.dto.CreateCartItemRequest;
 import org.programmer.cafe.domain.cart.dto.GetCartItemsResponse;
 import org.programmer.cafe.domain.cart.entity.Cart;
+import org.programmer.cafe.domain.cart.entity.CartStatus;
 import org.programmer.cafe.domain.cart.repository.CartRepository;
 import org.programmer.cafe.domain.item.entity.Item;
 import org.programmer.cafe.domain.item.repository.ItemRepository;
@@ -106,5 +107,14 @@ public class CartService {
 
     public void deleteCarts(List<Cart> carts) {
         cartRepository.deleteAllInBatch(carts);
+    }
+
+    public void updateCartsStatusToPendingPayment(List<Cart> carts) {
+        for (Cart cart : carts) {
+            cart.updateStatus(CartStatus.PENDING_PAYMENT);
+        }
+
+        // TODO: 배치 처리 필요
+        cartRepository.saveAll(carts);
     }
 }

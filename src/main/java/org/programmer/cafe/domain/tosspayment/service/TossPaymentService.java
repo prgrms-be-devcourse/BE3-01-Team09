@@ -16,12 +16,18 @@ import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Base64;
+import java.util.List;
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.programmer.cafe.domain.cart.entity.Cart;
+import org.programmer.cafe.domain.cart.entity.CartStatus;
+import org.programmer.cafe.domain.cart.repository.CartRepository;
+import org.programmer.cafe.domain.item.entity.Item;
+import org.programmer.cafe.domain.item.repository.ItemRepository;
 import org.programmer.cafe.domain.order.entity.Order;
 import org.programmer.cafe.domain.order.entity.OrderStatus;
 import org.programmer.cafe.domain.order.service.OrderService;
@@ -49,6 +55,8 @@ public class TossPaymentService {
 
     private final OrderService orderService;
     private final TossPaymentRepository tossPaymentRepository;
+    private final CartRepository cartRepository;
+    private final ItemRepository itemRepository;
 
     /**
      * 결제 전 금액 세션에 저장
@@ -79,13 +87,12 @@ public class TossPaymentService {
 
     @Transactional
     public ResponseEntity<?> confirmPayment(String jsonBody) {
+        // TODO: SecurityContextHolder에서 인증된 유저의 userId를 가져와야 함.
+        Long userId = 1L;
 
         try {
             // 클라이언트 요청 파싱 및 토스 결제 요청 승인
             JSONObject confirmPaymentResponse = requestConfirmPayment(jsonBody);
-
-            // TODO: SecurityContextHolder에서 인증된 유저의 userId를 가져와야 함.
-            Long userId = 1L;
 
             // 현재 이러한 조회를 통한 방식은 불완전한 결제 방식임.
             // orderId를 파라미터로 전달하는 것이 더 안전하다면 그 방식을 택해야 하고,
@@ -97,16 +104,34 @@ public class TossPaymentService {
             createPaymentAndUpdateOrderStatus(order, paymentResponse);
             return ResponseEntity.ok(confirmPaymentResponse);
         } catch (TossPaymentException e) {
-            // TODO: 로그 메시지 변경
-            log.error("1");
-            // 결제 요청이나 파싱 중 오류 발생
+            log.error("결제 요청이나 파싱 중 오류 발생");
+            rollbackPendingPaymentCarts(userId);
             return buildErrorResponse(e.getErrorCode(), e.getMessage());
         } catch (Exception e) {
-            // TODO: 로그 메시지 변경
-            log.error("2");
-            // 결제 성공 후 비즈니스 로직 오류 발생 시 결제 취소
+            log.error("결제 성공 후 비즈니스 로직 오류 발생. 결제 취소.");
+            rollbackPendingPaymentCarts(userId);
             return handlePaymentCancellation(jsonBody);
         }
+    }
+
+    private void rollbackPendingPaymentCarts(Long userId) {
+        List<Cart> carts = cartRepository.findAllByUserIdAndStatus(userId,
+            CartStatus.PENDING_PAYMENT);
+
+        List<Item> items = carts.stream()
+            .peek(cart -> cart.getItem().increaseStock(cart.getCount()))
+            .map(Cart::getItem)
+            .toList();
+
+        // TODO: 배치 처리 필요
+        itemRepository.saveAll(items);
+
+        List<Cart> updateCarts = carts.stream()
+            .peek(cart -> cart.updateStatus(CartStatus.BEFORE_ORDER))
+            .toList();
+
+        // TODO: 배치 처리 필요
+        cartRepository.saveAll(updateCarts);
     }
 
     private ResponseEntity<?> handlePaymentCancellation(String jsonBody) {
