@@ -8,6 +8,7 @@ import org.programmer.cafe.domain.user.dto.UserSignupRequest;
 import org.programmer.cafe.domain.user.service.UserService;
 import org.programmer.cafe.global.response.ApiResponse;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,5 +45,16 @@ public class UserController {
         @RequestBody @Valid UserLoginRequest userLoginRequest) {
         UserLoginResponse userLoginResponse = userService.login(userLoginRequest);
         return ResponseEntity.ok().body(ApiResponse.createSuccess(userLoginResponse));
+    }
+
+    /**
+     * 관리자 권한 부여 요청 (현재는 API를 통해 직접 부여)
+     *
+     * @param userId Long
+     */
+    @PostMapping("/admin/{userId}")
+    public ResponseEntity<ApiResponse<?>> updateAuthority(@PathVariable Long userId) {
+        userService.updateAuthority(userId);
+        return ResponseEntity.ok().body(ApiResponse.createSuccessWithNoData());
     }
 }

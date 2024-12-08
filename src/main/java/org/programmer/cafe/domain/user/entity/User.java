@@ -37,4 +37,8 @@ public class User extends BaseTimeEntity {
         this.name = name;
         this.authorities = new HashSet<>();
     }
+
+    public void updateAuthority(Authority authority) {
+        this.authorities.add(authority);
+    }
 }

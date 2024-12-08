@@ -63,7 +63,7 @@ public class UserService {
         user.getAuthorities().add(
             Authority.builder()
                 .user(user)
-                .role(Role.MEMBER)
+                .role(Role.ROLE_MEMBER)
                 .build()
         );
         return userRepository.save(user).getId();
@@ -116,5 +116,20 @@ public class UserService {
             .accessToken(tokens.getAccessToken())
             .refreshToken(tokens.getRefreshToken())
             .build();
+    }
+
+    /**
+     * 사용자에게 관리자 권한 부여 메서드
+     */
+    public void updateAuthority(Long userId) {
+        User user = userRepository.findById(userId)
+            .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND));
+
+        Authority authority = Authority.builder()
+            .user(user)
+            .role(Role.ROLE_ADMIN)
+            .build();
+
+        user.updateAuthority(authority);
     }
 }
