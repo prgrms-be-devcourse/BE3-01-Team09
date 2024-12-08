@@ -1,16 +1,12 @@
 package org.programmer.cafe.global.jwt;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.programmer.cafe.global.response.ApiResponse;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -33,6 +29,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final static String TOKEN_PREFIX = "Bearer ";
 
     @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+        String[] excludePath = {"/api/users/login", "/api/users/signup"};
+        String path = request.getRequestURI();
+        return Arrays.stream(excludePath).anyMatch(path::startsWith);
+    }
+
+    @Override
     protected void doFilterInternal(
         HttpServletRequest request,
         HttpServletResponse response,
@@ -45,6 +48,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if (token != null && jwtTokenProvider.validateAccessToken(token)) {
             Authentication authentication = jwtTokenProvider.getAuthentication(token);
             SecurityContextHolder.getContext().setAuthentication(authentication);
+        } else {
+            log.warn("유효하지 않은 토큰입니다.");
         }
 
         filterChain.doFilter(request, response);
@@ -57,31 +62,5 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return bearerToken.substring(TOKEN_PREFIX.length());
         }
         return null;
-    }
-
-    protected static void writeResponse(HttpServletResponse response, ApiResponse<?> apiResponse) {
-        try {
-            // apiResponse 객체로 변환해서 타입 반환
-            ObjectMapper objectMapper = new ObjectMapper();
-
-            // apiResponse 내부에 LocalDatetime 형식 변환 설정
-            objectMapper.registerModule(new JavaTimeModule());
-            objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-            objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS"));
-
-            // response body 담기
-            String jsonResponse = objectMapper.writeValueAsString(apiResponse);
-
-            // response 타입지정
-            response.setContentType("application/json");
-            response.setCharacterEncoding("UTF-8");
-
-            // response 반환
-            response.getWriter().write(jsonResponse);
-
-        } catch (IOException e) {
-            // 에러 핸들링
-            log.warn(e.getMessage(), e.getCause());
-        }
     }
 }
