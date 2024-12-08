@@ -1,5 +1,6 @@
 package org.programmer.cafe.global.jwt;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -23,12 +24,16 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
         AccessDeniedException accessDeniedException) throws IOException, ServletException {
         log.info("[CustomAccessDeniedHandler] :: {}", accessDeniedException.getMessage());
         log.info("[CustomAccessDeniedHandler] :: {}", request.getRequestURL());
-        log.info("[CustomAccessDeniedHandler] :: 토근 정보가 만료되었거나 존재하지 않습니다.");
+        log.info("[CustomAccessDeniedHandler] :: 접근 권한이 없습니다.");
 
         response.setStatus(ErrorCode.FORBIDDEN.getStatus());
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json; charset=UTF-8");
-        JwtAuthenticationFilter.writeResponse(response,
+
+        // response body 담기
+        ObjectMapper objectMapper = new ObjectMapper();
+        String jsonResponse = objectMapper.writeValueAsString(
             ApiResponse.createErrorWithMsg(ErrorCode.FORBIDDEN.getMessage()));
+        response.getWriter().write(jsonResponse);
     }
 }

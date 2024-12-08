@@ -1,5 +1,6 @@
 package org.programmer.cafe.global.jwt;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -23,12 +24,16 @@ public class CustomAuthenticationEntryPointHandler implements AuthenticationEntr
         AuthenticationException authException) throws IOException, ServletException {
         log.info("[CustomAuthenticationEntryPointHandler] :: {}", authException.getMessage());
         log.info("[CustomAuthenticationEntryPointHandler] :: {}", request.getRequestURL());
-        log.info("[CustomAuthenticationEntryPointHandler] :: 토근 정보가 만료되었거나 존재하지 않습니다.");
+        log.info("[CustomAuthenticationEntryPointHandler] :: 토큰 정보가 만료되었거나 존재하지 않습니다.");
 
-        response.setStatus(ErrorCode.INVALID_ACCESS_TOKEN.getStatus());
+        response.setStatus(ErrorCode.UNAUTHORIZED.getStatus());
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json; charset=UTF-8");
-        JwtAuthenticationFilter.writeResponse(response,
-            ApiResponse.createErrorWithMsg(authException.getLocalizedMessage()));
+
+        // response body 담기
+        ObjectMapper objectMapper = new ObjectMapper();
+        String jsonResponse = objectMapper.writeValueAsString(
+            ApiResponse.createErrorWithMsg(ErrorCode.UNAUTHORIZED.getMessage()));
+        response.getWriter().write(jsonResponse);
     }
 }
