@@ -9,7 +9,9 @@ import lombok.Getter;
 public enum OrderStatus {
 
     COMPLETED("주문 완료"),
-    SHIPPING_STARTED( "배송 완료"),
+    SHIPPING_STARTED("배송 완료"),
+    PENDING_PAYMENT("결제 대기"),
+    FAILED_PAYMENT("결제 실패"),
     CANCEL("주문 취소");
 
     private final String status;

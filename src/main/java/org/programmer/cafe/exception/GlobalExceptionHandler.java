@@ -96,4 +96,12 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(errorCode.getStatus())
                 .body(ApiResponse.createError(errorCode.getMessage()));
     }
+
+    // 토스 페이먼츠 API 서버와의 통신 에러
+    @ExceptionHandler(TossPaymentException.class)
+    public ResponseEntity<ApiResponse<Object>> handleTossPaymentException(TossPaymentException e) {
+        log.error("[TossPaymentException] message: {}", e.getMessage());
+        return ResponseEntity.status(e.getErrorCode().getStatus())
+            .body(ApiResponse.createError(e.getErrorCode().getMessage()));
+    }
 }

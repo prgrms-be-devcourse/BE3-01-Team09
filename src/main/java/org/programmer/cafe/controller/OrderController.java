@@ -14,12 +14,15 @@ import org.programmer.cafe.domain.order.entity.OrderStatus;
 import org.programmer.cafe.domain.order.service.UserOrderService;
 import org.programmer.cafe.service.UpdateStatusService;
 import org.programmer.cafe.service.UpdateAllStockService;
+import org.programmer.cafe.domain.order.dto.CreateOrderRequest;
+import org.programmer.cafe.domain.order.service.OrderLockFacade;
 import org.programmer.cafe.global.response.ApiResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,6 +37,7 @@ public class OrderController {
     private final UserOrderService userorderService;
     private final UpdateStatusService updateStatusService;
     private final UpdateAllStockService updateAllStockService;
+    private final OrderLockFacade orderLockFacade;
 
 
     @Operation(summary = "전체 주문 조회 API")
@@ -65,6 +69,18 @@ public class OrderController {
 
         return ResponseEntity.ok()
             .body(ApiResponse.createSuccessWithNoData());
+    }
+
+    @Operation(summary = "장바구니 상품 주문 API")
+    @ApiResponses(value = {
+        @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "201", description = "주문 성공")})
+    @PostMapping()
+    public ResponseEntity<ApiResponse<?>> createOrder(
+        @RequestBody CreateOrderRequest createOrderRequest) throws InterruptedException {
+        // TODO: SecurityContextHolder에서 인증된 유저의 userId를 가져와야 함.
+        Long userId = 1L;
+        orderLockFacade.order(userId, createOrderRequest);
+        return ResponseEntity.ok().body(ApiResponse.createSuccessWithNoData());
     }
 }
 
