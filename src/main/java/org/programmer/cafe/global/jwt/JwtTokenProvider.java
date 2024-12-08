@@ -87,10 +87,9 @@ public class JwtTokenProvider {
 
         // 토큰에서 사용자 정보, 권한 정보 추출
         UserDetails userDetails = customUserDetailService.loadUserByUsername(claims.getSubject());
-        List<SimpleGrantedAuthority> authorities =
+        Set<SimpleGrantedAuthority> authorities =
             Arrays.stream(claims.get(AUTHORITIES_KEY).toString().split(","))
-                .map(SimpleGrantedAuthority::new).toList();
-
+                .map(SimpleGrantedAuthority::new).collect(Collectors.toSet());
         return new UsernamePasswordAuthenticationToken(userDetails, token, authorities);
     }
 

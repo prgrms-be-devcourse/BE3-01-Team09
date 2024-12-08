@@ -2,6 +2,9 @@ package org.programmer.cafe.config;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.programmer.cafe.domain.auth.service.LogoutService;
+import org.programmer.cafe.global.jwt.CustomAccessDeniedHandler;
+import org.programmer.cafe.global.jwt.CustomAuthenticationEntryPointHandler;
 import org.programmer.cafe.global.jwt.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +14,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -24,6 +28,7 @@ public class SecurityConfig {
 
     private final AuthenticationConfiguration authenticationConfiguration;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final LogoutService logoutService;
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration)
@@ -38,15 +43,20 @@ public class SecurityConfig {
             .httpBasic(AbstractHttpConfigurer::disable)
             .formLogin(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests((authorize) -> authorize
-                .requestMatchers("/api/users/signup", "/api/items", "/api/users/login").permitAll()
+                .requestMatchers("/api/users/signup", "/api/users/login").permitAll()
+                .requestMatchers("/api/admins/**").hasAuthority("ROLE_ADMIN")
                 .anyRequest().authenticated())
-            .logout((logout) -> logout
-                .logoutSuccessUrl("/api/users/login")
-                .invalidateHttpSession(true))
+            .logout((logout) -> logout.logoutUrl("/api/users/logout")
+                .addLogoutHandler(logoutService)
+                .logoutSuccessHandler(
+                    (request, response, authentication) -> SecurityContextHolder.clearContext()))
             .sessionManagement(session -> session
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             )
-            .addFilterAfter(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+            .exceptionHandling((eh) -> eh
+                .authenticationEntryPoint(new CustomAuthenticationEntryPointHandler())
+                .accessDeniedHandler(new CustomAccessDeniedHandler()))
+            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 
