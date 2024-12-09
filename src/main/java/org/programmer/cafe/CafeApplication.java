@@ -4,10 +4,12 @@ import static org.springframework.data.web.config.EnableSpringDataWebSupport.Pag
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
+@EnableJpaAuditing
 @EnableScheduling
 @EnableSpringDataWebSupport(pageSerializationMode = VIA_DTO)
 /*페이징 구현이 직렬화되지 않아

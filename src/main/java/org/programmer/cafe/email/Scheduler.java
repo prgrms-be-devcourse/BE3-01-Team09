@@ -19,8 +19,7 @@ public class Scheduler {
     @Autowired
     private Job updateStatusJob;
 
-    //@Scheduled(cron = "0 0 2 * * ?")
-    @Scheduled(cron = "*/5 * * * * ?")
+    @Scheduled(cron = "0 0 2 * * ?")
 
     public void scheduled() {
         try {

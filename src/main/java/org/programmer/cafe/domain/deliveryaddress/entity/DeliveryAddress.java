@@ -2,6 +2,7 @@ package org.programmer.cafe.domain.deliveryaddress.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -10,6 +11,7 @@ import org.programmer.cafe.domain.user.entity.User;
 @Entity(name = "delivery_addresses")
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Getter
 public class DeliveryAddress {
 

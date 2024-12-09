@@ -496,10 +496,6 @@
   object-fit: cover;
 }
 
-.PAGE .actions {
-  display: flex;
-}
-
 .PAGE .button-edit {
   all: unset;
   box-sizing: border-box;
