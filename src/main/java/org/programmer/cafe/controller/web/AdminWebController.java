@@ -89,8 +89,7 @@ public class AdminWebController {
 
     @GetMapping("/orders/{id}")
     public ModelAndView orderInfo(ModelAndView mv, @PathVariable long id) {
-        // TODO : 1 -> id 로 바꿔야 함.
-        mv.addObject("id", 1);
+        mv.addObject("id", id);
         mv.setViewName("admin/order/order-detail");
         return mv;
     }

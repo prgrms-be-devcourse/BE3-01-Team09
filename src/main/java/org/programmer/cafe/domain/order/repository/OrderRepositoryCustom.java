@@ -7,4 +7,6 @@ import org.springframework.data.domain.Pageable;
 public interface OrderRepositoryCustom {
 
     Page<UserOrderResponse> getOrdersWithPagination(Pageable pageable);
+
+    Page<UserOrderResponse> getOrdersByUserIdWithPagination(long id, Pageable pageable);
 }

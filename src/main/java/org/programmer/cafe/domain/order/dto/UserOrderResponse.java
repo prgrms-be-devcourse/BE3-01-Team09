@@ -1,17 +1,20 @@
 package org.programmer.cafe.domain.order.dto;
 
 import jakarta.persistence.Column;
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.programmer.cafe.domain.order.entity.OrderStatus;
 
 @Builder(toBuilder = true)
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
+@ToString
 public class UserOrderResponse {
 
     private Long id;
@@ -25,4 +28,5 @@ public class UserOrderResponse {
     private String addressDetail;
     private String createdAt;
     private String updatedAt;
+    private int quantity;
 }
