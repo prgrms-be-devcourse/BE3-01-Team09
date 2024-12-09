@@ -59,18 +59,21 @@
       <div class="group">
         <div class="delivery-box">
           <div class="text-wrapper-8">배송지 수정</div>
+          <form class="form" id="updateAddress" th:action="@{/api/delivery}" method="post">
+            <input type="hidden" id="userId" name="userId" th:value="${userId}">
+            <input type="hidden" id="id" name="id" th:value="${id}">
           <div class="frame-wrapper">
             <div class="address-box">
               <div class="frame-9">
                 <div class="text-wrapper-9">받는 분 성함</div>
                 <label class="placebox-info" style="margin-right: 40px;">
-                  <input class="text-wrapper-10" placeholder="Name" type="text">
+                  <input class="text-wrapper-10" id="name" name="name" placeholder="Name" type="text">
                 </label>
               </div>
               <div class="frame-9">
                 <div class="text-wrapper-9">우편 번호</div>
                 <label class="placebox-info">
-                  <input class="text-wrapper-10" placeholder="Zipcode" type="text">
+                  <input class="text-wrapper-10" id="zipcode" name="zipcode" placeholder="Zipcode" type="text">
                 </label>
               </div>
             </div>
@@ -78,20 +81,20 @@
               <div class="frame-9">
                 <div class="text-wrapper-9">주소</div>
                 <label class="placebox-info" style="margin-right: 40px;">
-                  <input class="text-wrapper-10" placeholder="주소" type="text">
+                  <input class="text-wrapper-10" id="address" name="address" placeholder="주소" type="text">
                 </label>
               </div>
               <div class="frame-9">
                 <div class="text-wrapper-9">상세 주소</div>
                 <label class="placebox-info">
-                  <input class="text-wrapper-10" placeholder="상세 주소" type="text">
+                  <input class="text-wrapper-10" id="addressDetail" name="addressDetail" placeholder="상세 주소" type="text">
                 </label>
               </div>
             </div>
             <div class="frame-9">
               <div class="text-wrapper-9">기본 배송지 여부</div>
               <label class="placebox-info">
-                <select class="text-wrapper-10" id="yesNo" name="yesNo" required>
+                <select class="text-wrapper-10" id="defaultYn" name="defaultYn" required>
                   <option disabled selected value="">-- 선택하세요 --</option>
                   <option value="Y">Yes</option>
                   <option value="N">No</option>
@@ -99,18 +102,67 @@
               </label>
             </div>
           </div>
+          </form>
         </div>
       </div>
       <div class="button-wrapper">
         <a class="button-cancel" th:href="@{/deliveries/{id}(id=${id})}">
           <label class="view-all-products">취소</label>
         </a>
-        <button class="button-add">
+        <button id="updateBtn" class="button-add">
           <label class="view-all-products">저장</label>
         </button>
       </div>
     </div>
   </div>
 </div>
+<script>
+
+  document.getElementById('updateBtn').addEventListener('click', function (e) {
+    e.preventDefault();
+
+    const form = document.getElementById('updateAddress');
+    const formData = new FormData(form);
+
+    const data = {
+      id: formData.get('id'),
+      userid: formData.get('userId'),
+      name: formData.get('name'),
+      zipcode: formData.get('zipcode'),
+      address: formData.get('address'),
+      addressDetail: formData.get('addressDetail'),
+      defaultYn: formData.get('defaultYn')
+    };
+
+    console.log('Updating address with data:', data);
+
+    fetch('/api/delivery', {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+            .then((response) => {
+              console.log('Response status:', response.status);
+              return response.json();
+            })
+            .then((responseData) => {
+              console.log('Response data:', responseData);
+
+              if (responseData.status === '성공') {
+                alert('수정이 완료되었습니다.');
+                window.location.href = `/deliveries/${data.userid}`; // 수정 완료 후 리다이렉트
+              } else {
+                alert('수정에 실패했습니다: ' + (responseData.message || '알 수 없는 오류'));
+              }
+            })
+            .catch((error) => {
+              console.error('Error during update:', error);
+              alert('네트워크 오류 또는 예기치 못한 오류가 발생했습니다.');
+            });
+  });
+
+</script>
 </body>
 </html>

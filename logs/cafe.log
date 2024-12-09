@@ -1,0 +1,326 @@
+2024-12-09T19:31:01.036+09:00  INFO 21432 --- [cafe] [restartedMain] org.programmer.cafe.CafeApplication      : Starting CafeApplication using Java 17.0.12 with PID 21432 (C:\Users\slsl0\OneDrive\문서\NBE3-01-Team09\build\classes\java\main started by slsl0 in C:\Users\slsl0\OneDrive\문서\NBE3-01-Team09)
+2024-12-09T19:31:01.039+09:00 DEBUG 21432 --- [cafe] [restartedMain] org.programmer.cafe.CafeApplication      : Running with Spring Boot v3.4.0, Spring v6.2.0
+2024-12-09T19:31:01.040+09:00  INFO 21432 --- [cafe] [restartedMain] org.programmer.cafe.CafeApplication      : No active profile set, falling back to 1 default profile: "default"
+2024-12-09T19:31:01.316+09:00  INFO 21432 --- [cafe] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-12-09T19:31:01.316+09:00  INFO 21432 --- [cafe] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-12-09T19:31:02.232+09:00  INFO 21432 --- [cafe] [restartedMain] o.s.b.c.c.annotation.BatchRegistrar      : Finished Spring Batch infrastructure beans configuration in 5 ms.
+2024-12-09T19:31:02.580+09:00  INFO 21432 --- [cafe] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-09T19:31:02.824+09:00  INFO 21432 --- [cafe] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 235 ms. Found 7 JPA repository interfaces.
+2024-12-09T19:31:03.152+09:00  WARN 21432 --- [cafe] [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$SpringCGLIB$$0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [annotationActionEndpointMapping] is declared through a non-static factory method on that class; consider declaring it as static instead.
+2024-12-09T19:31:03.185+09:00  INFO 21432 --- [cafe] [restartedMain] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2024-12-09T19:31:03.581+09:00  INFO 21432 --- [cafe] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-12-09T19:31:03.600+09:00  INFO 21432 --- [cafe] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-09T19:31:03.600+09:00  INFO 21432 --- [cafe] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2024-12-09T19:31:03.675+09:00  INFO 21432 --- [cafe] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-09T19:31:03.675+09:00  INFO 21432 --- [cafe] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2358 ms
+2024-12-09T19:31:03.917+09:00  INFO 21432 --- [cafe] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-09T19:31:03.986+09:00  INFO 21432 --- [cafe] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.2.Final
+2024-12-09T19:31:04.029+09:00  INFO 21432 --- [cafe] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-12-09T19:31:04.376+09:00  INFO 21432 --- [cafe] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-09T19:31:04.412+09:00  INFO 21432 --- [cafe] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-09T19:31:04.510+09:00  INFO 21432 --- [cafe] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.mariadb.jdbc.Connection@63e287b1
+2024-12-09T19:31:04.512+09:00  INFO 21432 --- [cafe] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-09T19:31:04.576+09:00  INFO 21432 --- [cafe] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 11.5.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2024-12-09T19:31:05.823+09:00  INFO 21432 --- [cafe] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-12-09T19:31:05.904+09:00  INFO 21432 --- [cafe] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-09T19:31:06.427+09:00  INFO 21432 --- [cafe] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-12-09T19:31:06.951+09:00  WARN 21432 --- [cafe] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'batchJobConfig' defined in file [C:\Users\slsl0\OneDrive\문서\NBE3-01-Team09\build\classes\java\main\org\programmer\cafe\email\BatchJobConfig.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'emailService' defined in file [C:\Users\slsl0\OneDrive\문서\NBE3-01-Team09\build\classes\java\main\org\programmer\cafe\email\EmailService.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'org.springframework.mail.javamail.JavaMailSender' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2024-12-09T19:31:06.951+09:00  INFO 21432 --- [cafe] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-09T19:31:06.954+09:00  INFO 21432 --- [cafe] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-09T19:31:06.958+09:00  INFO 21432 --- [cafe] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-12-09T19:31:06.960+09:00  INFO 21432 --- [cafe] [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-12-09T19:31:06.971+09:00  INFO 21432 --- [cafe] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-12-09T19:31:07.003+09:00 ERROR 21432 --- [cafe] [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in org.programmer.cafe.email.EmailService required a bean of type 'org.springframework.mail.javamail.JavaMailSender' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'org.springframework.mail.javamail.JavaMailSender' in your configuration.
+
+2024-12-09T19:32:09.541+09:00  INFO 2856 --- [cafe] [restartedMain] org.programmer.cafe.CafeApplication      : Starting CafeApplication using Java 17.0.12 with PID 2856 (C:\Users\slsl0\OneDrive\문서\NBE3-01-Team09\build\classes\java\main started by slsl0 in C:\Users\slsl0\OneDrive\문서\NBE3-01-Team09)
+2024-12-09T19:32:09.543+09:00 DEBUG 2856 --- [cafe] [restartedMain] org.programmer.cafe.CafeApplication      : Running with Spring Boot v3.4.0, Spring v6.2.0
+2024-12-09T19:32:09.544+09:00  INFO 2856 --- [cafe] [restartedMain] org.programmer.cafe.CafeApplication      : No active profile set, falling back to 1 default profile: "default"
+2024-12-09T19:32:09.820+09:00  INFO 2856 --- [cafe] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-12-09T19:32:09.820+09:00  INFO 2856 --- [cafe] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-12-09T19:32:10.732+09:00  INFO 2856 --- [cafe] [restartedMain] o.s.b.c.c.annotation.BatchRegistrar      : Finished Spring Batch infrastructure beans configuration in 8 ms.
+2024-12-09T19:32:11.134+09:00  INFO 2856 --- [cafe] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-09T19:32:11.367+09:00  INFO 2856 --- [cafe] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 223 ms. Found 7 JPA repository interfaces.
+2024-12-09T19:32:11.698+09:00  WARN 2856 --- [cafe] [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$SpringCGLIB$$0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [annotationActionEndpointMapping] is declared through a non-static factory method on that class; consider declaring it as static instead.
+2024-12-09T19:32:11.732+09:00  INFO 2856 --- [cafe] [restartedMain] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2024-12-09T19:32:12.092+09:00  INFO 2856 --- [cafe] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-12-09T19:32:12.106+09:00  INFO 2856 --- [cafe] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-09T19:32:12.107+09:00  INFO 2856 --- [cafe] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2024-12-09T19:32:12.186+09:00  INFO 2856 --- [cafe] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-09T19:32:12.186+09:00  INFO 2856 --- [cafe] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2365 ms
+2024-12-09T19:32:12.423+09:00  INFO 2856 --- [cafe] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-09T19:32:12.497+09:00  INFO 2856 --- [cafe] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.2.Final
+2024-12-09T19:32:12.539+09:00  INFO 2856 --- [cafe] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-12-09T19:32:12.887+09:00  INFO 2856 --- [cafe] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-09T19:32:12.926+09:00  INFO 2856 --- [cafe] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-09T19:32:13.021+09:00  INFO 2856 --- [cafe] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.mariadb.jdbc.Connection@31a01874
+2024-12-09T19:32:13.024+09:00  INFO 2856 --- [cafe] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-09T19:32:13.093+09:00  INFO 2856 --- [cafe] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 11.5.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2024-12-09T19:32:14.321+09:00  INFO 2856 --- [cafe] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-12-09T19:32:14.401+09:00  INFO 2856 --- [cafe] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-09T19:32:14.900+09:00  INFO 2856 --- [cafe] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-12-09T19:32:15.541+09:00  INFO 2856 --- [cafe] [restartedMain] o.s.b.c.r.s.JobRepositoryFactoryBean     : No database type set, using meta data indicating: MARIADB
+2024-12-09T19:32:15.556+09:00  INFO 2856 --- [cafe] [restartedMain] o.s.b.c.l.s.TaskExecutorJobLauncher      : No TaskExecutor has been set, defaulting to synchronous executor.
+2024-12-09T19:32:15.600+09:00  INFO 2856 --- [cafe] [restartedMain] .c.a.BatchObservabilityBeanPostProcessor : No Micrometer observation registry found, defaulting to ObservationRegistry.NOOP
+2024-12-09T19:32:15.605+09:00  INFO 2856 --- [cafe] [restartedMain] .c.a.BatchObservabilityBeanPostProcessor : No Micrometer observation registry found, defaulting to ObservationRegistry.NOOP
+2024-12-09T19:32:15.745+09:00  WARN 2856 --- [cafe] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-09T19:32:15.766+09:00  INFO 2856 --- [cafe] [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2024-12-09T19:32:16.460+09:00  INFO 2856 --- [cafe] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-09T19:32:16.501+09:00  INFO 2856 --- [cafe] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-12-09T19:32:16.518+09:00  INFO 2856 --- [cafe] [restartedMain] org.programmer.cafe.CafeApplication      : Started CafeApplication in 7.512 seconds (process running for 8.304)
+2024-12-09T19:32:20.047+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] launched with the following parameters: [{'timestamp':'{value=1733740340016, type=class java.lang.Long, identifying=true}'}]
+2024-12-09T19:32:20.065+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.job.SimpleStepHandler     : Executing step: [updateStatusStep]
+2024-12-09T19:32:20.075+09:00  INFO 2856 --- [cafe] [scheduling-1] o.programmer.cafe.email.BatchJobConfig   : Reader: 상태가 COMPLETED인 주문 읽기...
+2024-12-09T19:32:20.187+09:00 DEBUG 2856 --- [cafe] [scheduling-1] org.hibernate.SQL                        : select o1_0.id,o1_0.address,o1_0.address_detail,o1_0.created_at,o1_0.item_image,o1_0.item_name,o1_0.name,o1_0.status,o1_0.total_price,o1_0.updated_at,o1_0.user_id,o1_0.zipcode from orders o1_0 where o1_0.status=?
+2024-12-09T19:32:20.207+09:00  INFO 2856 --- [cafe] [scheduling-1] o.programmer.cafe.email.BatchJobConfig   : COMPLETED인 주문이 없습니다.
+2024-12-09T19:32:20.213+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.step.AbstractStep         : Step: [updateStatusStep] executed in 147ms
+2024-12-09T19:32:20.220+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] completed with the following parameters: [{'timestamp':'{value=1733740340016, type=class java.lang.Long, identifying=true}'}] and the following status: [COMPLETED] in 163ms
+2024-12-09T19:32:25.007+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] launched with the following parameters: [{'timestamp':'{value=1733740345002, type=class java.lang.Long, identifying=true}'}]
+2024-12-09T19:32:25.013+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.job.SimpleStepHandler     : Executing step: [updateStatusStep]
+2024-12-09T19:32:25.018+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.step.AbstractStep         : Step: [updateStatusStep] executed in 4ms
+2024-12-09T19:32:25.023+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] completed with the following parameters: [{'timestamp':'{value=1733740345002, type=class java.lang.Long, identifying=true}'}] and the following status: [COMPLETED] in 13ms
+2024-12-09T19:32:30.022+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] launched with the following parameters: [{'timestamp':'{value=1733740350002, type=class java.lang.Long, identifying=true}'}]
+2024-12-09T19:32:30.031+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.job.SimpleStepHandler     : Executing step: [updateStatusStep]
+2024-12-09T19:32:30.039+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.step.AbstractStep         : Step: [updateStatusStep] executed in 6ms
+2024-12-09T19:32:30.045+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] completed with the following parameters: [{'timestamp':'{value=1733740350002, type=class java.lang.Long, identifying=true}'}] and the following status: [COMPLETED] in 19ms
+2024-12-09T19:32:35.013+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] launched with the following parameters: [{'timestamp':'{value=1733740355002, type=class java.lang.Long, identifying=true}'}]
+2024-12-09T19:32:35.018+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.job.SimpleStepHandler     : Executing step: [updateStatusStep]
+2024-12-09T19:32:35.022+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.step.AbstractStep         : Step: [updateStatusStep] executed in 3ms
+2024-12-09T19:32:35.028+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] completed with the following parameters: [{'timestamp':'{value=1733740355002, type=class java.lang.Long, identifying=true}'}] and the following status: [COMPLETED] in 12ms
+2024-12-09T19:32:40.013+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] launched with the following parameters: [{'timestamp':'{value=1733740360001, type=class java.lang.Long, identifying=true}'}]
+2024-12-09T19:32:40.019+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.job.SimpleStepHandler     : Executing step: [updateStatusStep]
+2024-12-09T19:32:40.024+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.step.AbstractStep         : Step: [updateStatusStep] executed in 5ms
+2024-12-09T19:32:40.031+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] completed with the following parameters: [{'timestamp':'{value=1733740360001, type=class java.lang.Long, identifying=true}'}] and the following status: [COMPLETED] in 16ms
+2024-12-09T19:32:45.006+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] launched with the following parameters: [{'timestamp':'{value=1733740365001, type=class java.lang.Long, identifying=true}'}]
+2024-12-09T19:32:45.011+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.job.SimpleStepHandler     : Executing step: [updateStatusStep]
+2024-12-09T19:32:45.016+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.step.AbstractStep         : Step: [updateStatusStep] executed in 3ms
+2024-12-09T19:32:45.020+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] completed with the following parameters: [{'timestamp':'{value=1733740365001, type=class java.lang.Long, identifying=true}'}] and the following status: [COMPLETED] in 12ms
+2024-12-09T19:32:50.013+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] launched with the following parameters: [{'timestamp':'{value=1733740370001, type=class java.lang.Long, identifying=true}'}]
+2024-12-09T19:32:50.018+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.job.SimpleStepHandler     : Executing step: [updateStatusStep]
+2024-12-09T19:32:50.022+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.step.AbstractStep         : Step: [updateStatusStep] executed in 3ms
+2024-12-09T19:32:50.027+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] completed with the following parameters: [{'timestamp':'{value=1733740370001, type=class java.lang.Long, identifying=true}'}] and the following status: [COMPLETED] in 11ms
+2024-12-09T19:32:55.013+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] launched with the following parameters: [{'timestamp':'{value=1733740375001, type=class java.lang.Long, identifying=true}'}]
+2024-12-09T19:32:55.017+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.job.SimpleStepHandler     : Executing step: [updateStatusStep]
+2024-12-09T19:32:55.021+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.step.AbstractStep         : Step: [updateStatusStep] executed in 2ms
+2024-12-09T19:32:55.026+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] completed with the following parameters: [{'timestamp':'{value=1733740375001, type=class java.lang.Long, identifying=true}'}] and the following status: [COMPLETED] in 11ms
+2024-12-09T19:33:00.005+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] launched with the following parameters: [{'timestamp':'{value=1733740380000, type=class java.lang.Long, identifying=true}'}]
+2024-12-09T19:33:00.009+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.job.SimpleStepHandler     : Executing step: [updateStatusStep]
+2024-12-09T19:33:00.014+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.step.AbstractStep         : Step: [updateStatusStep] executed in 3ms
+2024-12-09T19:33:00.019+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] completed with the following parameters: [{'timestamp':'{value=1733740380000, type=class java.lang.Long, identifying=true}'}] and the following status: [COMPLETED] in 13ms
+2024-12-09T19:33:05.011+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] launched with the following parameters: [{'timestamp':'{value=1733740385000, type=class java.lang.Long, identifying=true}'}]
+2024-12-09T19:33:05.017+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.job.SimpleStepHandler     : Executing step: [updateStatusStep]
+2024-12-09T19:33:05.023+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.step.AbstractStep         : Step: [updateStatusStep] executed in 5ms
+2024-12-09T19:33:05.029+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] completed with the following parameters: [{'timestamp':'{value=1733740385000, type=class java.lang.Long, identifying=true}'}] and the following status: [COMPLETED] in 15ms
+2024-12-09T19:33:10.005+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] launched with the following parameters: [{'timestamp':'{value=1733740390001, type=class java.lang.Long, identifying=true}'}]
+2024-12-09T19:33:10.012+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.job.SimpleStepHandler     : Executing step: [updateStatusStep]
+2024-12-09T19:33:10.017+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.step.AbstractStep         : Step: [updateStatusStep] executed in 4ms
+2024-12-09T19:33:10.021+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] completed with the following parameters: [{'timestamp':'{value=1733740390001, type=class java.lang.Long, identifying=true}'}] and the following status: [COMPLETED] in 14ms
+2024-12-09T19:33:15.006+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] launched with the following parameters: [{'timestamp':'{value=1733740395002, type=class java.lang.Long, identifying=true}'}]
+2024-12-09T19:33:15.010+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.job.SimpleStepHandler     : Executing step: [updateStatusStep]
+2024-12-09T19:33:15.014+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.step.AbstractStep         : Step: [updateStatusStep] executed in 3ms
+2024-12-09T19:33:15.018+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] completed with the following parameters: [{'timestamp':'{value=1733740395002, type=class java.lang.Long, identifying=true}'}] and the following status: [COMPLETED] in 11ms
+2024-12-09T19:33:16.201+09:00  INFO 2856 --- [cafe] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-09T19:33:16.201+09:00  INFO 2856 --- [cafe] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-09T19:33:16.202+09:00  INFO 2856 --- [cafe] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-09T19:33:16.676+09:00 ERROR 2856 --- [cafe] [http-nio-8080-exec-5] o.p.c.exception.GlobalExceptionHandler   : [Exception] message: No static resource favicon.ico.,class org.springframework.web.servlet.resource.NoResourceFoundException
+2024-12-09T19:33:16.748+09:00  WARN 2856 --- [cafe] [http-nio-8080-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2024-12-09T19:33:20.006+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] launched with the following parameters: [{'timestamp':'{value=1733740400002, type=class java.lang.Long, identifying=true}'}]
+2024-12-09T19:33:20.011+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.job.SimpleStepHandler     : Executing step: [updateStatusStep]
+2024-12-09T19:33:20.015+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.step.AbstractStep         : Step: [updateStatusStep] executed in 4ms
+2024-12-09T19:33:20.019+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] completed with the following parameters: [{'timestamp':'{value=1733740400002, type=class java.lang.Long, identifying=true}'}] and the following status: [COMPLETED] in 10ms
+2024-12-09T19:33:20.377+09:00  INFO 2856 --- [cafe] [http-nio-8080-exec-6] o.p.cafe.controller.DeliveryController   : Received request: org.programmer.cafe.domain.deliveryaddress.entity.dto.DeliveryAddressRequest@477dede5
+2024-12-09T19:33:20.377+09:00  INFO 2856 --- [cafe] [http-nio-8080-exec-6] o.p.cafe.controller.DeliveryController   : Received name: null
+2024-12-09T19:33:20.378+09:00  INFO 2856 --- [cafe] [http-nio-8080-exec-6] o.p.cafe.controller.DeliveryController   : [POST] /api/delivery - Delivery address: org.programmer.cafe.domain.deliveryaddress.entity.dto.DeliveryAddressRequest@4fd05f81
+2024-12-09T19:33:20.426+09:00 DEBUG 2856 --- [cafe] [http-nio-8080-exec-6] org.hibernate.SQL                        : INSERT INTO delivery_addresses (name, zipcode, address, address_detail, default_yn, user_id) VALUES (?, ?, ?, ?, ?, ?)
+2024-12-09T19:33:20.427+09:00  WARN 2856 --- [cafe] [http-nio-8080-exec-6] o.m.jdbc.message.server.ErrorPacket      : Error: 1048-23000: Column 'name' cannot be null
+2024-12-09T19:33:20.429+09:00  WARN 2856 --- [cafe] [http-nio-8080-exec-6] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1048, SQLState: 23000
+2024-12-09T19:33:20.429+09:00 ERROR 2856 --- [cafe] [http-nio-8080-exec-6] o.h.engine.jdbc.spi.SqlExceptionHelper   : (conn=709) Column 'name' cannot be null
+2024-12-09T19:33:20.436+09:00 ERROR 2856 --- [cafe] [http-nio-8080-exec-6] o.p.c.exception.GlobalExceptionHandler   : [Exception] message: JDBC exception executing SQL [INSERT INTO delivery_addresses (name, zipcode, address, address_detail, default_yn, user_id) VALUES (?, ?, ?, ?, ?, ?)] [(conn=709) Column 'name' cannot be null] [n/a]; SQL [n/a]; constraint [null],class org.springframework.dao.DataIntegrityViolationException
+
+org.hibernate.exception.ConstraintViolationException: JDBC exception executing SQL [INSERT INTO delivery_addresses (name, zipcode, address, address_detail, default_yn, user_id) VALUES (?, ?, ?, ?, ?, ?)] [(conn=709) Column 'name' cannot be null] [n/a]
+	at org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:62) ~[hibernate-core-6.6.2.Final.jar:6.6.2.Final]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:58) ~[hibernate-core-6.6.2.Final.jar:6.6.2.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108) ~[hibernate-core-6.6.2.Final.jar:6.6.2.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:94) ~[hibernate-core-6.6.2.Final.jar:6.6.2.Final]
+	at org.hibernate.sql.exec.internal.StandardJdbcMutationExecutor.execute(StandardJdbcMutationExecutor.java:104) ~[hibernate-core-6.6.2.Final.jar:6.6.2.Final]
+	at org.hibernate.query.sql.internal.NativeNonSelectQueryPlanImpl.executeUpdate(NativeNonSelectQueryPlanImpl.java:76) ~[hibernate-core-6.6.2.Final.jar:6.6.2.Final]
+	at org.hibernate.query.sql.internal.NativeQueryImpl.doExecuteUpdate(NativeQueryImpl.java:895) ~[hibernate-core-6.6.2.Final.jar:6.6.2.Final]
+	at org.hibernate.query.spi.AbstractQuery.executeUpdate(AbstractQuery.java:651) ~[hibernate-core-6.6.2.Final.jar:6.6.2.Final]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution$ModifyingExecution.doExecute(JpaQueryExecution.java:267) ~[spring-data-jpa-3.4.0.jar:3.4.0]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution.execute(JpaQueryExecution.java:93) ~[spring-data-jpa-3.4.0.jar:3.4.0]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.doExecute(AbstractJpaQuery.java:152) ~[spring-data-jpa-3.4.0.jar:3.4.0]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.execute(AbstractJpaQuery.java:140) ~[spring-data-jpa-3.4.0.jar:3.4.0]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:170) ~[spring-data-commons-3.4.0.jar:3.4.0]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:158) ~[spring-data-commons-3.4.0.jar:3.4.0]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:170) ~[spring-data-commons-3.4.0.jar:3.4.0]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:149) ~[spring-data-commons-3.4.0.jar:3.4.0]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.2.0.jar:6.2.0]
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:69) ~[spring-data-commons-3.4.0.jar:3.4.0]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.2.0.jar:6.2.0]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380) ~[spring-tx-6.2.0.jar:6.2.0]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.2.0.jar:6.2.0]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.2.0.jar:6.2.0]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:138) ~[spring-tx-6.2.0.jar:6.2.0]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.2.0.jar:6.2.0]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:136) ~[spring-data-jpa-3.4.0.jar:3.4.0]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.2.0.jar:6.2.0]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:223) ~[spring-aop-6.2.0.jar:6.2.0]
+	at jdk.proxy4/jdk.proxy4.$Proxy168.saveDeliveryAddress(Unknown Source) ~[na:na]
+	at org.programmer.cafe.domain.deliveryaddress.service.DeliveryAddressService.attemptSave(DeliveryAddressService.java:120) ~[main/:na]
+	at org.programmer.cafe.domain.deliveryaddress.service.DeliveryAddressService.putAddress(DeliveryAddressService.java:67) ~[main/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569) ~[na:na]
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359) ~[spring-aop-6.2.0.jar:6.2.0]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.2.0.jar:6.2.0]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.2.0.jar:6.2.0]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380) ~[spring-tx-6.2.0.jar:6.2.0]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.2.0.jar:6.2.0]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.2.0.jar:6.2.0]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727) ~[spring-aop-6.2.0.jar:6.2.0]
+	at org.programmer.cafe.domain.deliveryaddress.service.DeliveryAddressService$$SpringCGLIB$$0.putAddress(<generated>) ~[main/:na]
+	at org.programmer.cafe.controller.DeliveryController.addDeliveryAddress(DeliveryController.java:60) ~[main/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255) ~[spring-web-6.2.0.jar:6.2.0]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188) ~[spring-web-6.2.0.jar:6.2.0]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.2.0.jar:6.2.0]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986) ~[spring-webmvc-6.2.0.jar:6.2.0]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891) ~[spring-webmvc-6.2.0.jar:6.2.0]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.2.0.jar:6.2.0]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088) ~[spring-webmvc-6.2.0.jar:6.2.0]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978) ~[spring-webmvc-6.2.0.jar:6.2.0]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.2.0.jar:6.2.0]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.2.0.jar:6.2.0]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.33.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.2.0.jar:6.2.0]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.33.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.33.jar:10.1.33]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.33.jar:10.1.33]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.33.jar:10.1.33]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.33.jar:10.1.33]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.33.jar:10.1.33]
+	at org.springframework.web.servlet.resource.ResourceUrlEncodingFilter.doFilter(ResourceUrlEncodingFilter.java:66) ~[spring-webmvc-6.2.0.jar:6.2.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.33.jar:10.1.33]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.33.jar:10.1.33]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.2.0.jar:6.2.0]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.0.jar:6.2.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.33.jar:10.1.33]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.33.jar:10.1.33]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.2.0.jar:6.2.0]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.0.jar:6.2.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.33.jar:10.1.33]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.33.jar:10.1.33]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.2.0.jar:6.2.0]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.0.jar:6.2.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.33.jar:10.1.33]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.33.jar:10.1.33]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.33.jar:10.1.33]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.33.jar:10.1.33]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.33.jar:10.1.33]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.33.jar:10.1.33]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.33.jar:10.1.33]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.33.jar:10.1.33]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.33.jar:10.1.33]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397) ~[tomcat-embed-core-10.1.33.jar:10.1.33]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.33.jar:10.1.33]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.33.jar:10.1.33]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.33.jar:10.1.33]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.33.jar:10.1.33]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.33.jar:10.1.33]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.33.jar:10.1.33]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.33.jar:10.1.33]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+Caused by: java.sql.SQLIntegrityConstraintViolationException: (conn=709) Column 'name' cannot be null
+	at org.mariadb.jdbc.export.ExceptionFactory.createException(ExceptionFactory.java:297) ~[mariadb-java-client-3.4.1.jar:na]
+	at org.mariadb.jdbc.export.ExceptionFactory.create(ExceptionFactory.java:378) ~[mariadb-java-client-3.4.1.jar:na]
+	at org.mariadb.jdbc.message.ClientMessage.readPacket(ClientMessage.java:189) ~[mariadb-java-client-3.4.1.jar:na]
+	at org.mariadb.jdbc.client.impl.StandardClient.readPacket(StandardClient.java:1235) ~[mariadb-java-client-3.4.1.jar:na]
+	at org.mariadb.jdbc.client.impl.StandardClient.readResults(StandardClient.java:1174) ~[mariadb-java-client-3.4.1.jar:na]
+	at org.mariadb.jdbc.client.impl.StandardClient.readResponse(StandardClient.java:1093) ~[mariadb-java-client-3.4.1.jar:na]
+	at org.mariadb.jdbc.client.impl.StandardClient.execute(StandardClient.java:1017) ~[mariadb-java-client-3.4.1.jar:na]
+	at org.mariadb.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:101) ~[mariadb-java-client-3.4.1.jar:na]
+	at org.mariadb.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:313) ~[mariadb-java-client-3.4.1.jar:na]
+	at org.mariadb.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:290) ~[mariadb-java-client-3.4.1.jar:na]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61) ~[HikariCP-5.1.0.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java) ~[HikariCP-5.1.0.jar:na]
+	at org.hibernate.sql.exec.internal.StandardJdbcMutationExecutor.execute(StandardJdbcMutationExecutor.java:90) ~[hibernate-core-6.6.2.Final.jar:6.6.2.Final]
+	... 91 common frames omitted
+
+2024-12-09T19:33:20.446+09:00  WARN 2856 --- [cafe] [http-nio-8080-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.dao.DataIntegrityViolationException: JDBC exception executing SQL [INSERT INTO delivery_addresses (name, zipcode, address, address_detail, default_yn, user_id) VALUES (?, ?, ?, ?, ?, ?)] [(conn=709) Column 'name' cannot be null] [n/a]; SQL [n/a]; constraint [null]]
+2024-12-09T19:33:25.005+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] launched with the following parameters: [{'timestamp':'{value=1733740405001, type=class java.lang.Long, identifying=true}'}]
+2024-12-09T19:33:25.011+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.job.SimpleStepHandler     : Executing step: [updateStatusStep]
+2024-12-09T19:33:25.016+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.step.AbstractStep         : Step: [updateStatusStep] executed in 5ms
+2024-12-09T19:33:25.021+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] completed with the following parameters: [{'timestamp':'{value=1733740405001, type=class java.lang.Long, identifying=true}'}] and the following status: [COMPLETED] in 14ms
+2024-12-09T19:33:30.003+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] launched with the following parameters: [{'timestamp':'{value=1733740410000, type=class java.lang.Long, identifying=true}'}]
+2024-12-09T19:33:30.008+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.job.SimpleStepHandler     : Executing step: [updateStatusStep]
+2024-12-09T19:33:30.013+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.step.AbstractStep         : Step: [updateStatusStep] executed in 3ms
+2024-12-09T19:33:30.019+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] completed with the following parameters: [{'timestamp':'{value=1733740410000, type=class java.lang.Long, identifying=true}'}] and the following status: [COMPLETED] in 12ms
+2024-12-09T19:33:35.007+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] launched with the following parameters: [{'timestamp':'{value=1733740415001, type=class java.lang.Long, identifying=true}'}]
+2024-12-09T19:33:35.013+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.job.SimpleStepHandler     : Executing step: [updateStatusStep]
+2024-12-09T19:33:35.018+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.step.AbstractStep         : Step: [updateStatusStep] executed in 4ms
+2024-12-09T19:33:35.023+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] completed with the following parameters: [{'timestamp':'{value=1733740415001, type=class java.lang.Long, identifying=true}'}] and the following status: [COMPLETED] in 14ms
+2024-12-09T19:33:40.004+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] launched with the following parameters: [{'timestamp':'{value=1733740420001, type=class java.lang.Long, identifying=true}'}]
+2024-12-09T19:33:40.009+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.job.SimpleStepHandler     : Executing step: [updateStatusStep]
+2024-12-09T19:33:40.012+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.step.AbstractStep         : Step: [updateStatusStep] executed in 2ms
+2024-12-09T19:33:40.016+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] completed with the following parameters: [{'timestamp':'{value=1733740420001, type=class java.lang.Long, identifying=true}'}] and the following status: [COMPLETED] in 9ms
+2024-12-09T19:33:45.005+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] launched with the following parameters: [{'timestamp':'{value=1733740425000, type=class java.lang.Long, identifying=true}'}]
+2024-12-09T19:33:45.010+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.job.SimpleStepHandler     : Executing step: [updateStatusStep]
+2024-12-09T19:33:45.016+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.step.AbstractStep         : Step: [updateStatusStep] executed in 4ms
+2024-12-09T19:33:45.019+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] completed with the following parameters: [{'timestamp':'{value=1733740425000, type=class java.lang.Long, identifying=true}'}] and the following status: [COMPLETED] in 13ms
+2024-12-09T19:33:50.004+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] launched with the following parameters: [{'timestamp':'{value=1733740430002, type=class java.lang.Long, identifying=true}'}]
+2024-12-09T19:33:50.010+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.job.SimpleStepHandler     : Executing step: [updateStatusStep]
+2024-12-09T19:33:50.014+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.step.AbstractStep         : Step: [updateStatusStep] executed in 3ms
+2024-12-09T19:33:50.017+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] completed with the following parameters: [{'timestamp':'{value=1733740430002, type=class java.lang.Long, identifying=true}'}] and the following status: [COMPLETED] in 11ms
+2024-12-09T19:33:55.006+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] launched with the following parameters: [{'timestamp':'{value=1733740435002, type=class java.lang.Long, identifying=true}'}]
+2024-12-09T19:33:55.011+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.job.SimpleStepHandler     : Executing step: [updateStatusStep]
+2024-12-09T19:33:55.014+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.step.AbstractStep         : Step: [updateStatusStep] executed in 3ms
+2024-12-09T19:33:55.019+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] completed with the following parameters: [{'timestamp':'{value=1733740435002, type=class java.lang.Long, identifying=true}'}] and the following status: [COMPLETED] in 12ms
+2024-12-09T19:34:00.012+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] launched with the following parameters: [{'timestamp':'{value=1733740440001, type=class java.lang.Long, identifying=true}'}]
+2024-12-09T19:34:00.017+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.job.SimpleStepHandler     : Executing step: [updateStatusStep]
+2024-12-09T19:34:00.018+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.step.AbstractStep         : Step: [updateStatusStep] executed in 1ms
+2024-12-09T19:34:00.024+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] completed with the following parameters: [{'timestamp':'{value=1733740440001, type=class java.lang.Long, identifying=true}'}] and the following status: [COMPLETED] in 10ms
+2024-12-09T19:34:05.012+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] launched with the following parameters: [{'timestamp':'{value=1733740445000, type=class java.lang.Long, identifying=true}'}]
+2024-12-09T19:34:05.016+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.job.SimpleStepHandler     : Executing step: [updateStatusStep]
+2024-12-09T19:34:05.019+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.step.AbstractStep         : Step: [updateStatusStep] executed in 2ms
+2024-12-09T19:34:05.024+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] completed with the following parameters: [{'timestamp':'{value=1733740445000, type=class java.lang.Long, identifying=true}'}] and the following status: [COMPLETED] in 11ms
+2024-12-09T19:34:10.010+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] launched with the following parameters: [{'timestamp':'{value=1733740450000, type=class java.lang.Long, identifying=true}'}]
+2024-12-09T19:34:10.014+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.job.SimpleStepHandler     : Executing step: [updateStatusStep]
+2024-12-09T19:34:10.019+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.batch.core.step.AbstractStep         : Step: [updateStatusStep] executed in 3ms
+2024-12-09T19:34:10.024+09:00  INFO 2856 --- [cafe] [scheduling-1] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=updateStatusJob]] completed with the following parameters: [{'timestamp':'{value=1733740450000, type=class java.lang.Long, identifying=true}'}] and the following status: [COMPLETED] in 11ms
+2024-12-09T19:34:11.090+09:00  INFO 2856 --- [cafe] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2024-12-09T19:34:11.336+09:00  INFO 2856 --- [cafe] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2024-12-09T19:34:11.349+09:00  INFO 2856 --- [cafe] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-09T19:34:11.412+09:00  INFO 2856 --- [cafe] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-09T19:34:11.424+09:00  INFO 2856 --- [cafe] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

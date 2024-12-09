@@ -38,7 +38,6 @@ public class DeliveryWebController {
 
     @GetMapping("/{id}/create")
     public ModelAndView deliveryCreate(ModelAndView mv, @PathVariable long id) {
-        // TODO : 1 -> id 로 바꿔야 함.
         mv.addObject("id", id);
         mv.setViewName("/delivery/create");
         return mv;
@@ -46,8 +45,8 @@ public class DeliveryWebController {
 
     @GetMapping("/{id}/edit")
     public ModelAndView deliveryEdit(ModelAndView mv, @PathVariable long id) {
-        // TODO : 1 -> id 로 바꿔야 함.
-        mv.addObject("id", 1);
+        mv.addObject("id", id);
+        mv.addObject("userId", das.getUserIdById(id));
         mv.setViewName("/delivery/edit");
         return mv;
     }

@@ -52,6 +52,10 @@ public class DeliveryAddressService {
                 .toList();
     }
 
+    public Long getUserIdById(Long Id) {
+        return deliveryRepository.getUserIdById(Id);
+    }
+
     /**
      * 배송 주소를 추가
      *
@@ -117,6 +121,10 @@ public class DeliveryAddressService {
      */
     @Transactional
     protected Boolean attemptSave(DeliveryAddressRequest request) {
+        if (deliveryAddressRepository.existsByUserIdAndDefaultYn(request.getUserId(), true)) {
+            throw new BadRequestException(ErrorCode.DEFAULT_IS_ONLY);
+        }
+
         int isSaved = deliveryRepository.saveDeliveryAddress(request);
 
         if (isSaved > 0) {

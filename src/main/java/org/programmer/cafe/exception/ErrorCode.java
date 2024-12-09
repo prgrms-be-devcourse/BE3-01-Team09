@@ -44,6 +44,8 @@ public enum ErrorCode { // 예외 발생시, body에 실어 날려줄 상태, co
     //-5000: 주문 조회
     ORDER_ALREADY_CANCELED(400, -5000, "이미 취소 된 주문입니다."),
     ORDER_ALREADY_STARTED(400, -5001, "이미 시작 된 배송입니다."),
+    DEFAULT_IS_ONLY(400,-4005,"한 값만 default일 수 있습니다."),
+    //-5000: 비즈니스 3
 
     //-6000: 상품
     NONEXISTENT_ITEM(400, -6000, "존재하지 않는 상품입니다."),

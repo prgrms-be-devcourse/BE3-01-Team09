@@ -44,8 +44,18 @@ public class DeliveryController {
     }
 
     @PostMapping()
-    public ResponseEntity<ApiResponse<Object>> addDeliveryAddress(@RequestBody DeliveryAddressRequest request) {
-        boolean isSuccessful = deliveryAddressService.putAddress(request);
+    public ResponseEntity<ApiResponse<Object>> addDeliveryAddress(@ModelAttribute DeliveryAddressRequest request) {
+        System.out.println(request.toString());
+        DeliveryAddressRequest addressRequest = new DeliveryAddressRequest(
+                request.getId(),
+                request.getName(),
+                request.getZipcode(),
+                request.getAddress(),
+                request.getAddressDetail(),
+                request.getDefaultYn() != null && request.getDefaultYn() ? "Y" : "N",
+                request.getUserId()
+        );
+        boolean isSuccessful = deliveryAddressService.putAddress(addressRequest);
 
         try {
             if (isSuccessful) {
@@ -58,6 +68,7 @@ public class DeliveryController {
                         .body(ApiResponse.createErrorWithMsg("업데이트 실패"));
             }
         } catch (Exception e) {
+            log.error("Error adding delivery address for userId: {}: {}", request.getUserId(), e.getMessage(), e);
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
                     .body(ApiResponse.createError(e.getMessage()));
@@ -66,7 +77,17 @@ public class DeliveryController {
 
     @PatchMapping()
     public ResponseEntity<ApiResponse<Object>> updateDeliveryAddress(@RequestBody DeliveryAddressRequest request) {
-        boolean isSuccessful = deliveryAddressService.updateAddress(request);
+        System.out.println(request.toString());
+        DeliveryAddressRequest addressRequest = new DeliveryAddressRequest(
+                request.getId(),
+                request.getName(),
+                request.getZipcode(),
+                request.getAddress(),
+                request.getAddressDetail(),
+                request.getDefaultYn() != null && request.getDefaultYn() ? "Y" : "N",
+                request.getUserId()
+        );
+        boolean isSuccessful = deliveryAddressService.updateAddress(addressRequest);
 
         try {
             if (isSuccessful) {

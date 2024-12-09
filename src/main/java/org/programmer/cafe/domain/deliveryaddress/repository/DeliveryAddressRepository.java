@@ -34,4 +34,8 @@ public interface DeliveryAddressRepository extends JpaRepository<DeliveryAddress
 
 
     int deleteDeliveryAddressById(Long id);
+
+    boolean existsByUserIdAndDefaultYn(Long userId, boolean defaultYn);
+
+    Long getUserIdById(Long id);
 }
