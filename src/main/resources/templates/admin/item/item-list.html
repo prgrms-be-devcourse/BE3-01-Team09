@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8"/>
+  <link href="/globals.css" rel="stylesheet"/>
+  <link href="/styleguide.css" rel="stylesheet"/>
+  <link href="/admin/item/list.css" rel="stylesheet"/>
+  <title>관리자 - 상품 목록</title>
+</head>
+<body>
+<div class="PAGE">
+  <div class="div">
+    <div class="header">
+      <div class="frame">
+        <div class="logo">
+          <a class="text-wrapper" href="/">Grids & Circles</a>
+        </div>
+        <div class="frame-2">
+          <div class="div-wrapper">
+            <a class="text-wrapper-2" href="#">Home</a>
+          </div>
+          <div class="header-2">
+            <a class="text-wrapper-2"
+               href="https://github.com/prgrms-be-devcourse/NBE3-01-Team09"
+               target="_blank">Contact</a>
+          </div>
+          <div class="div-wrapper">
+            <div class="text-wrapper-2">About</div>
+          </div>
+          <div class="header-3">
+            <div class="text-wrapper-2">Sign Up</div>
+          </div>
+        </div>
+      </div>
+      <div class="frame-3">
+        <div class="frame-4">
+          <img class="img" src="https://c.animaapp.com/QemcTLqk/img/wishlist.svg"/>
+          <div class="with-buy"></div>
+          <img class="img" src="https://c.animaapp.com/QemcTLqk/img/user.svg"/>
+        </div>
+      </div>
+    </div>
+    <div class="line"></div>
+    <div class="roadmap">
+      <div class="account">Home</div>
+      <img class="line-2" src="https://c.animaapp.com/QemcTLqk/img/line-13.svg"/>
+      <div class="nothing">My Account</div>
+    </div>
+    <div class="text-wrapper-3">상품관리</div>
+    <div class="frame-5">
+      <a class="text-wrapper-5" href="#">상품목록</a>
+    </div>
+    <div class="text-wrapper-4">회원관리</div>
+    <div class="frame-6">
+      <a class="text-wrapper-6" href="/admins/users">회원목록</a>
+    </div>
+    <div class="text-wrapper-7">주문관리</div>
+    <div class="frame-7">
+      <a class="text-wrapper-6" href="/admins/orders">주문목록</a>
+    </div>
+    <div class="group">
+      <div class="text-wrapper-8">제품명</div>
+      <div class="text-wrapper-9">재고</div>
+      <div class="text-wrapper-10">상태</div>
+      <div class="text-wrapper-11">가격</div>
+      <div class="text-wrapper-12">등록일</div>
+      <div class="text-wrapper-13">수정일</div>
+    </div>
+    <div class="list-container">
+      <div class="overlap">
+        <div class="navbar-wrapper" th:each="item : ${pagination}">
+          <div class="navbar">
+            <div class="item-info">
+              <img alt="상품 이미지" class="element"
+                   th:src="${item.image != null ? '/api/admins/' + item.image.split('/')[1] : '/noimage.png'}">
+              <div class="text-wrapper-14" th:text="${item.name}">상품명</div>
+              <div class="text-wrapper-15" th:text="${item.stock}">재고</div>
+              <div class="text-wrapper-16" th:text="${item.status.getStatus()}">상태</div>
+              <div class="text-wrapper-17" th:text="${item.price + '원'}">가격</div>
+              <div class="text-wrapper-18" th:text="${item.createdAt}">24.11.29</div>
+              <div class="text-wrapper-19" th:text="${item.updatedAt}">24.11.29</div>
+            </div>
+            <div class="actions">
+              <a class="button-edit" th:href="@{/admins/items/{id}/update(id=${item.id})}"><label
+                  class="view-all-products">수정</label></a>
+              <button class="button-delete"
+                      th:onclick="'deleteItem(' + ${item.id} +')'"><label
+                  class="view-all-products">삭제</label>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 페이지네이션 -->
+    <div class="pagination">
+      <!-- 페이지 번호 -->
+      <span th:each="i : ${#numbers.sequence(1, pagination.totalPages)}">
+      <a th:classappend="${pagination.number + 1 == i ? 'active' : ''}"
+         th:href="@{/admins/items(page=${i - 1}, size=${pagination.size})}"
+         th:text="${i}"></a>
+      </span>
+    </div>
+    <a class="item-add" href="items/create">
+      <label class="view-all-products-2">상품 추가</label>
+    </a>
+  </div>
+</div>
+<script>
+  const deleteItem = async (id) => {
+    const check = confirm(`삭제 하시겠습니까?`)
+    if (!check) {
+      return;
+    }
+    const response = await fetch(`http://localhost:8080/api/admins/items/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("상품 삭제 실패");
+    }
+    location.reload();
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8"/>
+  <link href="/globals.css" rel="stylesheet"/>
+  <link href="/styleguide.css" rel="stylesheet"/>
+  <link href="/order/list.css" rel="stylesheet"/>
+  <title>주문 목록</title>
+</head>
+<body>
+<div class="PAGE">
+  <div class="div">
+    <div class="header">
+      <div class="frame">
+        <div class="logo">
+          <a class="text-wrapper" href="/">Grids & Circles</a>
+        </div>
+        <div class="frame-2">
+          <div class="div-wrapper">
+            <a class="text-wrapper-2" href="#">Home</a>
+          </div>
+          <div class="header-2">
+            <a class="text-wrapper-2"
+               href="https://github.com/prgrms-be-devcourse/NBE3-01-Team09"
+               target="_blank">Contact</a>
+          </div>
+          <div class="div-wrapper">
+            <div class="text-wrapper-2">About</div>
+          </div>
+          <div class="header-3">
+            <div class="text-wrapper-2">Sign Up</div>
+          </div>
+        </div>
+      </div>
+      <div class="frame-3">
+        <div class="frame-4">
+          <img class="img" src="https://c.animaapp.com/QemcTLqk/img/wishlist.svg"/>
+          <div class="with-buy"></div>
+          <img class="img" src="https://c.animaapp.com/QemcTLqk/img/user.svg"/>
+        </div>
+      </div>
+    </div>
+    <div class="line"></div>
+    <div class="roadmap">
+      <div class="account">Home</div>
+      <img class="line-2" src="https://c.animaapp.com/QemcTLqk/img/line-13.svg"/>
+      <div class="nothing">My Account</div>
+    </div>
+    <div class="text-wrapper-3">내 정보 관리</div>
+    <div class="frame-5">
+      <a class="text-wrapper-5" th:href="@{/users/{id}(id=${id})}">내 정보</a>
+      <a class="text-wrapper-6" th:href="@{/deliveries/{id}(id=${id})}">배송지 관리</a>
+    </div>
+    <div class="text-wrapper-4">내 주문</div>
+    <div class="frame-6">
+      <a class="text-wrapper-7" href="#">주문목록</a>
+    </div>
+    <div class="group">
+      <div class="text-wrapper-8">제품명</div>
+      <div class="text-wrapper-9">상태</div>
+      <div class="text-wrapper-10">수량</div>
+      <div class="text-wrapper-11">가격</div>
+      <div class="text-wrapper-12">날짜</div>
+    </div>
+    <div class="list-container">
+      <div class="overlap">
+        <!--        <div class="navbar-wrapper" th:each="item : ${pagination}">-->
+        <div class="navbar-wrapper">
+          <a class="navbar" th:href="@{/orders/{id}/detail/1(id=${id})}"> <!-- detail 다음엔 주문번호를 넣어주시면 됩니다 -->
+            <div class="item-info">
+              <!--              <img alt="상품 이미지" class="element"-->
+              <!--                   th:src="${item.image != null ? '/api/admins/' + item.image.split('/')[1] : '/noimage.png'}">-->
+              <!--              <div class="text-wrapper-14" th:text="${item.name}"></div>-->
+              <!--              <div class="text-wrapper-15" th:text="${item.stock}">재고</div>-->
+              <!--              <div class="text-wrapper-16" th:text="${item.status.getStatus()}">상태</div>-->
+              <!--              <div class="text-wrapper-17" th:text="${item.price + '원'}">가격</div>-->
+              <!--              <div class="text-wrapper-18" th:text="${item.createdAt}">24.11.29</div>-->
+              <img alt="상품 이미지" class="element" src="/banner.jpg">
+              <div class="text-wrapper-14">커피콩</div>
+              <div class="text-wrapper-15">주문 완료</div>
+              <div class="text-wrapper-16">1</div>
+              <div class="text-wrapper-17">20200원</div>
+              <div class="text-wrapper-18">2024-11-29</div>
+            </div>
+            <div class="actions">
+              <button class="button-cancel">
+                <label class="view-all-products">주문 취소</label>
+              </button>
+            </div>
+          </a>
+        </div>
+        <div class="navbar-wrapper">
+          <a class="navbar" th:href="@{/orders/{id}/detail/1(id=${id})}">
+            <div class="item-info">
+              <img alt="상품 이미지" class="element" src="/banner.jpg">
+              <div class="text-wrapper-14">커피콩</div>
+              <div class="text-wrapper-15">주문 완료</div>
+              <div class="text-wrapper-16">1</div>
+              <div class="text-wrapper-17">20200원</div>
+              <div class="text-wrapper-18">2024-11-29</div>
+            </div>
+            <div class="actions">
+              <button class="button-cancel">
+                <label class="view-all-products">주문 취소</label>
+              </button>
+            </div>
+          </a>
+        </div>
+        <div class="navbar-wrapper">
+          <a class="navbar" th:href="@{/orders/{id}/detail/1(id=${id})}">
+            <div class="item-info">
+              <img alt="상품 이미지" class="element" src="/banner.jpg">
+              <div class="text-wrapper-14">커피콩</div>
+              <div class="text-wrapper-15">주문 완료</div>
+              <div class="text-wrapper-16">1</div>
+              <div class="text-wrapper-17">20200원</div>
+              <div class="text-wrapper-18">2024-11-29</div>
+            </div>
+            <div class="actions">
+              <button class="button-cancel">
+                <label class="view-all-products">주문 취소</label>
+              </button>
+            </div>
+          </a>
+        </div>
+        <div class="navbar-wrapper">
+          <a class="navbar" th:href="@{/orders/{id}/detail/1(id=${id})}">
+            <div class="item-info">
+              <img alt="상품 이미지" class="element" src="/banner.jpg">
+              <div class="text-wrapper-14">커피콩</div>
+              <div class="text-wrapper-15">주문 완료</div>
+              <div class="text-wrapper-16">1</div>
+              <div class="text-wrapper-17">20200원</div>
+              <div class="text-wrapper-18">2024-11-29</div>
+            </div>
+            <div class="actions">
+              <button class="button-cancel">
+                <label class="view-all-products">주문 취소</label>
+              </button>
+            </div>
+          </a>
+        </div>
+        <div class="navbar-wrapper">
+          <a class="navbar" th:href="@{/orders/{id}/detail/1(id=${id})}">
+            <div class="item-info">
+              <img alt="상품 이미지" class="element" src="/banner.jpg">
+              <div class="text-wrapper-14">커피콩</div>
+              <div class="text-wrapper-15">주문 완료</div>
+              <div class="text-wrapper-16">1</div>
+              <div class="text-wrapper-17">20200원</div>
+              <div class="text-wrapper-18">2024-11-29</div>
+            </div>
+            <div class="actions">
+              <button class="button-cancel">
+                <label class="view-all-products">주문 취소</label>
+              </button>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 페이지네이션 -->
+    <div class="pagination">
+      <!-- 페이지 번호 -->
+      <!--      <span th:each="i : ${#numbers.sequence(1, pagination.totalPages)}">-->
+      <!--      <a th:classappend="${pagination.number + 1 == i ? 'active' : ''}"-->
+      <!--         th:href="@{/admins/items(page=${i - 1}, size=${pagination.size})}"-->
+      <!--         th:text="${i}"></a>-->
+      <!--      </span>-->
+      <div>1 2 3 4 5</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

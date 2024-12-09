@@ -27,4 +27,9 @@ public class UserSignupRequest {
     @Schema(description = "이름")
     @NotBlank(message = "null 또는 공백이 입력되었습니다.")
     private String name;
+
+    private String addressName;
+    private String zipcode;
+    private String address;
+    private String addressDetail;
 }

@@ -30,6 +30,21 @@ public class SecurityConfig {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final LogoutService logoutService;
 
+    private static final String[] PERMIT_URL_ARRAY = {
+        /* swagger*/
+        "/api-docs/**",
+        "/swagger-ui/**",
+        "/api/swagger-config",
+        "/api/logistics",
+        "/swagger-resources/**",
+        "/swagger-ui.html",
+        "/webjars/**",
+        /* Auth */
+        "/api/users/signup",
+        "/api/users/login",
+        "/api/users/admin/**"
+    };
+
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration)
         throws Exception {
@@ -43,7 +58,7 @@ public class SecurityConfig {
             .httpBasic(AbstractHttpConfigurer::disable)
             .formLogin(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests((authorize) -> authorize
-                .requestMatchers("/api/users/signup", "/api/users/login").permitAll()
+                .requestMatchers(PERMIT_URL_ARRAY).permitAll()
                 .requestMatchers("/api/admins/**").hasAuthority("ROLE_ADMIN")
                 .anyRequest().authenticated())
             .logout((logout) -> logout.logoutUrl("/api/users/logout")

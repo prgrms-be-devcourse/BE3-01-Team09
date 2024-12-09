@@ -1,7 +1,12 @@
 package org.programmer.cafe.exception;
 
+import jakarta.persistence.EntityNotFoundException;
+import java.io.IOException;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.programmer.cafe.global.response.ApiResponse;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -48,17 +53,6 @@ public class GlobalExceptionHandler {
                 .body(ApiResponse.createError(errorCode.getMessage()));
     }
 
-    // request body의 유효성 에러 400
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ApiResponse<Object>> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
-        log.error("[MethodArgumentNotValidException] message: {}", e.getMessage());
-        ErrorCode errorCode = ErrorCode.INVALID_REQUEST_BODY;
-        // 유효성 결과 message에 할당
-        String message = bindingResultErrorsCheck(e.getBindingResult());
-        return ResponseEntity.status(errorCode.getStatus())
-                .body(ApiResponse.createErrorWithMsg(message));
-    }
-
     // IllegalArgumentException
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<ApiResponse<Object>> handleIllegalArgumentException(IllegalArgumentException e) {
@@ -92,6 +86,30 @@ public class GlobalExceptionHandler {
                 .body(ApiResponse.createError(e.getErrorCode().getMessage()));
     }
 
+    // 유효성 검사 에러
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ApiResponse<Object>> handleValidationExceptions(
+        MethodArgumentNotValidException e) {
+        log.error("[MethodArgumentNotValidException] message: {}", e.getMessage());
+        final String errorMessage = e.getBindingResult().getAllErrors().stream()
+            .map(DefaultMessageSourceResolvable::getDefaultMessage)
+            .collect(Collectors.joining("\n"));
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiResponse.createError(errorMessage));
+    }
+
+    // Entity 조회 실패 시 에러
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<ApiResponse<Object>> handleEntityNotFoundException(EntityNotFoundException e) {
+        log.error("[EntityNotFoundException] message: {}", e.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ApiResponse.createError(e.getMessage()));
+    }
+
+    @ExceptionHandler(IOException.class)
+    public ResponseEntity<ApiResponse<Object>> handleIOException(IOException e) {
+        log.error("[IOException] message: {}", e.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ApiResponse.createError(e.getMessage()));
+    }
+
     // 위의 경우를 제외한 모든 에러 500
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiResponse<Object>> handleException(Exception e) {
@@ -99,5 +117,13 @@ public class GlobalExceptionHandler {
         ErrorCode errorCode = ErrorCode.INTERNAL_SERVER_ERROR;
         return ResponseEntity.status(errorCode.getStatus())
                 .body(ApiResponse.createError(errorCode.getMessage()));
+    }
+
+    // 토스 페이먼츠 API 서버와의 통신 에러
+    @ExceptionHandler(TossPaymentException.class)
+    public ResponseEntity<ApiResponse<Object>> handleTossPaymentException(TossPaymentException e) {
+        log.error("[TossPaymentException] message: {}", e.getMessage());
+        return ResponseEntity.status(e.getErrorCode().getStatus())
+            .body(ApiResponse.createError(e.getErrorCode().getMessage()));
     }
 }

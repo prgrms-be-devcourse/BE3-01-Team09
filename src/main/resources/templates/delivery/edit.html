@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8"/>
+  <link href="/globals.css" rel="stylesheet"/>
+  <link href="/styleguide.css" rel="stylesheet"/>
+  <link href="/delivery/create.css" rel="stylesheet"/>
+  <title>배송지 관리 - 수정</title>
+</head>
+<body>
+<div class="PAGE">
+  <div class="div">
+    <div class="header">
+      <div class="frame">
+        <div class="logo">
+          <a class="text-wrapper" href="/">Grids & Circles</a>
+        </div>
+        <div class="frame-2">
+          <div class="div-wrapper">
+            <a class="text-wrapper-2" href="/">Home</a>
+          </div>
+          <div class="header-2">
+            <a class="text-wrapper-2"
+               href="https://github.com/prgrms-be-devcourse/NBE3-01-Team09"
+               target="_blank">Contact</a>
+          </div>
+          <div class="div-wrapper">
+            <div class="text-wrapper-2">About</div>
+          </div>
+          <div class="header-3">
+            <div class="text-wrapper-2">Sign Up</div>
+          </div>
+        </div>
+      </div>
+      <div class="frame-3">
+        <div class="frame-4">
+          <img class="img" src="https://c.animaapp.com/QemcTLqk/img/wishlist.svg"/>
+          <div class="with-buy"></div>
+          <img class="img" src="https://c.animaapp.com/QemcTLqk/img/user.svg"/>
+        </div>
+      </div>
+    </div>
+    <div class="line"></div>
+    <div class="roadmap">
+      <div class="account">Home</div>
+      <img class="line-2" src="https://c.animaapp.com/QemcTLqk/img/line-13.svg"/>
+      <div class="nothing">My Account</div>
+    </div>
+    <div class="text-wrapper-3">내 정보 관리</div>
+    <div class="frame-5">
+      <a class="text-wrapper-5" th:href="@{/users/{id}(id=${id})}">내 정보</a>
+      <a class="text-wrapper-6" th:href="@{/deliveries/{id}(id=${id})}">배송지 관리</a>
+    </div>
+    <div class="text-wrapper-4">내 주문</div>
+    <div class="frame-6">
+      <a class="text-wrapper-7" th:href="@{/orders/{id}(id=${id})}">주문목록</a>
+    </div>
+    <div class="frame-8">
+      <div class="group">
+        <div class="delivery-box">
+          <div class="text-wrapper-8">배송지 수정</div>
+          <div class="frame-wrapper">
+            <div class="address-box">
+              <div class="frame-9">
+                <div class="text-wrapper-9">받는 분 성함</div>
+                <label class="placebox-info" style="margin-right: 40px;">
+                  <input class="text-wrapper-10" placeholder="Name" type="text">
+                </label>
+              </div>
+              <div class="frame-9">
+                <div class="text-wrapper-9">우편 번호</div>
+                <label class="placebox-info">
+                  <input class="text-wrapper-10" placeholder="Zipcode" type="text">
+                </label>
+              </div>
+            </div>
+            <div class="address-box">
+              <div class="frame-9">
+                <div class="text-wrapper-9">주소</div>
+                <label class="placebox-info" style="margin-right: 40px;">
+                  <input class="text-wrapper-10" placeholder="주소" type="text">
+                </label>
+              </div>
+              <div class="frame-9">
+                <div class="text-wrapper-9">상세 주소</div>
+                <label class="placebox-info">
+                  <input class="text-wrapper-10" placeholder="상세 주소" type="text">
+                </label>
+              </div>
+            </div>
+            <div class="frame-9">
+              <div class="text-wrapper-9">기본 배송지 여부</div>
+              <label class="placebox-info">
+                <select class="text-wrapper-10" id="yesNo" name="yesNo" required>
+                  <option disabled selected value="">-- 선택하세요 --</option>
+                  <option value="Y">Yes</option>
+                  <option value="N">No</option>
+                </select>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="button-wrapper">
+        <a class="button-cancel" th:href="@{/deliveries/{id}(id=${id})}">
+          <label class="view-all-products">취소</label>
+        </a>
+        <button class="button-add">
+          <label class="view-all-products">저장</label>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

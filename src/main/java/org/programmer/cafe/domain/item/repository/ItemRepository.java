@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
  * 상품 데이터 JPA 연결 인터페이스
  */
 @Repository
-public interface ItemRepository extends JpaRepository<Item, Long> {
+public interface ItemRepository extends JpaRepository<Item, Long>, ItemRepositoryCustom {
 
 }

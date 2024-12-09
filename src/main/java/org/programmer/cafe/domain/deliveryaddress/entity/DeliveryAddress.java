@@ -2,13 +2,16 @@ package org.programmer.cafe.domain.deliveryaddress.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.programmer.cafe.domain.user.entity.User;
 
 @Entity(name = "delivery_addresses")
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Getter
 public class DeliveryAddress {
 
@@ -33,5 +36,6 @@ public class DeliveryAddress {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
+    @ToString.Exclude // 순환참조 방지
     private User user;
 }
