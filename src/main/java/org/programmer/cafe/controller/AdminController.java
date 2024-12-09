@@ -18,17 +18,17 @@ import org.programmer.cafe.domain.item.entity.dto.CreateItemResponse;
 import org.programmer.cafe.domain.item.entity.dto.UpdateItemRequest;
 import org.programmer.cafe.domain.item.entity.dto.UpdateItemResponse;
 import org.programmer.cafe.domain.item.service.ItemService;
-import org.programmer.cafe.domain.order.dto.OrderMapper;
 import org.programmer.cafe.domain.order.dto.AdminOrderResponse;
+import org.programmer.cafe.domain.order.dto.OrderMapper;
 import org.programmer.cafe.domain.order.dto.UserOrderRequest;
 import org.programmer.cafe.domain.order.entity.Order;
 import org.programmer.cafe.domain.order.entity.OrderStatus;
 import org.programmer.cafe.domain.order.service.AdminOrderService;
 import org.programmer.cafe.domain.orderdetail.entity.dto.AdminOrderDetailResponse;
 import org.programmer.cafe.domain.orderdetail.service.AdminDetailOrderService;
-import org.programmer.cafe.service.UpdateStatusService;
-import org.programmer.cafe.service.UpdateAllStockService;
 import org.programmer.cafe.global.response.ApiResponse;
+import org.programmer.cafe.service.UpdateAllStockService;
+import org.programmer.cafe.service.UpdateStatusService;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -127,18 +127,21 @@ public class AdminController {
         @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "주문 조회 성공")
     })
     @GetMapping("/orders")
-    public ResponseEntity<ApiResponse<List<AdminOrderResponse>>> getAllOrders(){
+    public ResponseEntity<ApiResponse<List<AdminOrderResponse>>> getAllOrders() {
         List<Order> lists = adminOrderService.findAllOrders();
-            return ResponseEntity.ok()
-                .body(ApiResponse.createSuccess(OrderMapper.INSTANCE.toAdminOrderViewDtoList(lists)));
+        return ResponseEntity.ok()
+            .body(ApiResponse.createSuccess(OrderMapper.INSTANCE.toAdminOrderViewDtoList(lists)));
     }
+
     @Operation(summary = "관리자 주문 상세 조회 API")
     @ApiResponses(value = {
         @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "주문 조회 성공")
     })
     @GetMapping("/order-details/{id}")
-    public ResponseEntity<ApiResponse< List<AdminOrderDetailResponse>>> getAllOrderDetails(@PathVariable Long id) {
-        List<AdminOrderDetailResponse> adminOrderDetailRespons = adminDetailOrderService.findAllOrderDetails(id);
+    public ResponseEntity<ApiResponse<List<AdminOrderDetailResponse>>> getAllOrderDetails(
+        @PathVariable Long id) {
+        List<AdminOrderDetailResponse> adminOrderDetailRespons = adminDetailOrderService.findAllOrderDetails(
+            id);
         return ResponseEntity.ok()
             .body(ApiResponse.createSuccess(adminOrderDetailRespons));
     }
