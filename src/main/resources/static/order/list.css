@@ -288,6 +288,7 @@
 }
 
 .PAGE .navbar {
+  display: flex;
   position: relative;
   width: 983px;
   height: 76px;
@@ -497,10 +498,6 @@
   object-fit: cover;
 }
 
-.PAGE .actions {
-  display: flex;
-}
-
 .PAGE .button-cancel {
   all: unset;
   box-sizing: border-box;
@@ -645,9 +642,11 @@
 }
 
 .PAGE .actions {
+  position: relative;
   display: flex;
   justify-content: flex-end;
   gap: 5px;
+  left: 830px;
 }
 
 .PAGE .button-cancel:hover {

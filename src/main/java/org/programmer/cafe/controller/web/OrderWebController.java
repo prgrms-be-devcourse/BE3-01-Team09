@@ -17,4 +17,14 @@ public class OrderWebController {
         mv.setViewName("order/list");
         return mv;
     }
+
+    @GetMapping("/{id}/detail/{orderId}")
+    public ModelAndView detail(ModelAndView mv, @PathVariable long id, @PathVariable long orderId) {
+        // TODO : 1 -> orderId 로 바꿔야 함.
+        mv.addObject("orderId", 1);
+        // TODO : 1 -> id 로 바꿔야 함.
+        mv.addObject("id", 1);
+        mv.setViewName("order/detail");
+        return mv;
+    }
 }

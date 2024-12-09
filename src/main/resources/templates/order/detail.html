@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="kr">
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8"/>
   <link href="/globals.css" rel="stylesheet"/>
   <link href="/styleguide.css" rel="stylesheet"/>
-  <link href="/admin/order/detail.css" rel="stylesheet"/>
-  <title>관리자 - 주문 목록</title>
+  <link href="/order/detail.css" rel="stylesheet"/>
+  <title>주문 목록</title>
 </head>
 <body>
 <div class="PAGE">
@@ -46,17 +46,14 @@
       <img class="line-2" src="https://c.animaapp.com/QemcTLqk/img/line-13.svg"/>
       <div class="nothing">My Account</div>
     </div>
-    <div class="text-wrapper-3">상품관리</div>
+    <div class="text-wrapper-3">내 정보 관리</div>
     <div class="frame-5">
-      <a class="text-wrapper-5" href="/admins/items">상품목록</a>
+      <a class="text-wrapper-5" th:href="@{/users/{id}(id=${id})}">내 정보</a>
+      <a class="text-wrapper-6" th:href="@{/deliveries/{id}(id=${id})}">배송지 관리</a>
     </div>
-    <div class="text-wrapper-4">회원관리</div>
+    <div class="text-wrapper-4">내 주문</div>
     <div class="frame-6">
-      <a class="text-wrapper-6" href="/admins/users">회원목록</a>
-    </div>
-    <div class="text-wrapper-7">주문관리</div>
-    <div class="frame-7">
-      <a class="text-wrapper-6-1" href="/admins/orders">주문목록</a>
+      <a class="text-wrapper-7" th:href="@{/orders/{id}(id=${id})}">주문목록</a>
     </div>
 
     <div class="frame-8">
@@ -171,7 +168,7 @@
         </div>
       </div>
       <div class="button-wrapper-2">
-        <a class="button" href="/admins/orders">
+        <a class="button" th:href="@{/orders/{id}(id=${id})}">
           <label class="view-all-products">목록</label>
         </a>
       </div>
