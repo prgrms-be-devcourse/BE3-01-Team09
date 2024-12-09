@@ -27,13 +27,11 @@ public enum ErrorCode { // 예외 발생시, body에 실어 날려줄 상태, co
 
     //-3000: COMMON
     NOT_FOUND(404, -3000, "잘못된 경로입니다."),
-    BAD_REQUEST(400, -3001, "유효하지 않은 요청입니다."),
     INVALID_REQUEST_BODY(400, -3002, "전달된 데이터가 올바르지 않습니다."),
     METHOD_NOT_ALLOWED(405, -3003,"잘못된 Http Method 입니다."),
     INTERNAL_SERVER_ERROR(500, -3004, "서버 내부 오류입니다."),
     UNAUTHORIZED(401, -3005, "토큰 정보가 만료되었거나 존재하지 않습니다."),
     FORBIDDEN(403, -3006, "접근 권한이 없습니다."),
-    INVALID_SORT_TYPE(400, -3007, "올바르지 않은 정렬 타입입니다."),
 
     //-4000: 배송
 
