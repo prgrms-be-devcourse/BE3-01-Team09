@@ -69,12 +69,18 @@
     </div>
     <div class="list-container">
       <div class="overlap">
-<!--        <div class="navbar-wrapper" th:each="user : ${pagination}">-->
+        <!--        <div class="navbar-wrapper" th:each="user : ${pagination}">-->
         <div class="navbar-wrapper">
           <a class="navbar" href="/admins/orders/1">
             <div class="item-info">
               <div class="text-wrapper-15">123</div>
-              <div class="text-wrapper-16">취소</div>
+              <select class="text-wrapper-16 order-status" name="order-status">
+                <option value="COMPLETED">주문 완료</option>
+                <option selected value="SHIPPING_STARTED">배송 완료</option>
+                <option value="PENDING_PAYMENT">결제 대기</option>
+                <option value="FAILED_PAYMENT">결제 실패</option>
+                <option value="CANCEL">주문 취소</option>
+              </select>
               <div class="text-wrapper-17">경기 용인</div>
               <div class="text-wrapper-18">2024-11-29</div>
               <div class="text-wrapper-19">2024-11-29</div>
@@ -87,7 +93,13 @@
           <a class="navbar" href="/admins/orders/1">
             <div class="item-info">
               <div class="text-wrapper-15">123</div>
-              <div class="text-wrapper-16">주문 완료</div>
+              <select class="text-wrapper-16 order-status" name="order-status">
+                <option selected value="COMPLETED">주문 완료</option>
+                <option value="SHIPPING_STARTED">배송 완료</option>
+                <option value="PENDING_PAYMENT">결제 대기</option>
+                <option value="FAILED_PAYMENT">결제 실패</option>
+                <option value="CANCEL">주문 취소</option>
+              </select>
               <div class="text-wrapper-17">경기 하남</div>
               <div class="text-wrapper-18">2024-11-29</div>
               <div class="text-wrapper-19">2024-11-29</div>
@@ -100,7 +112,13 @@
           <a class="navbar" href="/admins/orders/1">
             <div class="item-info">
               <div class="text-wrapper-15">123</div>
-              <div class="text-wrapper-16">배송 완료</div>
+              <select class="text-wrapper-16 order-status" name="order-status">
+                <option value="COMPLETED">주문 완료</option>
+                <option value="SHIPPING_STARTED">배송 완료</option>
+                <option value="PENDING_PAYMENT">결제 대기</option>
+                <option selected value="FAILED_PAYMENT">결제 실패</option>
+                <option value="CANCEL">주문 취소</option>
+              </select>
               <div class="text-wrapper-17">서울 은평</div>
               <div class="text-wrapper-18">2024-11-29</div>
               <div class="text-wrapper-19">2024-11-29</div>
@@ -113,7 +131,13 @@
           <a class="navbar" href="/admins/orders/1">
             <div class="item-info">
               <div class="text-wrapper-15">123</div>
-              <div class="text-wrapper-16">취소</div>
+              <select class="text-wrapper-16 order-status" name="order-status">
+                <option value="COMPLETED">주문 완료</option>
+                <option value="SHIPPING_STARTED">배송 완료</option>
+                <option value="PENDING_PAYMENT">결제 대기</option>
+                <option value="FAILED_PAYMENT">결제 실패</option>
+                <option selected value="CANCEL">주문 취소</option>
+              </select>
               <div class="text-wrapper-17">청주 사과</div>
               <div class="text-wrapper-18">2024-11-29</div>
               <div class="text-wrapper-19">2024-11-29</div>
@@ -128,11 +152,11 @@
     <!-- 페이지네이션 -->
     <div class="pagination">
       <!-- 페이지 번호 -->
-<!--      <span th:each="i : ${#numbers.sequence(1, pagination.totalPages)}">-->
-<!--      <a th:classappend="${pagination.number + 1 == i ? 'active' : ''}"-->
-<!--         th:href="@{/admins/users(page=${i - 1}, size=${pagination.size})}"-->
-<!--         th:text="${i}"></a>-->
-<!--      </span>-->
+      <!--      <span th:each="i : ${#numbers.sequence(1, pagination.totalPages)}">-->
+      <!--      <a th:classappend="${pagination.number + 1 == i ? 'active' : ''}"-->
+      <!--         th:href="@{/admins/users(page=${i - 1}, size=${pagination.size})}"-->
+      <!--         th:text="${i}"></a>-->
+      <!--      </span>-->
       <div>1 2 3 4 5</div>
     </div>
   </div>

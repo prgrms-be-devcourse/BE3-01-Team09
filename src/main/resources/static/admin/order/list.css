@@ -691,3 +691,7 @@
 .PAGE .button-cancel:hover {
   background-color: #e84d4d; /* 호버 시 버튼 배경색 */
 }
+
+.PAGE .order-status {
+  border: none;
+}
