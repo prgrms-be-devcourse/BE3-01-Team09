@@ -58,43 +58,81 @@
     <div class="frame-8">
       <div class="group">
         <div class="text-wrapper-8">Profile</div>
+        <form class="form" id="userUpdateForm" th:action="@{/api/users/mypage/update}" method="post">
+          <input type="hidden" id="id" name="id" th:value="${id}">
         <div class="frame-wrapper">
           <div class="frame-9">
             <div class="text-wrapper-9">Name</div>
             <label class="placebox-info">
-              <input class="text-wrapper-10" id="name" placeholder="Name" type="text">
+              <input class="text-wrapper-10" id="name" name="name" placeholder="Name" th:value="${name}" type="text">
             </label>
           </div>
           <div class="frame-9">
             <div class="text-wrapper-9">Email</div>
             <label class="placebox-info">
-              <input class="text-wrapper-10" id="email" placeholder="Email" type="text">
+              <input class="text-wrapper-10" id="email" name="email" placeholder="Email" th:value="${email}" type="text" readonly="readonly">
             </label>
           </div>
           <div class="frame-10">
             <div class="text-wrapper-9">Password Changes</div>
             <label class="placebox-info-2">
-              <input class="text-wrapper-10" id="currentPassword" placeholder="Current Password" type="text">
+              <input class="text-wrapper-10" id="currentPassword" name="currentPassword" placeholder="Current Password" type="text">
             </label>
             <label class="placebox-info-2">
-              <input class="text-wrapper-10" id="newPassword" placeholder="New Password" type="text">
+              <input class="text-wrapper-10" id="newPassword" name="newPassword" placeholder="New Password" type="text">
             </label>
             <label class="placebox-info-2">
-              <input class="text-wrapper-10" id="confirmNewPassword" placeholder="Confirm New Password" type="text">
+              <input class="text-wrapper-10" id="confirmNewPassword" name="confirmNewPassword" placeholder="Confirm New Password" type="text">
             </label>
           </div>
         </div>
+        </form>
       </div>
       <div class="button-wrapper">
         <a class="button-cancel" style="width: 150px;" th:href="@{/users/{id}(id=${id})}">
           <label class="view-all-products">취소</label>
         </a>
-        <button class="button-edit" style="width: 150px;">
+        <button id="saveBtn" class="button-edit" style="width: 150px;">
           <label class="view-all-products">저장</label>
         </button>
       </div>
     </div>
   </div>
 </div>
+<script>
+  document.getElementById('saveBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+
+    const form = document.getElementById('userUpdateForm');
+    const formData = new FormData(form);
+
+    fetch('/api/users/mypage/update', {
+      method: 'POST',
+      body: formData
+    })
+            .then(response => {
+              console.log('Response status:', response.status);
+              return response.json();
+            })
+            .then(data => {
+              console.log('Full response data:', data);
+              if (data.data && data.data.success) {
+                if (data.data.updatedUserInfo && data.data.updatedUserInfo.id != null) {
+                  alert('수정 완료!');
+                  window.location.href = '/users/' + data.data.updatedUserInfo.id;
+                } else {
+                  alert('성공 응답이지만 id 정보가 없습니다.');
+                }
+              } else {
+                const errorMsg = data.data && data.data.message ? data.data.message : data.message ? data.message : '알 수 없는 오류';
+                alert('실패: ' + errorMsg);
+              }
+            })
+            .catch(err => {
+              console.error('Detailed error:', err);
+              alert('네트워크 오류 또는 예기치 못한 오류가 발생했습니다.');
+            });
+  });
+</script>
 </body>
 </html>

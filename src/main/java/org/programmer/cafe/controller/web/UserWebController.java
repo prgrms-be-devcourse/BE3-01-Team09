@@ -50,8 +50,7 @@ public class UserWebController {
         MyPageSearchRequest user = userService.getUserById(id);
         mv.addObject("name", user.getName());
         mv.addObject("email", user.getEmail());
-        // TODO : 1 -> id 로 바꿔야 함.
-        mv.addObject("id", 1);
+        mv.addObject("id", id);
         mv.setViewName("/user/edit");
         return mv;
     }

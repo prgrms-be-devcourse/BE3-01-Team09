@@ -32,13 +32,6 @@
           </div>
         </div>
       </div>
-      <div class="frame-3">
-        <div class="frame-4">
-          <img class="img" src="https://c.animaapp.com/QemcTLqk/img/wishlist.svg"/>
-          <div class="with-buy"></div>
-          <img class="img" src="https://c.animaapp.com/QemcTLqk/img/user.svg"/>
-        </div>
-      </div>
     </div>
     <div class="line"></div>
     <div class="roadmap">
@@ -57,77 +50,27 @@
     </div>
     <div class="frame-8">
       <div class="group">
-        <div class="delivery-box">
+        <div class="delivery-box" th:each="address : ${list}">
           <div class="text-wrapper-8">배송지</div>
           <div class="frame-wrapper">
             <div class="frame-9">
               <div class="text-wrapper-9">받는 분 성함</div>
               <label class="placebox-info">
-                <input class="text-wrapper-10" placeholder="Name" type="text">
+                <input class="text-wrapper-10" th:value="${address.name}" type="text" readonly>
               </label>
             </div>
             <div class="frame-9">
               <div class="text-wrapper-9">상세 주소</div>
               <label class="placebox-info">
-                <input class="text-wrapper-10" placeholder="Email" type="text">
+                <input class="text-wrapper-10" th:value="${address.addressDetail}" type="text" readonly>
               </label>
             </div>
           </div>
           <div class="button-wrapper">
-            <a class="button-edit" th:href="@{/deliveries/{id}/edit(id=${id})}">
+            <a class="button-edit" th:href="@{/deliveries/{id}/edit(id=${address.id})}">
               <label class="view-all-products">수정</label>
             </a>
-            <button class="button-cancel">
-              <label class="view-all-products">삭제</label>
-            </button>
-          </div>
-        </div>
-        <div class="delivery-box">
-          <div class="text-wrapper-8">배송지</div>
-          <div class="frame-wrapper">
-            <div class="frame-9">
-              <div class="text-wrapper-9">받는 분 성함</div>
-              <label class="placebox-info">
-                <input class="text-wrapper-10" placeholder="Name" type="text">
-              </label>
-            </div>
-            <div class="frame-9">
-              <div class="text-wrapper-9">상세 주소</div>
-              <label class="placebox-info">
-                <input class="text-wrapper-10" placeholder="Email" type="text">
-              </label>
-            </div>
-          </div>
-          <div class="button-wrapper">
-            <a class="button-edit" th:href="@{/deliveries/{id}/edit(id=${id})}">
-              <label class="view-all-products">수정</label>
-            </a>
-            <button class="button-cancel">
-              <label class="view-all-products">삭제</label>
-            </button>
-          </div>
-        </div>
-        <div class="delivery-box">
-          <div class="text-wrapper-8">배송지</div>
-          <div class="frame-wrapper">
-            <div class="frame-9">
-              <div class="text-wrapper-9">받는 분 성함</div>
-              <label class="placebox-info">
-                <input class="text-wrapper-10" placeholder="Name" type="text">
-              </label>
-            </div>
-            <div class="frame-9">
-              <div class="text-wrapper-9">상세 주소</div>
-              <label class="placebox-info">
-                <input class="text-wrapper-10" placeholder="Email" type="text">
-              </label>
-            </div>
-          </div>
-          <div class="button-wrapper">
-            <a class="button-edit" th:href="@{/deliveries/{id}/edit(id=${id})}">
-              <label class="view-all-products">수정</label>
-            </a>
-            <button class="button-cancel">
+            <button class="button-cancel" th:id="${address.id}">
               <label class="view-all-products">삭제</label>
             </button>
           </div>
@@ -141,5 +84,44 @@
     </div>
   </div>
 </div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const deleteButtons = document.querySelectorAll('.button-cancel');
+
+    deleteButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const addressId = this.getAttribute('id');
+
+        // 삭제 확인 모달
+        if (confirm('정말로 이 주소를 삭제하시겠습니까?')) {
+          fetch(`/api/delivery/delete/${addressId}`, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          })
+                  .then(response => {
+                    if (!response.ok) {
+                      throw new Error('삭제 중 오류가 발생했습니다.');
+                    }
+                    return response.json();
+                  })
+                  .then(result => {
+                    if (result) {
+                      alert('주소가 성공적으로 삭제되었습니다.');
+                      // 삭제 후 해당 주소 요소 제거
+                      this.closest('.address-item').remove();
+                    } else {
+                      alert('삭제에 실패했습니다.');
+                    }
+                  })
+                  .catch(error => {
+                    console.error('Error:', error);
+                    alert('삭제 중 문제가 발생했습니다.');
+                  });
+        }
+      });
+    });
+  });</script>
 </body>
 </html>

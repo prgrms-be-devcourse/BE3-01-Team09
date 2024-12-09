@@ -85,8 +85,8 @@ public class DeliveryController {
         }
     }
 
-    @DeleteMapping
-    public ResponseEntity<ApiResponse<Object>> deleteDeliveryAddress(@RequestBody Long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ApiResponse<Object>> deleteDeliveryAddress(@PathVariable Long id) {
         boolean isSuccessful = deliveryAddressService.deleteAddress(id);
 
         try {
