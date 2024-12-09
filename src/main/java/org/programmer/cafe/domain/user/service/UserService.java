@@ -16,6 +16,7 @@ import org.programmer.cafe.domain.user.dto.UserSignupRequest;
 import org.programmer.cafe.domain.user.entity.dto.MyPageSearchRequest;
 import org.programmer.cafe.domain.user.entity.MyPageStatus;
 import org.programmer.cafe.domain.user.entity.User;
+import org.programmer.cafe.domain.user.entity.dto.MyPageSearchRequest;
 import org.programmer.cafe.domain.user.entity.dto.MyPageUpdateResponse;
 import org.programmer.cafe.domain.user.entity.dto.PageUserResponse;
 import org.programmer.cafe.domain.user.repository.UserProjection;
