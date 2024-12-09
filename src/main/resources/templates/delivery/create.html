@@ -55,16 +55,26 @@
     <div class="frame-6">
       <a class="text-wrapper-7" th:href="@{/orders/{id}(id=${id})}">주문목록</a>
     </div>
-    <div class="frame-8">
+<!--    <form class="frame-8" method="POST" th:action="@{/orders/{id}(id=${id})}">-->
+    <form class="frame-8" method="POST" action="#">
+<!--   FORM 태그 그대로 하셔도되고 div로 바꿔서 자바스크립트로 클릭이벤트 처리하셔도 됩니다!!   -->
       <div class="group">
         <div class="delivery-box">
           <div class="text-wrapper-8">배송지 등록</div>
           <div class="frame-wrapper">
-            <div class="frame-9">
-              <div class="text-wrapper-9">받는 분 성함</div>
-              <label class="placebox-info">
-                <input class="text-wrapper-10" placeholder="Name" type="text">
-              </label>
+            <div class="address-box">
+              <div class="frame-9">
+                <div class="text-wrapper-9">받는 분 성함</div>
+                <label class="placebox-info" style="margin-right: 40px;">
+                  <input class="text-wrapper-10" placeholder="Name" type="text">
+                </label>
+              </div>
+              <div class="frame-9">
+                <div class="text-wrapper-9">우편 번호</div>
+                <label class="placebox-info">
+                  <input class="text-wrapper-10" placeholder="Zipcode" type="text">
+                </label>
+              </div>
             </div>
             <div class="address-box">
               <div class="frame-9">
@@ -101,7 +111,7 @@
           <label class="view-all-products">등록</label>
         </button>
       </div>
-    </div>
+    </form>
   </div>
 </div>
 </body>
