@@ -6,6 +6,9 @@ import org.programmer.cafe.domain.item.entity.ItemStatus;
 import org.programmer.cafe.domain.item.entity.dto.GetItemResponse;
 import org.programmer.cafe.domain.item.entity.dto.PageItemResponse;
 import org.programmer.cafe.domain.item.service.ItemService;
+import org.programmer.cafe.domain.order.dto.UserOrderResponse;
+import org.programmer.cafe.domain.order.entity.OrderStatus;
+import org.programmer.cafe.domain.order.service.AdminOrderService;
 import org.programmer.cafe.domain.user.entity.dto.PageUserResponse;
 import org.programmer.cafe.domain.user.service.UserService;
 import org.springframework.data.domain.Page;
@@ -25,6 +28,7 @@ public class AdminWebController {
 
     private final ItemService itemService;
     private final UserService userService;
+    private final AdminOrderService adminOrderService;
 
     // http://localhost:8080/admins/items
     @GetMapping("/items")
@@ -73,7 +77,12 @@ public class AdminWebController {
     }
 
     @GetMapping("/orders")
-    public ModelAndView orders(ModelAndView mv) {
+    public ModelAndView orders(@PageableDefault(page = 0, size = 5) Pageable pageable,
+        ModelAndView mv) {
+        final Page<UserOrderResponse> pagination = adminOrderService.getOrdersWithPagination(
+            pageable);
+        mv.addObject("pagination", pagination);
+        mv.addObject("orderStatus", OrderStatus.values());
         mv.setViewName("admin/order/order-list");
         return mv;
     }

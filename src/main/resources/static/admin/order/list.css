@@ -327,7 +327,7 @@
 
 .PAGE .text-wrapper-9 {
   top: 26px;
-  left: 175px;
+  left: 186px;
   position: absolute;
   font-family: var(--title-16px-regular-font-family);
   font-weight: var(--title-16px-regular-font-weight);
@@ -340,7 +340,7 @@
 
 .PAGE .text-wrapper-10 {
   top: 26px;
-  left: 336px;
+  left: 363px;
   position: absolute;
   font-family: var(--title-16px-regular-font-family);
   font-weight: var(--title-16px-regular-font-weight);
@@ -353,7 +353,7 @@
 
 .PAGE .text-wrapper-11 {
   top: 26px;
-  left: 500px;
+  left: 524px;
   position: absolute;
   font-family: var(--title-16px-regular-font-family);
   font-weight: var(--title-16px-regular-font-weight);
@@ -379,7 +379,7 @@
 
 .PAGE .text-wrapper-13 {
   top: 26px;
-  left: 780px;
+  left: 680px;
   position: absolute;
   font-family: var(--title-16px-regular-font-family);
   font-weight: var(--title-16px-regular-font-weight);
@@ -392,7 +392,7 @@
 
 .PAGE .text-wrapper-14 {
   top: 26px;
-  left: 900px;
+  left: 800px;
   position: absolute;
   font-family: var(--title-16px-regular-font-family);
   font-weight: var(--title-16px-regular-font-weight);
@@ -428,7 +428,7 @@
 
 .PAGE .text-wrapper-15 {
   top: 24px;
-  left: 25px;
+  left: 40px;
   white-space: nowrap;
   position: absolute;
   font-family: var(--title-16px-regular-font-family);
@@ -470,7 +470,7 @@
 
 .PAGE .text-wrapper-18 {
   top: 24px;
-  left: 495px;
+  left: 516px;
   white-space: nowrap;
   position: absolute;
   font-family: var(--title-16px-regular-font-family);
@@ -498,7 +498,7 @@
 
 .PAGE .text-wrapper-20 {
   top: 24px;
-  left: 769px;
+  left: 666px;
   white-space: nowrap;
   position: absolute;
   font-family: var(--title-16px-regular-font-family);
@@ -512,7 +512,7 @@
 
 .PAGE .text-wrapper-21 {
   top: 24px;
-  left: 889px;
+  left: 789px;
   white-space: nowrap;
   position: absolute;
   font-family: var(--title-16px-regular-font-family);
@@ -533,15 +533,10 @@
   object-fit: cover;
 }
 
-.PAGE .actions {
-  display: flex;
-}
-
-.PAGE .button-add,
-.PAGE .button-cancel {
+.PAGE .button {
   all: unset;
   box-sizing: border-box;
-  width: 57px;
+  width: 85px;
   top: 21px;
   display: flex;
   height: 29px;
@@ -677,18 +672,15 @@
   display: flex;
 }
 
-.PAGE .item-info:hover {
-  background-color: #e84d4d; /* 호버 시 버튼 배경색 */
-}
-
 .PAGE .actions {
   display: flex;
   justify-content: flex-end;
   gap: 5px;
+  left: 884px;
+  position: relative;
 }
 
-.PAGE .button-add:hover,
-.PAGE .button-cancel:hover {
+.PAGE .button:hover {
   background-color: #e84d4d; /* 호버 시 버튼 배경색 */
 }
 
