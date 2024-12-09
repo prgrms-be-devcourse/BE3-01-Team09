@@ -8,11 +8,16 @@ import org.programmer.cafe.global.response.ApiResponse;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 공통 예외처리 클래스
@@ -20,6 +25,15 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+    // validation 체크
+    private String bindingResultErrorsCheck(BindingResult bindingResult) {
+        Map<String, String> errorMap = new HashMap<>();
+        for (FieldError fe : bindingResult.getFieldErrors()) {
+            errorMap.put(fe.getField(), fe.getDefaultMessage());
+        }
+        return errorMap.toString();
+    }
 
     // 잘못된 경로 에러 404
     @ExceptionHandler(NoHandlerFoundException.class)
@@ -46,6 +60,14 @@ public class GlobalExceptionHandler {
         ErrorCode errorCode = ErrorCode.BAD_REQUEST;
         return ResponseEntity.status(errorCode.getStatus())
                 .body(ApiResponse.createErrorWithMsg(e.getMessage()));
+    }
+
+    // Jwt 400 에러
+    @ExceptionHandler(AuthException.class)
+    public ResponseEntity<ApiResponse<Object>> handleBadRequestException(AuthException e) {
+        log.error("[AuthException] message: {}", e.getMessage());
+        return ResponseEntity.status(e.getErrorCode().getStatus())
+                .body(ApiResponse.createError(e.getErrorCode().getMessage()));
     }
 
     // 각종 400 에러

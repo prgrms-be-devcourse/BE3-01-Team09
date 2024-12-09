@@ -36,6 +36,9 @@ out/
 ### VS Code ###
 .vscode/
 
+### jwt properties ###
+application-jwt.yml
+
 ## MAC
 .DS_Store
 
