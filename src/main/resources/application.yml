@@ -63,11 +63,6 @@ springdoc:
 #  paths-to-match:
 #    - /api/v1/** # 특정 경로의 API만 매칭
 
-app:
-  jwt:
-    secretKey: t0OJ0QNuh5/fsn5x4z29NdwhI5VBGFRrgkKtsb7vyQs=
-    accessTime: 3600000
-    refreshTime: 259200000
 
 file:
   upload-dir: images
