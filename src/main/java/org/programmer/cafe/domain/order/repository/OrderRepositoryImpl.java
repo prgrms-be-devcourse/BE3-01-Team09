@@ -38,6 +38,25 @@ public class OrderRepositoryImpl implements OrderRepositoryCustom {
         ).as("updatedAt")
     );
 
+    private static final QBean<UserOrderResponse> orderDtoWithDetail = Projections.fields(
+        UserOrderResponse.class,
+        order.id,
+        order.totalPrice,
+        order.status,
+        order.name,
+        order.itemName,
+        order.itemImage,
+        order.address,
+        order.addressDetail,
+        order.orderDetails.size().as("quantity"),
+        Expressions.stringTemplate(
+            "DATE_FORMAT({0}, '%Y-%m-%d')", order.createdAt
+        ).as("createdAt"),
+        Expressions.stringTemplate(
+            "DATE_FORMAT({0}, '%Y-%m-%d')", order.updatedAt
+        ).as("updatedAt")
+    );
+
     private final JPAQueryFactory queryFactory;
 
     @Override
@@ -53,6 +72,22 @@ public class OrderRepositoryImpl implements OrderRepositoryCustom {
             .from(order)
             .fetchOne();
 
+        return new PageImpl<>(responses, pageable, count != null ? count : 0);
+    }
+
+    @Override
+    public Page<UserOrderResponse> getOrdersByUserIdWithPagination(long id, Pageable pageable) {
+        final List<UserOrderResponse> responses = queryFactory.select(orderDtoWithDetail)
+            .from(order)
+            .where(order.user.id.eq(id))
+            .offset(pageable.getOffset())
+            .limit(pageable.getPageSize())
+            .orderBy(new OrderSpecifier<>(Order.DESC, order.id))
+            .fetch();
+        final Long count = queryFactory.select(order.count())
+            .from(order)
+            .where(order.user.id.eq(id))
+            .fetchOne();
         return new PageImpl<>(responses, pageable, count != null ? count : 0);
     }
 }

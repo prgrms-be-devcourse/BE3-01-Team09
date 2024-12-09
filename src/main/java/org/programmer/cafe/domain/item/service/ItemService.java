@@ -9,6 +9,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.List;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.programmer.cafe.domain.item.entity.Item;
@@ -108,7 +109,8 @@ public class ItemService {
         String temp = "";
         try {
             final Path path = Paths.get(filePath);
-            final Path file = path.resolve(originalFilename);
+            final Path file = path.resolve(
+                String.valueOf(UUID.randomUUID()) + "_" + originalFilename);
             if (!Files.exists(path)) {
                 Files.createDirectories(path);
             }
